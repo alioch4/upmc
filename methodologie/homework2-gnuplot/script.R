@@ -1,7 +1,17 @@
 data <- read.table("dataset.txt", sep="\t", header=FALSE)
 colnames(data) <-  c("node1","node2","begin","end")
 
-print(summary(data$end - data$begin))
+data <- transform(data,duration=data$end-data$begin)
+
+  for(i in 1:length(data)){
+    res$start[   data$node1[i]  ] = res$start[   data$node1[i]  ] + 1
+    res$time[ data$node1[i]]   = res$time[ data$node1[i]]  + data$end[i] - data$begin[i]
+  }
+
+#res = unlist(lapply(unique(data$node1), function(x){sum(data$duration[data$node1 == x])}))
+
+print(res)
+
 
 #for(i in 1:length(data[[1]])) res[[data$node1[i]]] = res[[data$node1[i]]]+data$end[i]-data$begin[i]
 
