@@ -26,4 +26,5 @@ for o in data:
 for i in res.keys():
     res[i]['moyenne'] = res[i]['total'] / res[i]['effectif']
 
-print res
+for i in res.keys():
+    print i,res[i]['moyenne'],res[i]['total'],res[i]['effectif']

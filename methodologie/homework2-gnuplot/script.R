@@ -1,17 +1,17 @@
 data <- read.table("dataset.txt", sep="\t", header=FALSE)
 colnames(data) <-  c("node1","node2","begin","end")
 
-data <- transform(data,duration=data$end-data$begin)
+data2 <- read.table("data.txt",sep=" ",header=FALSE)
+colnames(data2) <- c("id","moyenne","total","effectif")
 
-  for(i in 1:length(data)){
-    res$start[   data$node1[i]  ] = res$start[   data$node1[i]  ] + 1
-    res$time[ data$node1[i]]   = res$time[ data$node1[i]]  + data$end[i] - data$begin[i]
-  }
+#Normalisation
 
+data2$moyenne <- ( data2$moyenne - mean( data2$moyenne ) )/sd(data2$moyenne)
+data2$total <- ( data2$total - mean( data2$total ) )/sd(data2$total)
+data2$effectif <- ( data2$effectif - mean( data2$effectif ) )/sd(data2$effectif)
+
+write.csv2( data2, file = 'data2.txt', eol='\n'  )
 #res = unlist(lapply(unique(data$node1), function(x){sum(data$duration[data$node1 == x])}))
-
-print(res)
-
 
 #for(i in 1:length(data[[1]])) res[[data$node1[i]]] = res[[data$node1[i]]]+data$end[i]-data$begin[i]
 
