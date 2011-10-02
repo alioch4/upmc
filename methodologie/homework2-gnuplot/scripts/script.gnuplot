@@ -4,7 +4,7 @@ set datafile separator ';'
 set style fill
 
 set terminal postscript eps enhanced 9
-set output "part1.eps"
+set output "../img/part1.eps"
 set size 0.36,0.5
 
 
@@ -18,6 +18,6 @@ plot 'data2.txt' using ($2-0.3):3:(0.2) w boxes \
     fs solid lc rgb '#cafefe' \
     title "Number of contacts" \
 
-!epstopdf part1.eps && rm part1.eps
+!epstopdf ../img/part1.eps && rm ../img/part1.eps
 
 # vim:ft=gnuplot:
