@@ -1,5 +1,8 @@
 MAIN_FILE = main
 
+gnuplot:
+	gnuplot scripts/script.gnuplot
+
 pdf:
 	xelatex ${MAIN_FILE}.tex
 	bibtex ${MAIN_FILE}.aux

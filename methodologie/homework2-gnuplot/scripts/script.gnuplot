@@ -1,4 +1,4 @@
-set xlabel 'Normalized mean chat time'
+set xlabel 'Scientist id'
 set ylabel 'Normalized number of chat'
 set datafile separator ';'
 set style fill

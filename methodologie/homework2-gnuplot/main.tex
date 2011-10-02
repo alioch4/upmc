@@ -2,25 +2,37 @@
 
 \begin{document}
 
-\title{A Sample Homework in LaTeX Format}
+\title{Homework - Making the point}
 
 \numberofauthors{1} %  in this sample file, there are a *total*
 
 \author{
-\alignauthor
-Rémy Léone\\
-       \affaddr{UPMC~-- M2 Recherche~-- METHO}\\
-       \email{remy.leone@gmail.com}
+  \alignauthor
+    Rémy Léone\\
+    \affaddr{UPMC~-- M2 Recherche~-- METHO}\\
+    \email{remy.leone@gmail.com}
 }
 
 \maketitle
 
-\begin{abstract}
-Abstract comes here
-\end{abstract}
-
-
 \section{Analysis of scientist conversation distribution}
+
+\subsection{Experimental method}
+
+We used several script to extract information from the data provided before this study.
+First we read the main data using a python script, then we process it by creating some 
+new variables (total time of conversation, mean time of conversation). Then we normalize
+the data using R programming language. Finally we use gnuplot to create graphical representation
+of our data.
+
+\subsection{Results analysis}
+
+We obtain a very heterogeneous set of results. Several behavior could be observed in our result :
+\begin{description}
+\item Average conversation and connection with other scientists
+\item Lower than average communication
+\item Above average communication
+\end{description}
 
 \begin{figure}[h]
 \begin{center}
@@ -29,11 +41,33 @@ Abstract comes here
 \caption{Normalized results of conversation}
 \end{figure}
 
+We can also notice that some scientists are not talking at all, because we don't know 
+a lot about how this data was created we can suppose it could be some errors.
 
-\section{Section 2}
+\subsection{Others questions}
 
-\cite{overcite} Section 2 comes here...
+Other informations could be required to analyse more deeply this conference. For instance, we don't 
+have any information about the scientists. It could be very interesting to compare this conversations
+with the administrative position of each of them (graduate student, senior, laboratory leader).
 
+A study of the distribution of chat could be interesting. Supposition can be made about the correlation
+between the administrative responsability and the chat-appeal a person could have in a science conference.
+
+
+\section{Availability in large scale distributed networks}
+
+SETI@home project was launched in May 1999 and have used to study the behavior of 
+large scale distributed network (\cite{ja_ko_mascots09}). The main problem of SETI@home
+(and all benevolant projects alike) is the availability of node that could evolve very quickly.
+As a result the average availability could suffer from a massive disconnection of nodes.
+
+We could compare the average result of a network with similarity with SETI@home and a classical
+network (A supercomputer or a cluster of university's computers).
+
+\subsection{Experimental method}
+
+We used the massive amount of data that were used by previous work on distributed computing (\cite{ja_ko_mascots09})
+to calculate an average computing power. 
 \bibliographystyle{abbrv}
 \bibliography{main}
 
