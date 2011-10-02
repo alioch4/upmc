@@ -8,13 +8,13 @@ set output "part1.eps"
 set size 0.36,0.5
 
 
-plot 'data2.txt' using ($2-0.3):3:(0.3) w boxes \
+plot 'data2.txt' using ($2-0.3):3:(0.2) w boxes \
     fs solid lc rgb '#2244cc' \
     title 'Mean time per contact', \
-  'data2.txt' using ($2+0.1):4:(0.3) w boxes \
+  'data2.txt' using ($2-0.1):4:(0.2) w boxes \
     fs solid lc rgb '#cc8822' \
     title "total time", \
-  'data2.txt' using ($2+0.1):5:(0.3) w boxes \
+  'data2.txt' using ($2+0.1):5:(0.2) w boxes \
     fs solid lc rgb '#cafefe' \
     title "Number of contacts" \
 
