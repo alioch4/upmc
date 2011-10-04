@@ -34,10 +34,12 @@ num_data = array(res)
 mean = num_data.mean()
 std = num_data.std()
 
-normal = list()
 for o in data:
     o['normalized_time'] = ( o['time'] - mean ) / std
 
-for item in data:
+data_sorted = sorted(data, key=lambda k: k['normalized_time']) 
+for item in data_sorted:
     print "%s %s\n" % (item['time'], item['normalized_time'] )
     output.write("%s, %s\n" % (item['time'], item['normalized_time']))
+
+
