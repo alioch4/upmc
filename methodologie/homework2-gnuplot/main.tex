@@ -1,6 +1,8 @@
 \documentclass{sig-alternate-10pt}
 
+\usepackage{graphicx}
 \usepackage{listings}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -99,9 +101,24 @@ of information the subset of the component is a more easily to handle set of dat
 Only \texttt{component.tab} was used to analyse the normalized density function of the connexion time.
 
 
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{img/part2}
+\end{center}
+\caption{Normalized results of uptime}
+\label{part2}
+\end{figure}
+
+
+\subsection{Conclusion}
+
+As showed in \ref{part2}
+
+
 \subsection{Code sample}
 
-All source code is available on github.
+All source code is available on 
+\href{https://github.com/sieben/upmc/tree/master/methodologie/homework2-gnuplot}{github}.
 
 \subsubsection{Extraction and processing script}
 
@@ -114,6 +131,5 @@ All source code is available on github.
 \bibliographystyle{abbrv}
 \bibliography{main}
 
-\subsection{Conclusion}
 
 \end{document}

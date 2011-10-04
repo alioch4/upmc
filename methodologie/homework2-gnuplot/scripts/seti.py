@@ -7,24 +7,27 @@ from collections import defaultdict
 from string import strip
 from numpy import *
 
-
 def striplist(l):
     return([x.strip() for x in l])
+fichier = open('component.tab','r')
 
-f = csv.reader(open('component.tab','r'),delimiter='\t')
+f = csv.reader(fichier, delimiter='\t')
 output = open('seti-output.txt','w')
 
-values = ['component_id', 'node_id', 'platform_id', 'creator_id', 'node_name',
-        'component_type', 'trace_start', 'trace_end', 'resolution']
+values = ['component_id',
+        'node_id', 'platform_id',
+        'creator_id', 'node_name',
+        'component_type', 'start',
+        'end', 'resolution']
 data = list()
 res = list()
 
 for row in f:
     row = dict(zip(values,striplist(row)))
-    row['trace_start'] = float(row['trace_start'])
-    row['trace_end'] = float(row['trace_end'])
+    row['start'] = float(row['start'])
+    row['end'] = float(row['end'])
 
-    row['time'] = row['trace_end'] - row['trace_start']
+    row['time'] = row['end'] - row['start']
     data.append(row)
 
 for o in data:
@@ -35,11 +38,12 @@ mean = num_data.mean()
 std = num_data.std()
 
 for o in data:
-    o['normalized_time'] = ( o['time'] - mean ) / std
+    o['nrml_time']=(o['time']-mean)/std
 
-data_sorted = sorted(data, key=lambda k: k['normalized_time']) 
-for item in data_sorted:
-    print "%s %s\n" % (item['time'], item['normalized_time'] )
-    output.write("%s, %s\n" % (item['time'], item['normalized_time']))
-
+data_sorted=sorted(data,
+        key=lambda k: k['nrml_time'])
+for i in data_sorted:
+    print "%s %s\n"%(i['time'],i['nrml_time'])
+    output.write("%s, %s\n" % 
+            (i['time'], i['nrml_time']))
 
