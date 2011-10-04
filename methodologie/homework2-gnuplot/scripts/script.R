@@ -6,6 +6,8 @@ colnames(data2) <- c("id","moyenne","total","effectif")
 
 #Normalisation
 
+print(mean(data2$effectif))
+
 data2$moyenne <- ( data2$moyenne - mean( data2$moyenne ) )/sd(data2$moyenne)
 data2$total <- ( data2$total - mean( data2$total ) )/sd(data2$total)
 data2$effectif <- ( data2$effectif - mean( data2$effectif ) )/sd(data2$effectif)

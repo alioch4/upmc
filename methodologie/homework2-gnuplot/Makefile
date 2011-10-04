@@ -1,13 +1,14 @@
 MAIN_FILE = main
 
-gnuplot:
-	gnuplot scripts/script.gnuplot
-
-pdf:
+pdf: 
 	xelatex ${MAIN_FILE}.tex
 	bibtex ${MAIN_FILE}.aux
 	xelatex ${MAIN_FILE}.tex
 	xelatex ${MAIN_FILE}.tex
+
+gnuplot:
+	gnuplot scripts/script.gnuplot
+	gnuplot scripts/seti.gnuplot
 	
 clean:
 

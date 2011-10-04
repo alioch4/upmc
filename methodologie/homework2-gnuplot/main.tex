@@ -1,5 +1,7 @@
 \documentclass{sig-alternate-10pt}
 
+\usepackage{listings}
+
 \begin{document}
 
 \title{Homework - Making the point}
@@ -29,10 +31,17 @@ of our data.
 
 We obtain a very heterogeneous set of results. Several behavior could be observed in our result :
 \begin{description}
-\item Average conversation and connection with other scientists
-\item Lower than average communication
-\item Above average communication
+\item Average number of connections with other scientists
+\item Lower than average connections
+\item Above average connections
 \end{description}
+
+Most of the scientists attending to this conference seems to have a very average behavior
+(having around 125 conversations). Nevertheless, some of them are having more conversations
+and during a longer period. It's clear by looking at the deviation from the mean value of the 
+number of conversation and the mean time of conversation. We can also noticed some very low
+results from some scientists. There is some outliers, two of them are a complete lack of conversations
+giving two missing point, and one of them is a high values chatting person.
 
 \begin{figure}[h]
 \begin{center}
@@ -44,15 +53,20 @@ We obtain a very heterogeneous set of results. Several behavior could be observe
 We can also notice that some scientists are not talking at all, because we don't know 
 a lot about how this data was created we can suppose it could be some errors.
 
-\subsection{Others questions}
+\subsection{Conclusion and open questions}
 
-Other informations could be required to analyse more deeply this conference. For instance, we don't 
+Other informations could be required to analyse more deeply this conference and answer more questions. 
+For instance, we don't 
 have any information about the scientists. It could be very interesting to compare this conversations
 with the administrative position of each of them (graduate student, senior, laboratory leader).
 
-A study of the distribution of chat could be interesting. Supposition can be made about the correlation
+A study of the chat distribution could be interesting. Suppositions can be made about the correlation
 between the administrative responsability and the chat-appeal a person could have in a science conference.
 
+Some results could be obtained by looking at the time distribution, maybe there is some period where
+no communications appends and some others that are very dense. Linking this results
+
+\lstinputlisting[language=Gnuplot]{scripts/script.gnuplot}
 
 \section{Availability in large scale distributed networks}
 
@@ -61,15 +75,36 @@ large scale distributed network (\cite{ja_ko_mascots09}). The main problem of SE
 (and all benevolant projects alike) is the availability of node that could evolve very quickly.
 As a result the average availability could suffer from a massive disconnection of nodes.
 
+Boinc platform (230 000) hosts
+April 1 2007 -> January 1 2009
+CPU FREE or not
+57 800 years of CPU time
+102 416 434 continuous intervals
+
 We could compare the average result of a network with similarity with SETI@home and a classical
 network (A supercomputer or a cluster of university's computers).
 
+
+
 \subsection{Experimental method}
 
-We used the massive amount of data that were used by previous work on distributed computing (\cite{ja_ko_mascots09})
-to calculate an average computing power. 
+The massive amount of data that were used by previous work on distributed computing (\cite{ja_ko_mascots09})
+was used also in this paper. A GNU/Linux computer with an Intel i5 CPU and 4 Gb of ram was used to conduct this
+experiment. Python, R and other free software scripting tools have benn used to conduct this experiments.
+
+The complete dataset is quite huge (around 17 Gb), a computer with much more memory would be appreciated to
+compute more advance results. A smaller set of data were used to do the computation. With only 226207 lines 
+of information the subset of the component is a more easily to handle set of data
+
+\subsection{Code sample}
+
+All source code is available on github.
+
+\lstinputlisting[language=Python]{scripts/seti.py}
+
 \bibliographystyle{abbrv}
 \bibliography{main}
 
+\subsection{Conclusion}
 
 \end{document}
