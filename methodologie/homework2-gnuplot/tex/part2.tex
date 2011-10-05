@@ -1,0 +1,71 @@
+\section{Availability in large scale distributed networks}
+
+SETI@home project was launched in May 1999 and have used to study the behavior of 
+large scale distributed network (\cite{ja_ko_mascots09}). The main problem of SETI@home
+(and all benevolant projects alike) is the availability of node that could evolve very quickly.
+As a result the average availability could suffer from a massive disconnection of nodes.
+
+Boinc platform (230 000) hosts
+April 1 2007 -> January 1 2009
+CPU FREE or not
+57 800 years of CPU time
+102 416 434 continuous intervals
+
+We could compare the average result of a network with similarity with SETI@home and a classical
+network (A supercomputer or a cluster of university's computers).
+
+\subsection{Experimental method}
+
+The massive amount of data that were used by previous work on distributed computing (\cite{ja_ko_mascots09})
+was used also in this paper. A GNU/Linux computer with an Intel i5 CPU and 4 Gb of ram was used to conduct this
+experiment. Python, R and other free software scripting tools have benn used to conduct this experiments.
+
+The complete dataset is quite huge (around 17 Gb), a computer with much more memory would be appreciated to
+compute more advance results. A smaller set of data were used to do the computation. With only 226207 lines 
+of information the subset of the component is a more easily to handle set of data.
+
+\subsection{Experimental results}
+
+Only \texttt{component.tab} was used to analyse the normalized density function of the connexion time.
+
+An interesting perspective could be to recreate the clusetering that occurs from 2010 to 2011 to see if
+the results are different from what happened between 2007 and 2009. A lot of computationnal power could be 
+required to apply clustering algorithm on this massive set of data.
+
+For this study an attempt of clustering has been performed but R didn't gave good results in a short amount
+of time, using an other tool of clustering computer could help us to recreate the results they got and will
+help to apply this methods to fresher data.
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{img/part2}
+\end{center}
+\caption{Normalized results of uptime}
+\label{part2}
+\end{figure}
+
+
+\subsection{Conclusion}
+
+As showed in the previous representation of node availability \ref{part2}, connection time
+is very unstable for a lot of node in the network. We could analyse it as a correlation between
+very random time between the begin and the end of a screensaver starting on a average computer.
+Because of this unstability, SETI@home is this current state cannot be used to compute critical
+data in a short amount of time. The calculus scheduling of SETI@home reveals that 34 \% of users
+have a truly random behavior and cannot fit the requirements to perform intensive and very long
+calculus.
+
+\subsection{Code sample}
+
+All source code is available on 
+\href{https://github.com/sieben/upmc/tree/master/methodologie/homework2-gnuplot}{github}.
+
+\subsubsection{Extraction and processing script}
+
+\lstinputlisting[language=Python]{scripts/seti.py}
+
+\subsubsection{Statistical processing}
+
+\lstinputlisting[language=R]{scripts/seti.R}
+

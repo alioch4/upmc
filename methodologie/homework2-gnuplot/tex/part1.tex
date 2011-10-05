@@ -1,0 +1,51 @@
+\section{Analysis of scientist conversation distribution}
+
+\subsection{Experimental method}
+
+We used several script to extract information from the data provided before this study.
+First we read the main data using a python script, then we process it by creating some 
+new variables (total time of conversation, mean time of conversation). Then we normalize
+the data using R programming language. Finally we use gnuplot to create graphical representation
+of our data.
+
+\subsection{Results analysis}
+
+We obtain a very heterogeneous set of results. Several behavior could be observed in our result :
+\begin{description}
+\item Average number of connections with other scientists
+\item Lower than average connections
+\item Above average connections
+\end{description}
+
+Most of the scientists attending to this conference seems to have a very average behavior
+(having around 125 conversations). Nevertheless, some of them are having more conversations
+and during a longer period. It's clear by looking at the deviation from the mean value of the 
+number of conversation and the mean time of conversation. We can also noticed some very low
+results from some scientists. There is some outliers, two of them are a complete lack of conversations
+giving two missing point, and one of them is a high values chatting person.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics{img/part1}
+\end{center}
+\caption{Normalized results of conversation}
+\end{figure}
+
+We can also notice that some scientists are not talking at all, because we don't know 
+a lot about how this data was created we can suppose it could be some errors.
+
+\subsection{Conclusion and open questions}
+
+Other informations could be required to analyse more deeply this conference and answer more questions. 
+For instance, we don't 
+have any information about the scientists. It could be very interesting to compare this conversations
+with the administrative position of each of them (graduate student, senior, laboratory leader).
+
+A study of the chat distribution could be interesting. Suppositions can be made about the correlation
+between the administrative responsability and the chat-appeal a person could have in a science conference.
+
+Some results could be obtained by looking at the time distribution, maybe there is some period where
+no communications appends and some others that are very dense. Linking this results
+
+\lstinputlisting[language=Gnuplot]{scripts/script.gnuplot}
+
