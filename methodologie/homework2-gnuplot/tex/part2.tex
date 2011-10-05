@@ -1,18 +1,18 @@
 \section{Availability in large scale distributed networks}
 
-SETI@home project was launched in May 1999 and have used to study the behavior of 
+SETI@home project was launched in May 1999 and have been used to study the behavior of
 large scale distributed network (\cite{ja_ko_mascots09}). The main problem of SETI@home
-(and all benevolant projects alike) is the availability of node that could evolve very quickly.
-As a result the average availability could suffer from a massive disconnection of nodes.
+(and all benevolant projects alike) is the availability of node could evolve very quickly.
+As a result, the average availability could suffer from a massive disconnection of nodes that could
+occur regulary.
 
-Boinc platform (230 000) hosts
-April 1 2007 -> January 1 2009
-CPU FREE or not
-57 800 years of CPU time
-102 416 434 continuous intervals
+The data used is collected from 230000 hosts that was using BOINC platform between April 1th 2007 and 
+January 1th 2009. Availability is seen as boolean variable answering the question : Is the CPU free 
+for calculus ? The data collected is this whole sample is a 57800 years of CPU time all over the BOINC
+platform and was computed during 102 416 434 continuous intervals of CPU time.
 
-We could compare the average result of a network with similarity with SETI@home and a classical
-network (A supercomputer or a cluster of university's computers).
+The goal of the previous work \cite{ja_ko_mascots09} was to determine how clustering could help
+to have a better scheduling process in order to optimize computation.
 
 \subsection{Experimental method}
 
@@ -21,8 +21,8 @@ was used also in this paper. A GNU/Linux computer with an Intel i5 CPU and 4 Gb 
 experiment. Python, R and other free software scripting tools have benn used to conduct this experiments.
 
 The complete dataset is quite huge (around 17 Gb), a computer with much more memory would be appreciated to
-compute more advance results. A smaller set of data were used to do the computation. With only 226207 lines 
-of information the subset of the component is a more easily to handle set of data.
+compute more advance results. A smaller set of data were used to do the computation. With only 226207 lines
+of information, the subset of \texttt{component.tab} is a easier set of data to handle.
 
 \subsection{Experimental results}
 
@@ -33,9 +33,9 @@ the results are different from what happened between 2007 and 2009. A lot of com
 required to apply clustering algorithm on this massive set of data.
 
 For this study an attempt of clustering has been performed but R didn't gave good results in a short amount
-of time, using an other tool of clustering computer could help us to recreate the results they got and will
+of time, using an other tool of clustering on a more powerful computer could help us to recreate 
+the results they got and will
 help to apply this methods to fresher data.
-
 
 \begin{figure}[h]
 \begin{center}
@@ -45,6 +45,16 @@ help to apply this methods to fresher data.
 \label{part2}
 \end{figure}
 
+\subsection{Analysis}
+
+Even if the global shape of the availability time distribution got a long tail of above average
+available time we can see a very high amount of under average availability time mathching a very
+unstable node who cannot suit the long calculation process. According to this result presented 
+in their paper \cite{ja_ko_mascots09} the authors propose to adapt the scheduling process to
+different categories of node corresponding to different availability expected time.
+
+This figure \ref{part2} prove that they are right and not all computation task can be 
+given to any node. A selection is needed to have to best expected answers from the network.
 
 \subsection{Conclusion}
 
@@ -55,6 +65,13 @@ Because of this unstability, SETI@home is this current state cannot be used to c
 data in a short amount of time. The calculus scheduling of SETI@home reveals that 34 \% of users
 have a truly random behavior and cannot fit the requirements to perform intensive and very long
 calculus.
+
+An interesting question could be to schedule in the BOINC platform a global grade of a node according 
+to his availability and after devote his CPU time to different kind of projects according to the algorithm
+used inside this projects. In fact, distributed algorithm have very different kind of processing, a lot of calculation
+coulb be done on a small set of data or not a lot of very concurency sensitive calculus but on a bigger set of data.
+ Different projects, different algorithms, for different kind of node behavior, currently the BOINC platform doesn't allow 
+to contribute to differents projects in the same time. This improuvement could lead to a huge enhancing of results of this platform.
 
 \subsection{Code sample}
 

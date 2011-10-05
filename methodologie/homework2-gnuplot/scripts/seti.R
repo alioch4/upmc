@@ -1,6 +1,3 @@
-shape=0.3787
-scale=3.0932
-
 d<-read.table("seti-output.txt",sep=",")
 colnames(d) <-  c("x","nrml")
 
