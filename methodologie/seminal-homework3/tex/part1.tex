@@ -1,11 +1,47 @@
 \section{Survey on distributed delivery system}
 
-This paper will attempt to 
+This paper will attempt to pictures what are the most influencial papers of Overcite article
+\cite{overcite}. I look among all the papers listed in the references to decide whether 
+or not a paper was related to it. The reference list was 49 articles long. I used the 
+amount of external citations to decide if an article was well known enough. So
+according to google scholar the article cited in this present paper are all above several 
+hundreds time cited in other papers. This way of grading the articles is appropriate 
+for finding a seminal paper (which is the point of the second part of this paper) but 
+it's not a very efficient paper to evaluate the new and not yet well referenced papers.
+Hence, it's possible than more recent and accurate papers influenced Overcite but are 
+currently not known enough.
 
-\subsection{Well referenced articles}
-\cite{Lawrence99digitallibraries}
+
+\subsection{Searching on P2P networks}
+
+To build a really efficient P2P scientific articles network we need to also
+ship a very efficient and scalable way of search information among this network.
+
+Several way have been proposed to do it \cite{Yang02improvingsearch}. These methods give
+very good results if we take the searching technique BFS as a baseline. But the status of implementation
+of this techniques into current P2P systems is yet unknown. It could be interesting to see how much 
+the idea of this article applied into a real production system.
+
+Different way of providing information about the peers have been released one of the most known one is
+the DHT (Distributed Hash Table). An implementation have been provided by Sean Rhea \cite{Rhea:2005:OPD:1090191.1080102}
+but this implementation have been deprecated mostly because more mature services (like Amazon Dynamo and now Cassandra)
+have been used massively by well known web actors. DHT implementation seems to be mature enough to support such large
+services like Facebook or Amazon. So this paper contributed to the diffusion of the DHT concepts to a wider public.
+Powered during his work by planet lab to test it, Sean Rhea added 
+his work to build a good implementation \href{bamboo-dht.org}{Bamboo}.
+
+\subsection{Indexing papers}
+
+Browsing papers is not enough, making connections between them is really important to make the really 
+important papers come out of the whole set. Accoring to this, a current and quite relevant way to
+indexing content is the google Page Rank system. But citations is not only relevant, for instance 
+well known articles are really cited a lot but sometimes they don't have any clear and deep link 
+with the subject treated. Quoting very known articles allows to considered the paper as more mature
+and more aware of all the current work. The Overcite project is really \cite{Lawrence99digitallibraries}
+active and well referenced even google scholar use it as a first choice provider in most case 
+for referenced scientific papers.
+\subsection{}
+
 \cite{Reynolds_efficientpeer-to-peer}
-\cite{Yang02improvingsearch}
-\cite{Rhea:2005:OPD:1090191.1080102}
 \cite{Huebsch:2003:QIP:1315451.1315480}
 \cite{Cohen03incentivesbuild}
