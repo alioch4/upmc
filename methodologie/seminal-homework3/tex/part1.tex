@@ -1,5 +1,10 @@
 \section{Survey on distributed delivery system}
 
+% What is the problem
+% What are the contributions
+% What are the conclusions
+% What is the support for the conclusions
+
 This paper will attempt to pictures what are the most influencial papers of Overcite article
 \cite{overcite}. I look among all the papers listed in the references to decide whether 
 or not a paper was related to it. The reference list was 49 articles long. I used the 
@@ -11,6 +16,13 @@ it's not a very efficient paper to evaluate the new and not yet well referenced 
 Hence, it's possible than more recent and accurate papers influenced Overcite but are 
 currently not known enough.
 
+\subsection{Bit Torrent, a major P2P system}
+
+One of the most influencial paper about P2P technologies is the one written by Bram 
+Cohen creating the Bit Torrent protocol. This paper gives all the basis of the Bit Torrent protocol.
+The tit-fot-tat, the pareto efficient goal, the tracker concept. All of this concepts that seems natural
+right now in the P2P world were introduced in this paper \cite{Cohen03incentivesbuild}.
+We can see that there is no mention of the DHT in this paper, 
 
 \subsection{Searching on P2P networks}
 
@@ -30,6 +42,14 @@ services like Facebook or Amazon. So this paper contributed to the diffusion of 
 Powered during his work by planet lab to test it, Sean Rhea added 
 his work to build a good implementation \href{bamboo-dht.org}{Bamboo}.
 
+Other techniques are also used to improve the quality of search in P2P networks, we can quote
+\cite{Reynolds_efficientpeer-to-peer} in order to see that bloom filters, cache and incremental
+results also enhance the quality and speed of the results. A very interesting study would be to
+see how this techniques are integrated inside recent P2P technologies among cluster like Cassandra
+or other system. There is not a single and united developement of P2P techniques so the advance of 
+each project is very heterogeneous. Provide unique and very stable librairies to all this project would
+be a sign coherent development among the P2P developers community.
+
 \subsection{Indexing papers}
 
 Browsing papers is not enough, making connections between them is really important to make the really 
@@ -40,8 +60,3 @@ with the subject treated. Quoting very known articles allows to considered the p
 and more aware of all the current work. The Overcite project is really \cite{Lawrence99digitallibraries}
 active and well referenced even google scholar use it as a first choice provider in most case 
 for referenced scientific papers.
-\subsection{}
-
-\cite{Reynolds_efficientpeer-to-peer}
-\cite{Huebsch:2003:QIP:1315451.1315480}
-\cite{Cohen03incentivesbuild}

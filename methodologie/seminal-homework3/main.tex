@@ -1,4 +1,4 @@
-\documentclass{sig-alternate-10pt}
+\documentclass{sig-alternate}
 
 \usepackage{graphicx}
 \usepackage{listings}
@@ -22,9 +22,15 @@
 \input{tex/part1}
 \input{tex/part2}
 
-
 \bibliographystyle{abbrv}
 \bibliography{main}
+
+\appendix
+\makeatletter
+\def\@seccntformat#1{Appendix~\csname the#1\endcsname:\quad}
+\makeatother
+
+%\lstinputlisting{main.bib}
 
 
 \end{document}
