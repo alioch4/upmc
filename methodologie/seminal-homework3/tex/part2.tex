@@ -1,13 +1,9 @@
-
 \section{Seminal article on search over P2P networks}
 
 My project deals with the realization of a P2P system for
 scientific papers and more generally education contents.
-In order to provide an efficient and accurate system of
-education delivering, search among this project must be
-accurate.
-The seminal paper of the searching on P2P system is
-the Yang's article \cite{Yang02improvingsearch}
+Searching needs to be fast and accurate in such system.
+The seminal paper of the searching over P2P system is Yang's article \cite{Yang02improvingsearch}
 
 \subsection{Confidence}
 
@@ -19,35 +15,40 @@ outsider. I may miss some flaws in the work.
 \paragraph{Type of paper}
 
 This paper aims to improve the current performance of search in P2P systems.
-In order to do this, 3 techniques are presented : Iterative deepening, local
-indices and the directed breadth-first traversal. The article bring ameliorations
-but not really a new concept of P2P systems.
+In order to do this, three techniques are presented : Iterative deepening, local
+indices and the directed breadth-first traversal. The article brings ameliorations
+but not any new concepts to P2P systems.
 
 \paragraph{Context for this paper}
 
-This paper was written in 2002 at this time Gnutella, Napster and Morpheus was the
-very well kwown P2P systems in production. Searching techniques on this systems
-was inefficient. In order to enhance this, the authors proposed to use different
+This paper was written in 2002. At this time Gnutella, Napster and Morpheus were the
+very well known P2P systems in production. Searching techniques on these systems
+were inefficient. In order to enhance this, the authors proposed to use different
 searching techniques in order to speed up the search and make it more accurate.
+
+P2P systems were not as known and used as they are today. This paper is really
+one of the first one to raise up some questions and research about search in P2P
+systems.
 
 \paragraph{Correctness}
 
-As the experimentations shows it, the search improvement are working.
-But we can also see that there is a tradeoff between the Time to Satisfy
-and the other criteria. The tradeoff shows a clear improvement the cost
-in bandwidth and a global decreasing of the aggregate cost of processing.
+As the experimentations shows it, the search improvements are working.
 
+Nevertheless, we can also notice a tradeoff between the Time to Satisfy
+and the other criteria. Maybe some recent work would be interesting
+in order to make this tradeoff better.
 
 \paragraph{Contributions}
 
-The contributions of this paper are good improuvment of the global quality
-of search among P2P system. Even if the details about implementations in
-currently used system (like Bit Torrent or DC++) are not kwown, the ideas
-are simple to implement inside the systems.
+The contributions of this paper are good improvements of the global quality
+of search in P2P system. Even if the details about implementations in
+currently used system, such as Bit Torrent or DC++, are not known, the ideas
+are simple to implement within the systems. It seems clear that the ideas
+in this paper contribute to the whole P2P community.
 
 \paragraph{Understandability}
 
-This article is very clear and the ideas in order to present the
+This article is very clear and the ideas used to present the
 amelioration of the searching techniques are well exposed.
 
 \subsection{Strengths}
@@ -56,23 +57,25 @@ amelioration of the searching techniques are well exposed.
 
 The main strength of this paper is to boost up performance
 of searching in P2P. When this paper was released, search
-was inefficient and very costly. This paper enhance the speed
-and reduced the cost in bandwidth. An other strengh of this paper
-is also to propose simple way to make search in P2P systems better
-without taking the particularities of any already existing system.
+was inefficient and very costly. This paper enhances the speed
+and reduced the cost in bandwidth. Another strengh of this paper
+is also to propose simple ways to make search in P2P systems better
+without taking the particularities of any already existing systems.
 Even if the Gnutella network was the only one used inside the experimental
-process, other P2P systems can use this techniques that are designed for
-P2P systems.
+process, other P2P systems can use these techniques that are designed for
+P2P systems. As a general article the scope of this solution is quite
+large.
 
 \subsection{Weaknesses}
 
 % What are the paper's main weaknesses?
 
-This paper have gnutella as main experimental data. Today, Bit Torrent is the main
-P2P system use. It could be interesting to see how modern tracker technologies could improuve
-or enhance the strategy presented in this article.
+This paper has gnutella as the main experimental data. Today, Bit Torrent is the main
+P2P system in use. It could be interesting to see how modern tracker technologies could
+enhance the strategy presented in this article.
 
-Also, we don't know how the use of a 
+Also, we don't know how the use of a DHT system could also help this searching techniques.
+
 \subsection{Evaluation}
 
 This is among the best I've reviewed. I'd really want to
@@ -83,29 +86,30 @@ the PC.
 
 % Contribution
 
-The contribution of this article is three techniques usable to improve the
-quality and speed of search among a P2P system.
+The contribution of this article is three techniques, potentially usable to improve the
+quality and speed of search in a P2P system.
 
 % Technical merit
 
-The field of search among ``loose'' P2P systems was small when this article was released.
-So this article actually succeed in a field widely open. We can also mention the fact
+The field of search in ``loose'' P2P systems was small when this article was released.
+So this article actually succeeded in a widely open field . We can also mention the fact
 that with iterative deepening, the authors bring concepts that are already working in artificial
 intelligence fields.
 
 % Writing
 
-The writing style of this article is also very clear, the annexes help to understand
+The writing style of this article is very clear, the annexes help to understand
 how the calculation are made. It can be very helpful in order to recreate the experimental
 setup to see if the values are still accurate nowadays.
 
-A big place is also allowed to numerical
+The authors also pay attention to numerical examples that help to
+ emphasize the scale of enhancing.
 
 % => How to improuve the paper
 
-As all seminal papers, it's really important to see how the results announced are still precise
+As all seminal papers, it's really important to see how the results announced are still accurate
 to describe current systems. The search techniques presented in this article are easy to integrate
-in P2P client and should give enhancing searching results quickly.
+in P2P clients and should give enhancing searching results quickly.
 
 \subsection*{End Review}
 

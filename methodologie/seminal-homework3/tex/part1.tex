@@ -5,60 +5,69 @@
 % What are the conclusions
 % What is the support for the conclusions
 
-This paper will attempt to pictures what are the most influencial papers of Overcite article
-\cite{overcite}. I look among all the papers listed in the references to decide whether 
-or not a paper was related to it. The reference list was 49 articles long. I used the 
-amount of external citations to decide if an article was well known enough. So
-according to google scholar the article cited in this present paper are all above several 
-hundreds time cited in other papers. This way of grading the articles is appropriate 
-for finding a seminal paper (which is the point of the second part of this paper) but 
+This paper will attempt to describe what are the most influencial papers in order to
+understand the Overcite article
+\cite{overcite}. I looked through all the articles listed in the references to decide whether 
+or not this paper was related to it. The reference list was 49 articles long. I used the 
+number of citations in the article to decide if it was well known enough.
+According to Google Scholar, the articles cited in this paper are all cited over several 
+hundreds time in other papers. This way of grading the articles is appropriate 
+for finding a seminal paper but 
 it's not a very efficient paper to evaluate the new and not yet well referenced papers.
-Hence, it's possible than more recent and accurate papers influenced Overcite but are 
+Hence, it's possible that more recent and accurate papers influenced Overcite but are 
 currently not known enough.
 
 \subsection{Bit Torrent, a major P2P system}
 
-One of the most influencial paper about P2P technologies is the one written by Bram 
-Cohen creating the Bit Torrent protocol. This paper gives all the basis of the Bit Torrent protocol.
-The tit-fot-tat, the pareto efficient goal, the tracker concept. All of this concepts that seems natural
+One of the most influencial papers dealing with P2P technologies is the one written by Bram 
+Cohen, creator of the Bit Torrent protocol. This paper gives all the basis of the Bit Torrent protocol :
+the Tit-For-Tat, the Pareto Efficient Goal, and the Tracker Concept. All these concepts that seem natural
 right now in the P2P world were introduced in this paper \cite{Cohen03incentivesbuild}.
-We can see that there is no mention of the DHT in this paper, 
+We can see that there is no mention of the DHT in this paper. It would be interesting
+to see how the Bit Torrent protocol could get rid of the tracker using DHT systems.
+However, this article remains a very important paper in the history of P2P systems.
 
 \subsection{Searching on P2P networks}
 
 To build a really efficient P2P scientific articles network we need to also
-ship a very efficient and scalable way of search information among this network.
+provide a very efficient and scalable way of searching information through out this network.
 
-Several way have been proposed to do it \cite{Yang02improvingsearch}. These methods give
+Several way have been proposed to do this \cite{Yang02improvingsearch}. These methods give
 very good results if we take the searching technique BFS as a baseline. But the status of implementation
-of this techniques into current P2P systems is yet unknown. It could be interesting to see how much 
-the idea of this article applied into a real production system.
+of these techniques into current P2P systems is still unknown. It could be interesting to see how much
+the ideas of this article could be applied into a real production system.
 
-Different way of providing information about the peers have been released one of the most known one is
-the DHT (Distributed Hash Table). An implementation have been provided by Sean Rhea \cite{Rhea:2005:OPD:1090191.1080102}
-but this implementation have been deprecated mostly because more mature services (like Amazon Dynamo and now Cassandra)
-have been used massively by well known web actors. DHT implementation seems to be mature enough to support such large
-services like Facebook or Amazon. So this paper contributed to the diffusion of the DHT concepts to a wider public.
+A different way of providing information about the peers has been released.
+One of the most known is
+the DHT (Distributed Hash Table). An implementation have been provided
+by Sean Rhea \cite{Rhea:2005:OPD:1090191.1080102}.
+This implementation (OpenDHT) deprecated in 2006. According to the 
+\href{http://opendht.org}{website's project}, this is mostly due to
+more mature services, such as Amazon Dynamo and Cassandra,
+being massively used by well known web actors . DHT implementation seems 
+to be mature enough to support such large
+services like Facebook or Amazon. So this paper contributed
+ to the diffusion of the DHT concepts to a wider public.
 Powered during his work by planet lab to test it, Sean Rhea added 
 his work to build a good implementation \href{bamboo-dht.org}{Bamboo}.
 
-Other techniques are also used to improve the quality of search in P2P networks, we can quote
-\cite{Reynolds_efficientpeer-to-peer} in order to see that bloom filters, cache and incremental
+Other techniques are also used to improve the quality of search power in P2P network. We can quote
+\cite{Reynolds_efficientpeer-to-peer} in order to see that bloom filters, cache, and incremental
 results also enhance the quality and speed of the results. A very interesting study would be to
-see how this techniques are integrated inside recent P2P technologies among cluster like Cassandra
+see how these techniques are integrated inside recent P2P technologies among clusters like Cassandra
 or other system. There is not a single and united developement of P2P techniques so the advance of 
-each project is very heterogeneous. Provide unique and very stable librairies to all this project would
-be a sign coherent development among the P2P developers community.
+each project is very heterogeneous. Providing compatiable and very stable librairies to all these projects would
+be a sign of coherent development among the P2P developers community.
 
-\subsection{Indexing papers}
+\subsection{Extract and indexing papers}
 
 Browsing papers is not enough, making connections between them is really important to make the really 
-important papers come out of the whole set. Accoring to this, a current and quite relevant way to
-indexing content is the google Page Rank system. But citations is not only relevant, for instance 
-well known articles are really cited a lot but sometimes they don't have any clear and deep link 
-with the subject treated. Quoting very known articles allows to considered the paper as more mature
-and more aware of all the current work. The Overcite project is really \cite{Lawrence99digitallibraries}
-active and well referenced even google scholar use it as a first choice provider in most case 
-for referenced scientific papers.
+important papers come out of the whole set. A current and quite relevant way to
+index content is the Google Page Rank system. But citations are not only relevant to the 
+topic of an article. Quoting very known articles helps to consider the paper as more mature
+and the author seems to be more aware of all the important work\cite{Lawrence99digitallibraries}. The Overcite project
+is really 
+active and well referenced. Even Google Scholar uses it as a first choice provider in most cases
+for referencing scientific papers.
 
 \pagebreak
