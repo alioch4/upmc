@@ -38,13 +38,26 @@ of keywords.
 
 \subsubsection{Graphical user interface to manage the current personnal repository}
 
-\textit{The complete personnal repository is manageable by using a command line
-tool or by using a graphical user interface.}
+System administrors like to manipulate application with script to be update, installed
+systematically. In order to do that, we must provide a command line interface in order
+to update and configure easily the application by scripting.
+
+Most of scientists are not computer science scientist and don't have a very deep (or interest)
+for computing. In order to provide them a good user experience we must also provide a good 
+graphical interface. Because users are a critical ressource for our P2P network we 
+must lure in a lot of user to have an efficient P2P system.
 
 \subsubsection{Meta information about files}
 
-\textit{Index files wherever or whatever they are. Indexing sections, subsections
-and keywords. Indexing everything that matters.}
+The main interest of our network is to provide an efficient way to parse and
+index all the content of a file in order to only share meta-information about the
+file but not the file itself. In fact PDF file must be heavy (especially if
+they content figures, illustrations,\ldots) in order to avoid useless network usage,
+only meta-information will be shared with other peers at the beginning. When a file
+will be requested by other peers, the real PDF file will then be sent on the network.
+
+If the repository are mirroring all the time other repository both (meta information and
+PDF file) will be sent to the requesting peer.
 
 \subsubsection{Files distance}
 
