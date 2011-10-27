@@ -2,12 +2,18 @@
 
 \subsubsection{A web interface to browse contents}
 
-\textit{A stable web interface is required in order to
-quickly deploy good web interface in order to make the system
-appealing.}
+Scientists cannot always install softwares on their working machines, they also
+don't always have the knowledge to do so. In order to avoid this problem, a web interface
+can also be provided to repository manager, a repository browser. This solution may work
+for people only looking for a very specific article. We can remark that for scientists only
+looking for a precise article, our solution is equivalent to the one already installed. There is
+no regression with our solution.
 
 \subsubsection{Security issues}
 
-\textit{In this part we will see how we can make connections
-between peers safer by an authentification process. With this
-system only validated papers can be broadcasted on the network.}
+Security is important for our system. Authentification of the authors and
+university is required in order to trust discoveries or publications. Peers
+can authentificate themselves by using a certificate. It's quite easy for 
+a web site to buy a certificate that will garantee a trustful authentification.
+This certificate can be used in order to assure to other peers that they are connecting
+with the right repository.
