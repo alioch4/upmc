@@ -1,0 +1,45 @@
+\documentclass{sig-alternate}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+\begin{document}
+
+\title{Homework 4 - Project Report}
+
+\numberofauthors{1} %  in this sample file, there are a *total*
+
+\author{
+  \alignauthor
+    Rémy Léone\\
+    \affaddr{UPMC~-- M2 Recherche~-- METHO}\\
+    \email{remy.leone@gmail.com}
+}
+
+\maketitle
+
+\begin{abstract}
+INSERT ABSTRACT HERE
+\end{abstract}
+
+\input{tex/report}
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+
+\appendix
+\makeatletter
+\def\@seccntformat#1{Appendix~\csname the#1\endcsname:\quad}
+\makeatother
+
+All the \LaTeX source code use to build up this 
+article (including the \BibTeX) is available on my github :
+\href{https://github.com/sieben/upmc/tree/master/methodologie/report-homework4}{
+https://github.com/sieben/upmc/tree/master/methodologie/report-homework4}
+
+%\lstinputlisting{main.bib}
+
+
+\end{document}
