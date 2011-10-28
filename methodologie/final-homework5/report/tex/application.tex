@@ -15,13 +15,22 @@ reference in other article, and h-index of scientists.
 
 The main goal here is to provide a quick and efficient way for
 experienced scientists to read easily the new article of their fields
-and for new one to get quickly the ''must read`` of their field.
+and for new one to get quickly the "must read" of their field.
 
-\subsubsection{Simplified accounts}
+\subsubsection{Simplified accounts for users}
 
-\textit{Only hashes and file pointers are needed in order to make an
-account to memorize the preferences. We can have a account management
-website with very few ressources.}
+The main interest to be using a P2P system where hashes could be use massively is
+to be able to describe an account with only a list of hashes.
+In fact all the information are inside the network. It's very easy to fetch an information
+to read it but it's not always useful to keep it in memory.
+
+In order to counter the problem of space to log history of the users, only hashes
+related to users will be stored on the user administration interface.
+
+For instance, a scientist is having interest in particle physics and got 65
+articles in his account. In order to discribe this account, only the 65 hashes are needed.
+It's really easy to handle a amount of data so small and the system can scale up really easily
+because hashes are quite smaller than the articles themselves.
 
 \subsubsection{RSS utilities}
 
@@ -67,6 +76,15 @@ PDF file) will be sent to the requesting peer.
 
 \subsubsection{Files distance}
 
-\textit{In order to suggest articles that might be interesting we can use
-some keywords parsing in order to see what are the contents that may be more
-relevant to a user.}
+New article are sometimes not relevant enough in order to find some works that are
+close enough to a specific field. In order to solve the problem of the suggestions of
+reading (that is already partially solved with the two ranking system) we can also
+introduce a "distance" concept between articles.
+
+Articles have a lot of keywords inside them. Science article are very precise and 
+the words used to write them are also precise. We can use this precision in order to build a 
+keyword system with the following method. Each article could be parse in order to produce 
+a dictionnary of keywords (keywords and number of repetition of this keyword). Two 
+dictionnaries can be compared to each other, the results of this comparaison could tell
+how alike two articles are. The closer an unknown article is of an interesting article for a scientist
+the more likely it's going to be useful for them to read it.
