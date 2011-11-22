@@ -22,10 +22,10 @@ class Graph():
         reader = csv.reader(f, delimiter=" ")
 
         for i in reader:
+            self.m += 1
             self.AddNode(i[0], i[1])
             self.AddNode(i[1], i[0])
         density = (2*int(self.m))/(int(self.n)*(int(self.n)-int(1)))
-        print density
 
     def __str__(self):
         return str(self.nodes)
@@ -52,10 +52,11 @@ class Graph():
     def DistDegreeGraph( self ):
         res = dict()
         for i in self.degree:
-            if( res.has_key( i["degree"] ) ):
-                res[i["degree"]] += 1
+            if( res.has_key( i ) ):
+                res[i] += 1
             else:
-                res[ i["degree"] ] = 1
+                res[i] = 1
+        print res
         return res
 
 
