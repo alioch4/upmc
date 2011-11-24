@@ -67,7 +67,13 @@ class Graph():
                 res[i] += 1
             else:
                 res[i] = 1
-        print res
+        if(address == ""):
+            print res
+        else:
+            f = open(address,"w")
+            for i in res.keys():
+                f.write("%s %s\n" % (i,res[i]))
+            f.close()
 
     def MinDegree( self ):
         return min(self.degree.values())
@@ -109,6 +115,6 @@ def GenerateDegree( f ):
     pass
 
 g = Graph("graphe.txt")
-g.DistDegree()
+g.DistDegree("apwal.txt")
 
 #GenerateErdos( n = 7235, m = 22270 )
