@@ -85,15 +85,6 @@ class Graph():
         print self.degree.values()
         return sum(self.degree.values())/ len(self.degree.values())
 
-    def Print(self, address=""):
-        print 'Il faut imprimer le graphe en question dans un fichier de\
-        sauvegarde'
-        f = open(address,"w")
-        for i in self.nodes.keys():
-            for j in self.nodes[i]:
-                print str(i)+" "+str(j)
-
-
 # Generation d'un graphe aléatoire Erdös-Rényi
 
 def GenerateErdos(n, m):
@@ -107,7 +98,7 @@ def GenerateErdos(n, m):
             b = random.randint(0, n-1)
         g.AddNode(a,b)
         g.AddNode(b,a)
-    g.Print("graphe.data")
+    g.DistDegree("graphe.data")
 
 # Generation d'un graphe à partir d'une liste de degrés
 
@@ -117,4 +108,4 @@ def GenerateDegree( f ):
 g = Graph("graphe.txt")
 g.DistDegree("apwal.txt")
 
-#GenerateErdos( n = 7235, m = 22270 )
+GenerateErdos( n = 7235, m = 22270 )
