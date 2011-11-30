@@ -85,10 +85,13 @@ class Graph():
         print self.degree.values()
         return sum(self.degree.values())/ len(self.degree.values())
 
+    def EraseLink( self ):
+        for i in self.nodes:
+            self.nodes[i].clear()
+
     def TestLien( self, node1, node2 ):
-        print set([node2])
-        print self.nodes[node1]
-        print set([node2]).issubset(self.nodes[node1])
+        res = set([node2]).issubset(self.nodes[node1])
+        return res
 
     def Parcours( self, source, destinations ):
         f = list()
@@ -113,9 +116,6 @@ class Graph():
                     visited[u] = res[u]
         print visited
 
-g =Graph("graphe.txt")
-g.TestLien(2,3)
-
 # Generation d'un graphe aléatoire Erdös-Rényi
 
 def GenerateErdos(n, m):
@@ -131,4 +131,25 @@ def GenerateErdos(n, m):
         g.AddNode(b,a)
     g.DistDegree("graphe.data")
 
-#GenerateErdos( n = 7235, m = 22270 )
+########################################################
+
+
+n_test = 0 # Nombre de tests effectués
+
+def test_lien( original, echantillon, node1, node2 ):
+    print original.TestLien( node1, node2 )
+    if( original.TestLien( node1, node2 ) ):
+        echantillon.AddNode(node1, node2)
+        echantillon.AddNode(node2, node1)
+        n_test += 1
+
+original = Graph("flikr-test")
+print original
+
+sample = Graph("flikr-test")
+sample.EraseLink()
+
+print original
+
+test_lien( original, sample, 0, 7)
+
