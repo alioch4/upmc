@@ -10,13 +10,13 @@ import random
 
 class Graph():
 
-    n = 0 # Nombre de noeuds
-    m = 0 # Nombre d'arêtes
-    density = 0.0
-    nodes = dict()
-    degree = dict()
 
     def __init__(self, address=""):
+        self.n = 0 # Nombre de noeuds
+        self.m = 0 # Nombre d'arêtes
+        self.density = 0.0
+        self.nodes = dict()
+        self.degree = dict()
         if address != "":
             f = open( address, "r" )
             reader = csv.reader(f, delimiter=" ")
@@ -85,10 +85,6 @@ class Graph():
         print self.degree.values()
         return sum(self.degree.values())/ len(self.degree.values())
 
-    def EraseLink( self ):
-        for i in self.nodes:
-            self.nodes[i].clear()
-
     def TestLien( self, node1, node2 ):
         res = set([node2]).issubset(self.nodes[node1])
         return res
@@ -118,6 +114,10 @@ class Graph():
 
 # Generation d'un graphe aléatoire Erdös-Rényi
 
+def EraseLink( g ):
+    for i in g.nodes:
+        g.nodes[i].clear()
+
 def GenerateErdos(n, m):
     g = Graph()
     g.n = n
@@ -131,25 +131,36 @@ def GenerateErdos(n, m):
         g.AddNode(b,a)
     g.DistDegree("graphe.data")
 
+
+def analyse( n, m, t):
+    density = float(2*m)/float(n*(n-1))
+    b = 0.5*t*t
+    w = 0
+    if( t > m ):
+        b += m*(t-m)
+    if( t > n*(n-1)/2 - m ):
+        w = (t-(n*(n-1)/2-m))*(t - (n*(n-1)/2-m))
+    r = 0.5 * t * t * density
+    print "r = "+str(r)
+    print "w = "+str(w)
+    print "b = "+str(b)
+
+
 ########################################################
 
-
-n_test = 0 # Nombre de tests effectués
+n_test = 0
 
 def test_lien( original, echantillon, node1, node2 ):
+    global n_test
     print original.TestLien( node1, node2 )
     if( original.TestLien( node1, node2 ) ):
+        n_test += 1
         echantillon.AddNode(node1, node2)
         echantillon.AddNode(node2, node1)
-        n_test += 1
+        print "%s, %s, %s" % (n_test,node1,node2)
 
 original = Graph("flikr-test")
-print original
-
-sample = Graph("flikr-test")
-sample.EraseLink()
-
-print original
+sample   = Graph("flikr-test")
+EraseLink(sample)
 
 test_lien( original, sample, 0, 7)
-
