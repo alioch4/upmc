@@ -85,6 +85,32 @@ class Graph():
         print self.degree.values()
         return sum(self.degree.values())/ len(self.degree.values())
 
+    def Parcours( self, source, destinations ):
+        f = list()
+        res = dict()
+        res[source] = source
+        visited = dict()
+        visited[source] = True
+        f.append(source)
+        while( len(f) != 0 ):
+            v = f.pop(0)
+            for u in self.nodes[v]:
+                if not visited.has_key(u):
+                    visited[u] = True
+                    res[u] = v
+                    f.append(u)
+        print res
+        visited.clear()
+        while( len(destinations) != 0):
+            v = destinations.pop(0)
+            for u in self.nodes[v]:
+                if not visited.has_key(u):
+                    visited[u] = res[u]
+        print visited
+
+g =Graph("graphe.txt")
+g.Parcours(0, [1,3,5] )
+
 # Generation d'un graphe aléatoire Erdös-Rényi
 
 def GenerateErdos(n, m):
@@ -100,12 +126,4 @@ def GenerateErdos(n, m):
         g.AddNode(b,a)
     g.DistDegree("graphe.data")
 
-# Generation d'un graphe à partir d'une liste de degrés
-
-def GenerateDegree( f ):
-    pass
-
-g = Graph("graphe.txt")
-g.DistDegree("apwal.txt")
-
-GenerateErdos( n = 7235, m = 22270 )
+#GenerateErdos( n = 7235, m = 22270 )
