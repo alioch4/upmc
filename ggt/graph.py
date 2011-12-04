@@ -10,7 +10,6 @@ import random
 
 class Graph():
 
-
     def __init__(self, address=""):
         self.n = 0 # Nombre de noeuds
         self.m = 0 # Nombre d'arêtes
@@ -47,6 +46,11 @@ class Graph():
             if not res.has_key(i):
                 res[i] = 0
         return res
+
+	def EraseLink( self ):
+		for i in self.nodes:
+			self.nodes[i].clear()
+
 
     # Nombre de sommets de degré 0
 
@@ -112,11 +116,19 @@ class Graph():
                     visited[u] = res[u]
         print visited
 
-# Generation d'un graphe aléatoire Erdös-Rényi
+def test_lien( original, echantillon, node1, node2 ):
+    global n_test
+    print original.TestLien( node1, node2 )
+    if( original.TestLien( node1, node2 ) ):
+        n_test += 1
+        echantillon.AddNode(node1, node2)
+        echantillon.AddNode(node2, node1)
+        print "%s, %s, %s" % (n_test,node1,node2)
 
-def EraseLink( g ):
-    for i in g.nodes:
-        g.nodes[i].clear()
+
+
+
+# Generation d'un graphe aléatoire Erdös-Rényi
 
 def GenerateErdos(n, m):
     g = Graph()
@@ -144,23 +156,3 @@ def analyse( n, m, t):
     print "r = "+str(r)
     print "w = "+str(w)
     print "b = "+str(b)
-
-
-########################################################
-
-n_test = 0
-
-def test_lien( original, echantillon, node1, node2 ):
-    global n_test
-    print original.TestLien( node1, node2 )
-    if( original.TestLien( node1, node2 ) ):
-        n_test += 1
-        echantillon.AddNode(node1, node2)
-        echantillon.AddNode(node2, node1)
-        print "%s, %s, %s" % (n_test,node1,node2)
-
-original = Graph("flikr-test")
-sample   = Graph("flikr-test")
-EraseLink(sample)
-
-test_lien( original, sample, 0, 7)
