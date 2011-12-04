@@ -47,9 +47,9 @@ class Graph():
                 res[i] = 0
         return res
 
-	def EraseLink( self ):
-		for i in self.nodes:
-			self.nodes[i].clear()
+    def EraseLink( self ):
+        for i in self.nodes:
+            self.nodes[i].clear()
 
 
     # Nombre de sommets de degré 0
