@@ -126,7 +126,41 @@ def test_lien( original, echantillon, node1, node2 ):
         print "%s, %s, %s" % (n_test,node1,node2)
 
 
+# Molloy & Reed
 
+def GenerateDegreeRandom( address ):
+    f = open( address, "r" )
+    reader = csv.reader(f, delimiter=" ")
+
+    g = Graph()
+    pool = dict()
+    link = 0 # Indice d'arêtes
+    vertex = 0 # Indice de noeud
+    for ligne in reader:
+        for i in range(0,int(ligne[1])):
+            for j in range(0,int(ligne[0])):
+                pool[link] = vertex
+                link += 1
+            vertex += 1
+
+    # On autorise les liens ou source et destination peuvent être 
+    # egaux
+
+    while( pool ):
+        a = 0
+        b = 0
+        while ( a == b ):
+            a = random.choice(pool.keys())
+            b = random.choice(pool.keys())
+        print 'liens : '+str(a)+','+str(b)
+        print 'noeuds : '+str(pool[a])+','+str(pool[b])
+        g.AddNode(pool[a], pool[b])
+        g.AddNode(pool[b], pool[a])
+
+        for i in [a,b]:
+            if(pool.has_key(i)):
+                del(pool[i])
+    print g
 
 # Generation d'un graphe aléatoire Erdös-Rényi
 

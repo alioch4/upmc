@@ -10,9 +10,6 @@ if cmd_folder not in sys.path:
 from graph import *
 
 
-n_test = 0
 
-original = Graph("data/flikr-test")
-sample   = Graph("data/flikr-test")
-print sample.EraseLink()
+g = GenerateDegreeRandom("data/graphe.data")
 
