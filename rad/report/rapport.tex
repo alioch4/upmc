@@ -1,0 +1,103 @@
+\documentclass[a4paper,french,12pt]{memoir}
+% L'option draft est vraiment utile pour avoir un document sans 
+% erreurs de OverFull UnderFull
+\usepackage{xltxtra}
+\usepackage{wrapfig}
+\usepackage[usenames]{color}
+\usepackage{xunicode}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{polyglossia}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{appendix}
+\usepackage{numprint}
+\usepackage{geometry}
+\usepackage[xetex]{hyperref}
+
+% == Metadata =============================================
+\title{Fiche de lecture}
+\author{Rémy \textsc{Leone}, Marc \textsc{van der Wal}}
+\def\keywords{upmc, rad}
+\def\subject{Fiche de lecture}
+
+\date{\today}
+
+\hypersetup{
+    bookmarks=true, % show bookmarks bar?
+    pdftoolbar=true, % show Acrobat’s toolbar?
+    pdfmenubar=true, % show Acrobat’s menu?
+    pdffitwindow=false, % window fit to page when opened
+    pdftitle={Rémy Leone - Marc van der Wal - Fiche de lecture}, % title
+    pdfauthor={Rémy \textsc{Leone}, Marc \textsc{van der Wal}}, % author
+    pdfcreator={XelaTeX}, % creator of the document
+    pdfproducer={Rémy \textsc{Leone}, Marc \textsc{van der Wal}}, % producer of the document
+    pdfnewwindow=false, % links in new window
+    colorlinks=true, % false: boxed links; true: colored links
+    linkcolor=red, % color of internal links
+    citecolor=green, % color of links to bibliography
+    filecolor=magenta, % color of file links
+    urlcolor= blue % color of external links
+}
+
+%\geometry{hmargin=1.2in,vmargin=1.2in}
+
+\setdefaultlanguage{french}
+\setotherlanguage{english}
+
+\setromanfont[Mapping=tex-text]{Gentium Basic}
+
+\newcommand{\HRule}{\noident\rule{\linewidth}{0.6mm}}
+
+\newcommand{\ieme}{\textsuperscript{e}}
+\newcommand{\ier}{\textsuperscript{er}}
+\newcommand{\iere}{\textsuperscript{e}}
+
+\renewcommand{\textsc}{\uppercase}
+\newcommand{\name}{\textsc}
+\newcommand{\engl}[1]{\selectlanguage{english}\textit{#1}\selectlanguage{french}}
+\newcommand{\newterm}{\textit}
+\newcommand{\soft}{\textit}
+
+%\renewcommand{\glossaryname}{Glossaire}
+%\renewcommand*{\begintheglossaryhook}{\begin{description}}
+%\renewcommand*{\glossitem}[4]{\item[#1] #2 #3 #4}
+%\renewcommand*{\atendtheglossaryhook}{\end{description}}
+%\makeglossary
+
+
+\begin{document}
+
+\include{tex/title}
+
+\pagebreak
+
+\clearpage
+
+%\onehalfspacing
+
+% ==================================================================
+% Resumé
+\include{tex/abstract}
+
+% ==================================================================
+% Table des matières
+\newpage \tableofcontents
+
+% ==================================================================
+% REMERCIMENTS
+
+\include{tex/thanks}
+
+% ==================================================================
+% AVANT-PROPOS
+\include{tex/intro}
+
+% ==================================================================
+% CONCLUSION
+\include{tex/conclusion}
+
+% ==================================================================
+% ANNEXES
+
+\end{document}
