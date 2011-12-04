@@ -116,14 +116,6 @@ class Graph():
                     visited[u] = res[u]
         print visited
 
-def test_lien( original, echantillon, node1, node2 ):
-    global n_test
-    print original.TestLien( node1, node2 )
-    if( original.TestLien( node1, node2 ) ):
-        n_test += 1
-        echantillon.AddNode(node1, node2)
-        echantillon.AddNode(node2, node1)
-        print "%s, %s, %s" % (n_test,node1,node2)
 
 
 # Molloy & Reed
@@ -178,6 +170,15 @@ def GenerateErdos(n, m):
     g.DistDegree("graphe.data")
 
 
+def test_lien( original, echantillon, node1, node2 ):
+    global n_test
+    print original.TestLien( node1, node2 )
+    if( original.TestLien( node1, node2 ) ):
+        n_test += 1
+        echantillon.AddNode(node1, node2)
+        echantillon.AddNode(node2, node1)
+        print "%s, %s, %s" % (n_test,node1,node2)
+
 def analyse( n, m, t):
     density = float(2*m)/float(n*(n-1))
     b = 0.5*t*t
@@ -190,3 +191,12 @@ def analyse( n, m, t):
     print "r = "+str(r)
     print "w = "+str(w)
     print "b = "+str(b)
+
+def RandomStrategy(original, sample, essai):
+
+    for i in range(1,essai):
+        a = random.randint(0,original.n)
+        b = random.randint(0,original.n)
+
+        test_lien( original, sample, a, b)
+    
