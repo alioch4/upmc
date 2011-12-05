@@ -100,7 +100,7 @@ class Graph():
         visited = dict()
         visited[source] = True
         f.append(source)
-        while( len(f) != 0 ):
+        while( f ):
             v = f.pop(0)
             for u in self.nodes[v]:
                 if not visited.has_key(u):
@@ -116,7 +116,11 @@ class Graph():
                     visited[u] = res[u]
         print visited
 
+# Plus grosse composante connexe
+# TODO : Reutilisation du code de Parcours()
 
+    def BiggerConnexComp( self ):
+        pass
 
 # Molloy & Reed
 
