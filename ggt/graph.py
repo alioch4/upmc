@@ -117,7 +117,7 @@ class Graph():
 # Plus grosse composante connexe
 # TODO : Reutilisation du code de Parcours
 
-    def BiggerConnexComp( self ):
+    def BiggerConnexComp( self, address ):
         to_explore = set()
         component = dict()
         index = 0
@@ -125,13 +125,14 @@ class Graph():
         for item in self.nodes.keys():
             to_explore.add(item)
 
+        # Construction des différentes composantes connexes
+
         while to_explore or q:
             while q:
                 current = q.pop(0)
                 todo = self.nodes[current]
                 todo.add(current)
                 for i in todo:
-                    print i
                     if i in to_explore:
                         to_explore.remove(i)
                         q.extend(self.nodes[i])
@@ -140,6 +141,21 @@ class Graph():
                 index += 1
                 component[index] = set()
                 q.append(random.sample(to_explore,1)[0])
+
+        # On selectionne la composante en question
+
+        for i in component:
+            if( len(component[i]) > len(component[index]) ):
+                index = i
+
+        # On selectionne les noeuds de cette partie du graphe et on va l'écrire
+        # dans un fichier
+
+        f = open(address, "w")
+        for vertex in component[index]:
+            for l in self.nodes[vertex]:
+                f.write(str(vertex)+" "+str(l)+"\n")
+        return component[index]
 
 # Molloy & Reed
 
