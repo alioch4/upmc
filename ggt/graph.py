@@ -4,6 +4,8 @@
 import csv
 import random
 
+from Queue import Queue
+
 # On suppose que les noeuds du graphe sont stockés de 0 à n-1
 # Si on trouve le noeud 42 cela veut dire que l'on a des noeuds de 0
 # à 42
@@ -93,34 +95,51 @@ class Graph():
         res = set([node2]).issubset(self.nodes[node1])
         return res
 
-    def Parcours( self, source, destinations ):
-        f = list()
-        res = dict()
-        res[source] = source
-        visited = dict()
-        visited[source] = True
-        f.append(source)
-        while( f ):
-            v = f.pop(0)
-            for u in self.nodes[v]:
-                if not visited.has_key(u):
-                    visited[u] = True
-                    res[u] = v
-                    f.append(u)
-        print res
-        visited.clear()
-        while( len(destinations) != 0):
-            v = destinations.pop(0)
-            for u in self.nodes[v]:
-                if not visited.has_key(u):
-                    visited[u] = res[u]
-        print visited
+    def Parcours( self, source, destination ):
+
+        q = Queue()
+        parent = {}
+        q.put(source)
+        parent[source] = 'Root'
+
+        while not q.empty():
+            # get the current node and add its neighbours to queue
+            current = q.get()
+            for i in self.nodes[current]:
+                # mark parent and only continue if not already visited
+                if i not in parent:
+                    parent[i] = current
+                    q.put(i)
+            # Check if destination
+            if current == destination:
+                break
 
 # Plus grosse composante connexe
-# TODO : Reutilisation du code de Parcours()
+# TODO : Reutilisation du code de Parcours
 
     def BiggerConnexComp( self ):
-        pass
+        to_explore = set()
+        component = dict()
+        index = 0
+        q = []
+        for item in self.nodes.keys():
+            to_explore.add(item)
+
+        while to_explore or q:
+            while q:
+                current = q.pop(0)
+                todo = self.nodes[current]
+                todo.add(current)
+                for i in todo:
+                    print i
+                    if i in to_explore:
+                        to_explore.remove(i)
+                        q.extend(self.nodes[i])
+                        component[index].add(i)
+            if to_explore :
+                index += 1
+                component[index] = set()
+                q.append(random.sample(to_explore,1)[0])
 
 # Molloy & Reed
 
@@ -141,6 +160,8 @@ def GenerateDegreeRandom( address ):
 
     # On autorise les liens ou source et destination peuvent être 
     # egaux
+    # Attention si on selectionne plusieurs fois le meme couple de noeud
+    # On peut avoir des resultats legerements différents
 
     while( pool ):
         a = 0
@@ -148,15 +169,13 @@ def GenerateDegreeRandom( address ):
         while ( a == b ):
             a = random.choice(pool.keys())
             b = random.choice(pool.keys())
-        print 'liens : '+str(a)+','+str(b)
-        print 'noeuds : '+str(pool[a])+','+str(pool[b])
         g.AddNode(pool[a], pool[b])
         g.AddNode(pool[b], pool[a])
 
         for i in [a,b]:
             if(pool.has_key(i)):
                 del(pool[i])
-    print g
+    return g
 
 # Generation d'un graphe aléatoire Erdös-Rényi
 
