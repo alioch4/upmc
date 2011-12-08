@@ -238,4 +238,9 @@ def RandomStrategy(original, sample, essai):
         b = random.randint(0,original.n)
 
         test_lien( original, sample, a, b)
-    
+
+def CompleteStrategy():
+    pass
+
+def TBFStrategy():
+    pass

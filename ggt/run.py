@@ -11,5 +11,7 @@ from graph import *
 
 
 
-g = GenerateDegreeRandom("data/graphe.data")
+#g = GenerateDegreeRandom("data/graphe.data")
+g = Graph("data/test.graph")
+g.BiggerConnexComp("apwal.txt")
 
