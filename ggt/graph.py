@@ -253,20 +253,20 @@ def VRandomStrategy(original, sample, k):
     b = 0
     for i in range(1, k):
         for u in original.nodes[a]:
-            test_lien(a, u)
+            test_lien(original, sample, a, u, i)
         for v in original.nodes[b]:
-            test_lien(b, v)
+            test_lien(original, sample, b, v, i)
 
 
 def CompleteStrategy(original, sample, k):
-    x = set()
+    x = list()
     sample = RandomStrategy(original, sample, k)
 
     for item in sample.nodes:
         x.add(item)
 
     while x:
-        u = x.pop(max(x.itervalues()))
+        u = x.pop(max(x))
         for v in sample.nodes():
             test_lien(original, sample, u, v)
             if(test_lien(original, sample, u, v) and not v in sample.nodes):
