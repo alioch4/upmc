@@ -7,11 +7,19 @@ cmd_folder = os.path.dirname(os.path.abspath(__file__))
 if cmd_folder not in sys.path:
     sys.path.insert(0, cmd_folder)
 
-from graph import *
+from graph import Graph
+from graph import RandomStrategy
+from graph import VRandomStrategy
+from graph import CompleteStrategy
+from graph import TBFStrategy
 
+g = Graph("data/flikr-test")
 
+# Utilisation des stratégies du cours
 
-#g = GenerateDegreeRandom("data/graphe.data")
-g = Graph("data/test.graph")
-g.BiggerConnexComp("apwal.txt")
+sample = Graph()
+RandomStrategy(g, sample, 42)
+VRandomStrategy(g, sample, 42)
+CompleteStrategy(g, sample, 42)
+TBFStrategy(g, sample, 42)
 
