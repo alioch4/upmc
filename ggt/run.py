@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import os, sys
+import os
+import sys
 
 cmd_folder = os.path.dirname(os.path.abspath(__file__))
 if cmd_folder not in sys.path:
