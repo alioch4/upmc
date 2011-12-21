@@ -4,27 +4,15 @@
 
 Dans cette fiche de lecture, nous présenterons tout d'abord, en introduction, les enjeux liés aux honeypots et aux
 botnets. Nous verrons les défenses que les créateurs de botnets peuvent mettre en place afin
-de lutter contre les honeypots, quels sont les limites de ces défenses et dans quelle mesure il est possible 
-de les contourner. Nous verrons ensuite les apports de l'article à ce domaine puis quels sont les travaux récents
-qui ont étés publiés dans ce domaine et comment ils se raccordent entre eux.
+de lutter contre les honeypots, quelles sont les limites de ces défenses, et dans quelle mesure il est possible 
+de les contourner. Nous verrons ensuite les apports de l'article à ce domaine, puis les travaux récents
+qui ont été publiés dans ce domaine et comment ils se raccordent entre eux.
 
+Les enjeux sont importants : les honeypots ici présentés servent à repérer les botnets.  Ceux-ci sont généralement associés à de vastes campagnes de spam, de distribution de malware, de cybercriminalité, voire d'attaques par déni de service distribué (\textit{Distributed Denial of Service}, DDoS).  La taille parfois importante des botnets en font des ``armées'' particulièrement intéressantes à exploiter à de telles fins.
 
-
-Les enjeux :
-malwares
-spam
-DDoS
-Il faut mettre en évidence que c'est vraiment quelque chose de très délicat.
-
-Trouver des solutions qui sont indépendantes de la plate-forme soft ou hard sur laquelle on se trouve.
-
-Mettre en évidence les contraintes légales. On ne peux pas spammer comme un bourrin pour faire croire au Botnet qu'on est un
-méchant. Il faut trouver des parades.
+Idéalement, des telles solutions devraient être indépendantes de la plate-forme logicielle ou matérielle, et ne doivent pas non plus engager la responsabilité légale des opérateurs de honeypots.  D'un côté, une attaque, un spam ou une tentative d'intrusion ne doit préférablement pas provenir de la société opératrice, sous peine de poursuites judiciaires. De l'autre côté, le propriétaire du botnet pourrait très bien mettre en œuvre des mécanismes de détection de honeypots au sein de son botnet, d'où un exigence pour un honeypot de devoir se fondre dans la masse.  Dans de tels cas, un honeypot qui se fait repérer est rapidement éjecté du botnet, et devient donc complètement inefficace.
 
 
 Il faut utiliser des références :
 Propagation de virus : 6
 Enjeux : 21
-
-Pour fonctionner un honeypot a besoin de se fondre dans la masse des ordinateurs zombies d'un botnet.
-Un honeypot qui se fait reperé est rapidement ejecté du botnet et devient donc complètement inefficace.
