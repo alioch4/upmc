@@ -216,6 +216,8 @@ def test_lien(original, echantillon, node1, node2, n_test):
         echantillon.AddNode(node1, node2)
         echantillon.AddNode(node2, node1)
         return "%s, %s, %s" % (n_test, node1, node2)
+    else:
+        return ''
 
 
 def analyse(n, m, t):
@@ -232,10 +234,11 @@ def analyse(n, m, t):
     print "b = " + str(b)
 
 
-def RandomStrategy(original, sample, k):
+def RandomStrategy(original, sample, k, output):
     visited = set()
     a = 0
     b = 0
+    f = open(output, "w")
     for i in range(1, k):
         while((a, b) in visited):
             a = random.randint(0, original.n)
@@ -244,37 +247,43 @@ def RandomStrategy(original, sample, k):
                 a, b = b, a
         visited.add((a, b))
 
-        print test_lien(original, sample, a, b, i)
-        return sample
+        f.write(test_lien(original, sample, a, b, i))
+    f.close()
+    return sample
 
 
-def VRandomStrategy(original, sample, k):
+def VRandomStrategy(original, sample, k, output):
     a = 0
     b = 0
+    f = open(output, "w")
     for i in range(1, k):
         for u in original.nodes[a]:
-            test_lien(original, sample, a, u, i)
+            f.write(test_lien(original, sample, a, u, i))
         for v in original.nodes[b]:
-            test_lien(original, sample, b, v, i)
+            f.write(test_lien(original, sample, b, v, i))
+    f.close()
 
 
-def CompleteStrategy(original, sample, k):
+def CompleteStrategy(original, sample, k, output):
     x = list()
-    sample = RandomStrategy(original, sample, k)
-
+    sample = RandomStrategy(original, sample, k, output)
+    f = open(output,"w")
     for item in sample.nodes:
         x.add(item)
-
+    i = 0
     while x:
         u = x.pop(max(x))
         for v in sample.nodes():
-            test_lien(original, sample, u, v)
-            if(test_lien(original, sample, u, v) and not v in sample.nodes):
+            i += 1
+            temp = test_lien(original, sample, u, v, i)
+            if temp:
+                f.write(temp)
+            if(temp and not v in sample.nodes):
                 x.add(v)
 
 
-def  TBFStrategy(original, sample, k):
-    sample = RandomStrategy(original, sample, k)
+def  TBFStrategy(original, sample, k, output):
+    sample = RandomStrategy(original, sample, k, output)
 
     # Préparation de la liste
 
@@ -286,12 +295,15 @@ def  TBFStrategy(original, sample, k):
             value = sample.degree[i] + sample.degree[j]
             somme.setdefault(value, set()).add((i, j))
 
-    # Exploitation de la liste
-
+    # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
+    i = 0
     while(somme):
         u = somme.pop(max(somme.itervalues()))
         for couple in somme[u]:
-            test_lien(original, sample, couple[0], couple[1])
+            i += 1
+            test_lien(original, sample, couple[0], couple[1], i)
+            if test_lien:
+                f.write(test_lien)
 
     # Attention dans cette methode on ne tient pour le moment pas compte des
     # eventuels rafraichissement des degres des noeuds. Il pourrait être utile

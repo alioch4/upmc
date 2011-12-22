@@ -1,0 +1,53 @@
+\section{Anatomie d'un botnet hierarchique}
+
+Les botnets sont controllés dans la majorité des cas par un
+réseau hierarchique. Un serveur IRC est souvent utilisé pour
+permettre au botmaster d'envoyer des ordres aux postes contaminés.
+Cependant dans une topologie hierarchique, ce serveur est critique.
+Si il tombe, le botnet ne peut plus recevoir d'ordres et devient donc
+inopérant.
+
+Afin de ne pas avoir à discuter avec des millions de machines à la fois,
+le botmaster peut déléguer les envois d'ordres à une groupe de station infectées
+appellées \textit{bot controller}. Ces bot controlleurs ont pour charge d'envoyer
+les ordres aux différents stations dont ils sont responsables. Il est à noter qu'un
+bot peut recevoir les ordres de plusieurs bot controller et cela dans un but de resistance
+aux attaques. Si un bot controller tombe mais que les envois d'ordres sont suffisament redondés
+au sein du botnet alors la perte d'un bot controller n'est pas handicapante.
+
+\subsection{Risque pour un botnet}
+
+
+Un botnet peut se faire attaquer. Les différentes parties du botnet représente des cibles et
+d'importance différentes.
+
+\subsubsection{Botmaster}
+
+Le coeur d'un bot net est souvent un serveur IRC dans le modèle hierarchique.
+Ce serveur est souvent caché et le mettre hors service peut déconnecter l'envoi d'ordre, mais ne peut en revanche
+pas soigner les vulnérabilités des différentes stations. Ainsi si le serveur IRC de commandement parvient à se remettre
+à fonctionner dans un autre endroit, le botnet est complètement opérationnel.
+
+Cependant, la prise par des autorités compétentes du botnet peut mener à l'exploitation des adresses IP qu'il contient
+afin de trouver tous ses membres et pouvoir prendre des mesures comme mettre les adresses IP des noeuds du botnet sur liste noire.
+Ainsi, il est clair que prendre ce serveur de commandement est de loin le meilleur remède contre les botnet.
+
+\subsubsection{Bot controller}
+
+Une cible plus modeste pourrait être le bot controller. Ces intermédiaires disposent d'informations intéressantes. Une liste
+partielle des membres sous ses ordres. Une liste de taches à envoyer aux bots.
+
+L'arrêt d'un bot controller n'aura souvent pas un effet très fort sur le botnet. En effet, la distribution d'ordre
+est très fortement redondée dans un botnet, ainsi la deconnexion d'un seul bot controller n'aura pas un
+grand effet sur le botnet.
+
+La prise de contrôle est plus intéressante. Elle permet à l'attaquant de disposer d'une liste d'adresses IP de
+bots. L'intérêt est ici plus grand, il est possible de blacklister directement les adresses IP des bots concernés afin
+de rendre leurs attaques inefficaces. En outre, si l'attaquant n'est pas très regardant sur les envois du fichiers malveillants
+il est possible de se faire passer pour un bot controller normal afin d'extraire du botnet des informations plus intéressantes comme
+la localisation de nouveaux bots ou de nouveau bot controller voire même du serveur central.
+
+\subsection{Bot}
+
+Le bot est le travailleur du botnet. Son arrêt ne représente pas un grand intérêt pour lutter contre le botnet.
+En outre, la prise de contrôle d'un bot dans un modèle hierarchique n'apporte pas souvent un intérêt très grand.

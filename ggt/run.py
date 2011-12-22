@@ -20,7 +20,10 @@ g = Graph("data/flikr-test")
 
 sample = Graph()
 RandomStrategy(g, sample, 42)
+sample.clear()
 VRandomStrategy(g, sample, 42)
+sample.clear()
 CompleteStrategy(g, sample, 42)
+sample.clear()
 TBFStrategy(g, sample, 42)
-
+sample.clear()

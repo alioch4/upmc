@@ -57,6 +57,9 @@ noeud décideur dans un botnet. Cela pour des raisons juridiques essentiellement
 partant d'une station est au yeux de la loi la responsable. Ainsi, si une station donneuse d'ordres venait à tomber
 sous la responsabilité légale d'un administrateur securité, il pourrait être poursuivi pour les dégats causés.
 Ainsi les administrateurs préfèrent souvent éviter de prendre des risques et ne veulent pas prendre le controle d'un
-noeud donneur d'ordre. Bien que son utilisation pourrait donner de precieuses informations sur le fonctionnement du botnet
+noeud donneur d'ordre. Le fait de ne transmettre aucun ordre transforme un bot controller en un \textit{sinkhole}.
+Ce qui le rends bien entendu détectable via un mécanisme de détection à base de sonde comme évoqué précédemment.
+Bien que l'utilisation du bot controller pourrait donner de precieuses informations sur le fonctionnement du botnet
 (Autres stations connectées, liste des taches en cours, cibles futures, \ldots) le risque légal est beaucoup trop
-grand.
+grand et les administrateurs se contente souvent de mettre sur liste noire les adresses IP repertoriées dans le
+bot controller et d'en rester là.
