@@ -1,4 +1,4 @@
-\documentclass[a4paper,french,12pt]{article}
+\documentclass[a4paper]{sig-alternate-10pt}
 % L'option draft est vraiment utile pour avoir un document sans 
 % erreurs de OverFull UnderFull
 \usepackage{xltxtra}
@@ -12,12 +12,11 @@
 \usepackage{url}
 \usepackage{appendix}
 \usepackage{numprint}
-\usepackage{geometry}
 \usepackage[xetex]{hyperref}
 
 % == Metadata =============================================
-\title{Fiche de lecture}
-\author{Rémy \textsc{Leone}, Marc \textsc{van der Wal}}
+\title{Honeypot-Aware Advanced Botnet Construction and Maintenance}
+\author{Rémy Léone, Marc van der Wal}
 \def\keywords{upmc, rad}
 \def\subject{Fiche de lecture}
 
@@ -40,12 +39,10 @@
     urlcolor= blue % color of external links
 }
 
-%\geometry{hmargin=1.2in,vmargin=1.2in}
-
 \setdefaultlanguage{french}
 \setotherlanguage{english}
 
-\setromanfont[Mapping=tex-text]{Gentium Basic}
+\setromanfont[Mapping=tex-text]{Times New Roman}
 
 \newcommand{\HRule}{\noident\rule{\linewidth}{0.6mm}}
 
@@ -53,43 +50,31 @@
 \newcommand{\ier}{\textsuperscript{er}}
 \newcommand{\iere}{\textsuperscript{e}}
 
-\renewcommand{\textsc}{\uppercase}
 \newcommand{\name}{\textsc}
 \newcommand{\engl}[1]{\selectlanguage{english}\textit{#1}\selectlanguage{french}}
 \newcommand{\newterm}{\textit}
 \newcommand{\soft}{\textit}
 
-%\renewcommand{\glossaryname}{Glossaire}
-%\renewcommand*{\begintheglossaryhook}{\begin{description}}
-%\renewcommand*{\glossitem}[4]{\item[#1] #2 #3 #4}
-%\renewcommand*{\atendtheglossaryhook}{\end{description}}
-%\makeglossary
-
-
 \begin{document}
 
-\include{tex/title}
-
-\pagebreak
-
-\clearpage
+\input{tex/title.tex}
 
 %\onehalfspacing
 
 % ==================================================================
 % Resumé
-\include{tex/abstract}
+\input{tex/abstract.tex}
 
 % ==================================================================
 % AVANT-PROPOS
-\include{tex/intro}
+\input{tex/intro.tex}
 
-\include{tex/detection}
-\include{tex/p2p}
+\input{tex/detection.tex}
+\input{tex/p2p.tex}
 
 % ==================================================================
 % CONCLUSION
-\include{tex/conclusion}
+\input{tex/conclusion.tex}
 
 % ==================================================================
 % ANNEXES
