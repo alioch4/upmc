@@ -5,6 +5,12 @@ une unité d'un botnet est un honeypot ou bien un zombie digne de confiance.
 Dans cette partie nous allons exposer les différentes stratégies que peut employer
 un botnet afin de faire le tri entre les unités dignes de confiance et les honeypots.
 
+\subsection{Sonde}
+
+Un outil de prédilection pour trouver des honeypots est une sonde (\textit{probe} en anglais).
+Une sonde, est un bot non controlé par un attaquant que le botmaster ou les botcontrollers de confiance
+peuvent interroger pour savoir si un message précis à été reçu.
+
 \subsection{Detection par défis d'envoi de contenu malveillant}
 
 En raison de la dimension légale et juridique liée au spam et à l'envoi de fichiers malveillants,
@@ -18,7 +24,7 @@ station refuse, cela signifie très probablement
 qu'elle est inefficace momentanement ou bien que c'est un honeypot.
 
 Cette stratégie est assez difficile à contrer car l'administrateur du botnet peut parfaitement mettre dans la
-liste des cibles des sondes (\textit{probes} dans le texte) afin de détecter si la station est de bonne foi
+liste des cibles des sondes afin de détecter si la station est de bonne foi
 ou non.
 
 Il existe différentes façons d'utiliser cette stratégie.
