@@ -334,8 +334,8 @@ def CompleteStrategy(original, sample, k, output):
     return sample
 
 
-def  TBFStrategy(original, sample, k, output):
-    f = open(output,"a")
+def TBFStrategy(original, sample, k, output):
+    f = open(output, "a")
     sample = RandomStrategy(original, sample, k, output)
     visited = AlreadyVisited(sample)
 
@@ -344,28 +344,27 @@ def  TBFStrategy(original, sample, k, output):
     somme = dict()
     for i in sample.nodes:
         for j in sample.nodes:
-            if i < j:
+            if i > j:
                 i, j = j, i
             value = sample.degree[i] + sample.degree[j]
-            somme.setdefault(value, []).append((i, j))
+            somme.setdefault(value, set()).add((i, j))
 
     # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
     i = k
     while(somme):
         key_max = max(somme.keys())
-        if somme[key_max] == []:
+        if not somme[key_max]:
             del(somme[key_max])
-            continue
         else:
-            u = somme[key_max].pop()
-            for couple in somme[u]:
-                i += 1
-                test_lien(original, sample, couple[0], couple[1], i)
-                if test_lien:
-                    f.write(test_lien)
+            u, v = somme[key_max].pop()
+            i += 1
+            test_visited = isAlreadyVisited(u, v, visited)
+            test_link = test_lien(original, sample, u, v, i)
+            if test_link and test_visited:
+                f.write(test_link)
     f.close()
     return sample
 
-    # Attention dans cette methode on ne tient pour le moment pas compte des
+# Attention dans cette methode on ne tient pour le moment pas compte des
     # eventuels rafraichissement des degres des noeuds. Il pourrait être utile
     # d'appliquer de nouveau l'algorithme de TBF
