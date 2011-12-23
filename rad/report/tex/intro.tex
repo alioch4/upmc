@@ -1,16 +1,39 @@
 \section*{Introduction}
 \addcontentsline{toc}{chapter}{Préface}
 
+Les enjeux de la lutte contre les botnets sont aujourd'hui de plus en plus
+importants. En effet, ces réseaux constitués d'ordinateurs dits ``zombies'',
+compromis de telle sorte qu'ils fassent partie d'un groupe de machines
+identiques et obéissant aux ordres d'un contrôleur, sont généralement associés
+à de vastes campagnes d'envoi de spams, de distribution de malware, de
+cybercriminalité, voire d'attaques par déni de service distribué
+(\textit{Distributed Denial of Service}, DDoS).  La taille parfois importante
+des botnets en font des ``armées'' particulièrement intéressantes à exploiter à
+des fins malveil\-lantes.
 
-Dans cette fiche de lecture, nous présenterons tout d'abord, en introduction, les enjeux liés aux honeypots et aux
-botnets. Nous verrons les défenses que les créateurs de botnets peuvent mettre en place afin
-de lutter contre les honeypots, quelles sont les limites de ces défenses, et dans quelle mesure il est possible 
-de les contourner. Nous verrons ensuite les apports de l'article à ce domaine, puis les travaux récents
-qui ont été publiés dans ce domaine et comment ils se raccordent entre eux.
+Une méthode pour lutter contre ces botnets est la mise en place de ``pots de
+miel'', ou \textit{honeypots}.  Il s'agit de machines qu'on laisse délibérément
+faire partie d'un botnet, mais qui sont laissés sous le contrôle d'un
+administrateur système, d'un responsable sécurité, ou d'un expert similaire,
+que l'on appellera \textit{attaquant} dans la suite du texte.  Idéalement, de
+telles solutions devraient être indépendantes de la plate-forme logicielle ou
+matérielle, et ne doivent pas non plus engager la responsabilité légale des
+attaquants, qui font généralement partie d'une société spécialisée.  D'un côté,
+une attaque, un spam ou une tentative d'intrusion ne doit préférablement pas
+provenir de la société opératrice, sous peine de poursuites judiciaires. De
+l'autre côté, le propriétaire du botnet peut mettre en œuvre des mécanismes de
+détection de honeypots au sein de son botnet, d'où un exigence pour un honeypot
+de devoir se fondre dans la masse.  Dans de tels cas, un honeypot qui se fait
+repérer est rapidement éjecté du botnet, et devient donc complètement
+inefficace.
 
-Les enjeux sont importants : les honeypots ici présentés servent à repérer les botnets.  Ceux-ci sont généralement associés à de vastes campagnes de spam, de distribution de malware, de cybercriminalité, voire d'attaques par déni de service distribué (\textit{Distributed Denial of Service}, DDoS).  La taille parfois importante des botnets en font des ``armées'' particulièrement intéressantes à exploiter à de telles fins.
-
-Idéalement, des telles solutions devraient être indépendantes de la plate-forme logicielle ou matérielle, et ne doivent pas non plus engager la responsabilité légale des opérateurs de honeypots.  D'un côté, une attaque, un spam ou une tentative d'intrusion ne doit préférablement pas provenir de la société opératrice, sous peine de poursuites judiciaires. De l'autre côté, le propriétaire du botnet pourrait très bien mettre en œuvre des mécanismes de détection de honeypots au sein de son botnet, d'où un exigence pour un honeypot de devoir se fondre dans la masse.  Dans de tels cas, un honeypot qui se fait repérer est rapidement éjecté du botnet, et devient donc complètement inefficace.
+Dans cette fiche de lecture, nous présenterons tout d'abord, en introduction,
+les enjeux liés aux honeypots et aux botnets. Nous verrons les défenses que les
+administrateurs de botnets peuvent mettre en place afin de lutter contre les
+honeypots, quelles sont les limites de ces défenses, et dans quelle mesure il
+est possible de les contourner. Nous verrons ensuite les apports de l'article à
+ce domaine, puis les travaux récents qui ont été publiés dans ce domaine et
+comment ils se raccordent entre eux.
 
 
 Il faut utiliser des références :

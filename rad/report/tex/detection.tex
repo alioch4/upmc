@@ -1,71 +1,91 @@
 \section{Détection d'un honeypot}
 
-Les concepteurs de botnets ont plusieurs moyens afin de détecter si
-une unité d'un botnet est un honeypot ou bien un zombie digne de confiance.
-Dans cette partie nous allons exposer les différentes stratégies que peut employer
-un botnet afin de faire le tri entre les unités dignes de confiance et les honeypots.
+Les concepteurs de botnets ont plusieurs moyens afin de détecter si une unité
+d'un botnet est un honeypot ou bien un zombie digne de confiance.  Dans cette
+partie, nous allons exposer les différentes stratégies que peut employer un
+botnet afin de faire le tri entre les unités dignes de confiance et les
+honeypots.
 
-\subsection{Sonde}
+\subsection{Utilisation de sondes}
 
-Un outil de prédilection pour trouver des honeypots est une sonde (\textit{probe} en anglais).
-Une sonde, est un bot non controlé par un attaquant que le botmaster ou les botcontrollers de confiance
-peuvent interroger pour savoir si un message précis à été reçu.
+Un outil de prédilection pour trouver des honeypots est une sonde
+(\textit{probe} en anglais).  Une sonde est une machine non contrôlée par un
+attaquant, et que l'administrateur du botnet (ou d'autres machines de
+confiance) peuvent interroger pour savoir si un message précis a été reçu.
 
 \subsection{Détection par défis d'envoi de contenu malveillant}
 
-En raison de la dimension légale et juridique liée au spam et à l'envoi de fichiers malveillants,
-il est clair que les administrateurs système ne peuvent pas contribuer de manière trop zélée au
-activités malveillantes du botnet. On tombe ici sur un grave problème, les botnets en testant le
-zèle de certains noeuds auront toujours la possibilité de détecter plus ou moins finement les intrus.
+En raison de la dimension légale et juridique liée au spam et à l'envoi de
+fichiers malveillants, les attaquants ne peuvent pas contribuer de manière trop
+zélée au activités malveillantes du botnet. On tombe ici sur un grave problème:
+les botnets, en testant le zèle de certains nœuds, auront toujours la
+possibilité de détecter plus ou moins finement les intrus.
 
-De ce fait une stratégie possible pour détecter un honeypot serait de lui envoyer des requêtes comme
-``Envoie \numprint{5000} mails contenant des pièces jointes malveillantes aux adresses suivantes''. Si la
-station refuse, cela peut signifier qu'elle est momentanément inefficace, ou bien qu'il s'agit d'un honeypot.
+De ce fait une stratégie possible pour détecter un honeypot serait de lui
+envoyer des requêtes comme ``Envoyer \numprint{5000} mails contenant des pièces
+jointes malveillantes aux adresses suivantes''. Si la station refuse, cela peut
+signifier qu'elle est momentanément inefficace (par exemple à cause d'une panne
+réseau), ou bien qu'il s'agit d'un honeypot.
 
-Cette stratégie est assez difficile à contrer car l'administrateur du botnet peut
-parfaitement mettre en œuvre des sondes parmi les stations (des \textit{probes}, dans
-le texte) afin de savoir si une station particulière est de bonne foi
-ou non.
+Cette stratégie est assez difficile à contrer car l'administrateur du botnet
+peut parfaitement mettre en œuvre des sondes parmi les stations (des
+\textit{probes}, dans le texte) afin de savoir si une station particulière est
+de bonne foi ou non.
 
-Il existe différentes façons d'utiliser cette stratégie.
-La première consisterait à utiliser cette stratégie avant de faire rentrer une station dans le botnet.
-Il est facile pour un concepteur de botnet de ne donner accès au reste du botnet que si une station
-a prouvé son efficacité. Cette méthode a pour avantage de bloquer les honeypots avant qu'ils ne rentrent
-dans le botnet.
-Une seconde stratégie pourrait consister à remettre en question la confiance que le botnet a dans une station 
-de manière périodique. On pourrait placer dans la liste des cibles d'une station une sonde
-de confiance aléatoirement choisie et contrôlée par le botnet. Cette stratégie a pour avantage de bloquer les tentatives de prise
-de contrôle d'un noeud auxquels le botnet aurait accordé sa confiance.
-Ces deux possibilités de vérification sont cumulables.
+Il existe différentes façons d'utiliser cette stratégie.  La première
+consisterait à utiliser cette stratégie avant de faire rentrer une station dans
+le botnet.  Il est facile pour un administrateur de botnet de ne donner accès
+au reste du réseau que si une station a prouvé son efficacité. Cette méthode a
+pour avantage de bloquer les honeypots avant qu'ils ne rentrent dans le botnet.
+Une seconde stratégie consiste à remettre en question la confiance que le
+botnet a dans une station de manière périodique. On pourrait placer dans la
+liste des cibles d'une station une sonde de confiance aléatoirement choisie et
+contrôlée par le botnet. Cette stratégie a pour avantage de bloquer les
+tentatives de prise de contrôle d'un noeud auxquels le botnet aurait \textit{a
+priori} accordé sa confiance.  Ces deux possibilités de vérification sont
+cumulables.
 
-\subsection{Détection par requête Web}
+\subsection{Détection par requêtes Web}
 
-Une autre façon de détecter si une station est compromise ou non consiste à lui demander d'effectuer
-des requêtes HTTP sur une liste de site donnée. Cette procédure est plus difficile à gérer pour un administrateur
-sécurité, car il est difficile de savoir si une requête Web est légitime ou bien si elle fait partie d'une tentative
-de déni de service distribué. Cette difficulté de faire la différence entre les deux cas rend
-la tache de détection des botnets plus difficile.
+Une autre façon de déterminer si une station est un honeypot ou non consiste à
+lui demander d'effectuer des requêtes HTTP sur une liste de sites donnée. Cette
+procédure est plus difficile à gérer pour un attaquant, car il est difficile de
+savoir si une requête Web est légitime ou bien si elle fait partie d'une
+tentative de déni de service distribué. Cette difficulté de faire la différence
+entre les deux cas rend la tâche de détection des botnets beaucoup plus
+périlleuse en termes de responsabilité juridique.
 
 
 \subsection{Une lutte difficile}
 
-Il est difficile de savoir si une adresse est un capteur ou non; c'est la raison principale pour laquelle
-les honeypots peuvent se faire repérer.
-En outre, lorsque une station (honeypot ou non) reçoit une liste de choses à faire, les cibles peuvent
-être dissimulés à l'intérieur d'un fichier binaire difficile à analyser afin d'avoir la liste des cibles sans
-leur envoyer du contenu. En outre, il est également possible pour un botnet de chiffrer ses communications entre
-stations aussi bien que les listes de cibles afin de rendre la rétro-ingénierie plus délicate.
+Il est difficile de savoir si une unité d'un botnet est une sonde ou non; c'est
+la raison principale pour laquelle les honeypots peuvent se faire repérer.
+Idéalement, un honeypot pourrait adopter des comportements différents en
+fonction du type de station (i.e. sonde ou non) à laquelle il a affaire. En
+outre, lorsque une station (honeypot ou non) reçoit une liste d'actions à faire,
+les cibles peuvent être dissimulées à l'intérieur d'un fichier binaire dont
+l'analyse est fastidieuse. L'analyse de ce fichier permettrait pourtant
+d'obtenir une liste des cibles sans leur envoyer du contenu. De plus, il est
+également possible pour un botnet de chiffrer ses communications entre stations
+ou de chiffrer ses binaires, ce qui rend la rétro-ingénierie beaucoup plus
+difficile.
 
 \subsection{Contrôle d'un noeud décideur}
 
-La plupart des administrateurs sécurité hésitent à prendre le contrôle quand ils en ont l'occasion d'un
-noeud décideur dans un botnet. Cela pour des raisons juridiques essentiellement. Il est clair que du trafic
-partant d'une station est au yeux de la loi la responsable. Ainsi, si une station donneuse d'ordres venait à tomber
-sous la responsabilité légale d'un administrateur sécurité, il pourrait être poursuivi pour les dégâts causés.
-Ainsi les administrateurs préfèrent souvent éviter de prendre des risques et ne veulent pas prendre le contrôle d'un
-noeud donneur d'ordre. Le fait de ne transmettre aucun ordre transforme un bot contrôleur en un ``trou noir'', ou \textit{sinkhole}.
-Ce qui le rend bien entendu détectable via un mécanisme de détection à base de sonde comme évoqué précédemment.
-Bien que l'utilisation du bot contrôleur pourrait donner de précieuses informations sur le fonctionnement du botnet
-(autres stations connectées, liste des tâches en cours, cibles futures, etc.), le risque légal est beaucoup trop
-grand et les administrateurs se contentent souvent de mettre sur liste noire les adresses IP répertoriées dans le
-bot contrôleur et de ne pas prendre d'autres mesures.
+La plupart des attaquants hésitent à prendre le contrôle quand ils en ont
+l'occasion d'un noeud décideur dans un botnet, cela essentiellement pour des
+raisons juridiques.  Tout trafic sortant d'une telle station engage la
+responsabilité de la société employant les attaquants.  Ainsi, un attaquant
+pourrait être poursuivi pour les dégâts causés si son honeypot était choisi pour
+devenir un nœud décideur.  Les attaquants préfèrent souvent éviter de prendre
+des risques et ne veulent donc pas prendre le contrôle d'un noeud donneur
+d'ordres. Le fait de ne transmettre aucun ordre transforme un bot contrôleur en
+un ``trou noir'', ou \textit{sinkhole}.  Ce qui le rend bien entendu détectable
+via un mécanisme de détection à base de sonde comme évoqué précédemment.  
+
+Bien que l'utilisation du bot contrôleur pourrait donner de
+précieuses informations sur le fonctionnement du botnet (autres stations
+connectées, liste des tâches en cours, cibles futures, etc.), le risque légal
+est beaucoup trop grand et les attaquants se contentent souvent de mettre
+sur liste noire les adresses IP répertoriées dans le bot contrôleur et de ne pas
+prendre d'autres mesures.
