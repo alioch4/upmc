@@ -212,10 +212,12 @@ def GenerateErdos(n, m):
 
 
 def test_lien(original, echantillon, node1, node2, n_test):
+    if(node1 > node2):
+        node2, node1 = node1, node2
     if(original.TestLien(node1, node2)):
         echantillon.AddNode(node1, node2)
         echantillon.AddNode(node2, node1)
-        return "%s, %s, %s" % (n_test, node1, node2)
+        return "%s %s %s\n" % (n_test, node1, node2)
     else:
         return ''
 
@@ -252,58 +254,117 @@ def RandomStrategy(original, sample, k, output):
     return sample
 
 
+def AlreadyVisited(g):
+    visited = set()
+    for i in g.nodes:
+        for j in g.nodes[i]:
+            if i < j:
+                visited.add((i, j))
+            else:
+                visited.add((j, i))
+    return visited
+
+
+def isAlreadyVisited(u, v, visited):
+    if u > v:
+        u, v = v, u
+    if (u, v) in visited:
+        return (u, v)
+    else:
+        return ''
+
 def VRandomStrategy(original, sample, k, output):
-    a = 0
-    b = 0
     f = open(output, "w")
-    for i in range(1, k):
-        for u in original.nodes[a]:
-            f.write(test_lien(original, sample, a, u, i))
-        for v in original.nodes[b]:
-            f.write(test_lien(original, sample, b, v, i))
+    visited = set()
+    u = int()
+    v = int()
+    i = int()
+    for _ in range(1, k):
+        while (u, v) in visited:
+            u = random.randint(0, original.n)
+            v = random.randint(0, original.n)
+            if(u > v):
+                v, u = u, v
+        visited.add((u, v))
+        test = test_lien(original, sample, u, v, i)
+        i += 1
+        if test:
+            f.write(test)
+            for w in sample.nodes[u]:
+                test_visited = isAlreadyVisited(u, w, visited)
+                test_u = test_lien(original, sample, w, u, i)
+                i += 1
+                if test_u and not test_visited:
+                    visited.add(test_visited)
+                    f.write(test_u)
+            for w in sample.nodes[v]:
+                test_visited = isAlreadyVisited(v, w, visited)
+                test_v = test_lien(original, sample, w, v, i)
+                i += 1
+                if test_v and not test_visited:
+                    visited.add(test_visited)
+                    f.write(test_v)
     f.close()
+    return sample
 
 
 def CompleteStrategy(original, sample, k, output):
-    x = list()
+    to_explore = dict()
+    f = open(output,"a")
     sample = RandomStrategy(original, sample, k, output)
-    f = open(output,"w")
+    visited = AlreadyVisited(sample)
     for item in sample.nodes:
-        x.add(item)
-    i = 0
-    while x:
-        u = x.pop(max(x))
-        for v in sample.nodes():
-            i += 1
-            temp = test_lien(original, sample, u, v, i)
-            if temp:
-                f.write(temp)
-            if(temp and not v in sample.nodes):
-                x.add(v)
+        to_explore.setdefault(sample.degree[item],[]).append(item)
+    i = k
+    while to_explore:
+        key_max = max(to_explore.keys())
+        if to_explore[key_max] == []:
+            del(to_explore[key_max])
+        else:
+            u = to_explore[key_max].pop()
+            for v in original.nodes:
+                test_link = test_lien(original, sample, u, v, i)
+                test_visited = isAlreadyVisited(v, u, visited)
+                i += 1
+                if test_link and test_visited:
+                    f.write(test_link)
+                    if(not v in sample.nodes):
+                        to_explore.setdefault(1,[]).append(v)
+    f.close()
+    return sample
 
 
 def  TBFStrategy(original, sample, k, output):
+    f = open(output,"a")
     sample = RandomStrategy(original, sample, k, output)
+    visited = AlreadyVisited(sample)
 
     # Préparation de la liste
 
     somme = dict()
-    for i in sample.nodes():
-        for j in sample.nodes():
+    for i in sample.nodes:
+        for j in sample.nodes:
             if i < j:
                 i, j = j, i
             value = sample.degree[i] + sample.degree[j]
-            somme.setdefault(value, set()).add((i, j))
+            somme.setdefault(value, []).append((i, j))
 
     # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
-    i = 0
+    i = k
     while(somme):
-        u = somme.pop(max(somme.itervalues()))
-        for couple in somme[u]:
-            i += 1
-            test_lien(original, sample, couple[0], couple[1], i)
-            if test_lien:
-                f.write(test_lien)
+        key_max = max(somme.keys())
+        if somme[key_max] == []:
+            del(somme[key_max])
+            continue
+        else:
+            u = somme[key_max].pop()
+            for couple in somme[u]:
+                i += 1
+                test_lien(original, sample, couple[0], couple[1], i)
+                if test_lien:
+                    f.write(test_lien)
+    f.close()
+    return sample
 
     # Attention dans cette methode on ne tient pour le moment pas compte des
     # eventuels rafraichissement des degres des noeuds. Il pourrait être utile
