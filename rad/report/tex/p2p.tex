@@ -1,40 +1,47 @@
-\section{Botnet pair-à-pair}
+\section{Botnets pair-à-pair}
 
 \subsection{Intérêt du modèle pair-à-pair}
 
-Les modèles actuels de botnet sont majoritairement hierarchiques. Les \textit{bot
-controllers} sont nécessaires afin de faire fonctionner des botnets présentant des
-tailles importantes. Cependant, la configuration d'adresses DNS dynamique peut demander
-des ressources temporels et financières importantes. En outre, les fournisseurs d'adresses
-DNS dynamiques peuvent en partenariat avec les autorités trouver les comportements suspects
-afin de neutraliser des botenets.
+Les modèles actuels de botnet sont majoritairement hiérarchiques. Les
+\textit{bot controllers} sont nécessaires afin de faire fonctionner des botnets
+de taille importante. Cependant, la configuration d'adresses DNS
+dynamique peut demander des ressources temporelles et financières importantes. En
+outre, les fournisseurs d'adresses DNS dynamiques peuvent, en partenariat avec
+les autorités, trouver les comportements suspects afin de neutraliser des
+botnets.
 
-Une parade contre cette faiblesse de passage à l'échelle des botnet hierarchique est l'utilisation de botnet pair à pair
-ne reposant plus sur une hierarchie mais d'avantage sur des connexions locales.
+Une parade contre cette faiblesse de passage à l'échelle des botnets
+hiérarchiques est l'utilisation de botnets pair à pair, ne reposant plus sur une
+hiérarchie mais davantage sur des connexions locales.
 
 
-\subsection{Un vers en deux temps pour construire un botnet pair à pair}
+\subsection{Un ver en deux temps pour construire un botnet pair à pair}
 
 Afin de construire un réseau pair à pair malveillant, un ver peut être utilisé.
 Ce ver fonctionne essentiellement en deux temps :
 
 \begin{description}
 
-\item[Vérification :] Cette partie a pour tache que la station qui est en cours de traitement
-n'est pas un honeypot. Afin de s'assurer contre cela, le ver peut utiliser une méthodologie similaire
-a celle présentée précedement dans l'article. De ce fait, si la station n'est pas digne de confiance
-pour le botnet alors le ver n'essaye pas de faire rentrer la station dans le botnet et aucune information
-ne sera donné à cette station. Cependant, si la vérification est valide, alors le ver peut passer à la seconde
-étape.
+\item[Vérification :] Le ver doit s'assurer que la station qui est en cours de
+	traitement n'est pas un honeypot. Pour ce faire, il peut utiliser une
+	méthodologie similaire à celle présentée précédemment dans l'article. De
+	ce fait, si la station n'est pas digne de confiance pour le botnet, alors
+	le ver n'essaye pas de faire rentrer la station dans le botnet et aucune
+	information ne sera donnée à cette station. Cependant, si la vérification
+	aboutit, alors le ver peut passer à la seconde étape.
 
-\item[Enregistrement :] Cette étape a pour but d'envoyer à la station fraichement corrompue de nouvelles cibles
-à aller contaminer avec le même ver qui a été utilisé pour la corrompre elle même. Les listes
-en question sont nommées des \textit{buddy list}. L'avantage énorme de ces buddy list réside dans le fait qu'en
-cas de prise de controle d'un noeud du botnet par un attaquant. Il est difficile d'avoir accès à plus de noeuds
-que ceux contenus dans la buddy list. De cette façon, le réseau est robuste aux attaques. En outre, même si des
-noeuds sont attaqués et mis hors circuits par des attaquants. Le botmaster peut toujours donner des ordres via
-les noeuds encore connectés.
+\item[Enregistrement :] Cette étape a pour but d'envoyer à la station
+	fraîchement compromise de nouvelles cibles à infecter avec le même ver
+	qui a été utilisé pour la compromettre elle-même. Les listes en question
+	sont nommées des \textit{buddy lists}. L'avantage énorme de ces buddy
+	lists réside dans le fait qu'en cas de prise de contrôle d'un nœud du
+	botnet par un attaquant, il est difficile d'avoir accès à plus de nœuds
+	que ceux de la buddy list. De cette façon, le réseau résiste aux
+	attaques. En outre, même si des nœuds sont attaqués et mis hors
+	service par des attaquants, l'administrateur du botnet peut toujours
+	donner des ordres via les noeuds encore connectés.
 
 \end{description}
 
-Ce ver fonctionnant en deux temps rends la création de botnet assez facile et assez resistantes aux honeypots.
+Ce ver fonctionnant en deux temps facilite significativement la création de
+botnets, tout en les rendant assez résistantes aux attaques.
