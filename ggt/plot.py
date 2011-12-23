@@ -7,9 +7,6 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 pp = PdfPages('test.pdf')
 
-"""
-Example of file io, reading and writing array files. Does csv format.
-"""
 
 data_folder = "output/"
 

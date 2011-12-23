@@ -273,6 +273,7 @@ def isAlreadyVisited(u, v, visited):
     else:
         return ''
 
+
 def VRandomStrategy(original, sample, k, output):
     f = open(output, "w")
     visited = set()
@@ -310,11 +311,11 @@ def VRandomStrategy(original, sample, k, output):
 
 def CompleteStrategy(original, sample, k, output):
     to_explore = dict()
-    f = open(output,"a")
+    f = open(output, "a")
     sample = RandomStrategy(original, sample, k, output)
     visited = AlreadyVisited(sample)
     for item in sample.nodes:
-        to_explore.setdefault(sample.degree[item],[]).append(item)
+        to_explore.setdefault(sample.degree[item], []).append(item)
     i = k
     while to_explore:
         key_max = max(to_explore.keys())
@@ -329,7 +330,7 @@ def CompleteStrategy(original, sample, k, output):
                 if test_link and test_visited:
                     f.write(test_link)
                     if(not v in sample.nodes):
-                        to_explore.setdefault(1,[]).append(v)
+                        to_explore.setdefault(1, []).append(v)
     f.close()
     return sample
 
