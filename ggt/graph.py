@@ -264,7 +264,9 @@ def linkExploration(original, sample, node1, node2, i, visited, output):
     visited.add((node1, node2))
     if test_link and not test_visited:
         output.write(test_link)
-    return (node1, node2)
+        return (node1, node2)
+    else:
+        return ()
 
 
 def analyse(n, m, t):
@@ -329,12 +331,15 @@ def VRandomStrategy(original, sample, k, output):
 
 
 def CompleteStrategy(original, sample, k, output):
-    to_explore = dict()
-    f = open(output, "a")
     sample = RandomStrategy(original, sample, k, output)
     visited = AlreadyVisited(sample)
+    f = open(output, "a")
+    # to_explore : Dictionnaire ayant pour clé un degré et
+    # pour valeur une liste de noeuds qui ont ce degré
+    to_explore = dict()
     for item in sample.nodes:
         to_explore.setdefault(sample.degree[item], []).append(item)
+    # On se place après la phase aléatoire.
     i = k
     while to_explore:
         key_max = max(to_explore.keys())
@@ -343,11 +348,11 @@ def CompleteStrategy(original, sample, k, output):
         else:
             u = to_explore[key_max].pop()
             for v in original.nodes:
-                i += 1
-                visited.add(linkExploration(original, sample, u, v, i,\
-                        visited, f))
-                if original.TestLien(u, v) and sample.degree[v] == 1:
-                    to_explore.setdefault(1, []).append(v)
+                if (u, v) not in visited:
+                    i += 1
+                    visited.add(linkExploration(original, sample, u, v, i, visited, f))
+                    if original.TestLien(u, v) and sample.degree[v] == 1:
+                        to_explore.setdefault(1, []).append(v)
     f.close()
     return sample
 
