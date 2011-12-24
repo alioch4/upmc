@@ -336,7 +336,6 @@ def CompleteStrategy(original, sample, k, output):
     for item in sample.nodes:
         to_explore.setdefault(sample.degree[item], []).append(item)
     i = k
-    f.write("#NEW STRATEGY")
     while to_explore:
         key_max = max(to_explore.keys())
         if to_explore[key_max] == []:
@@ -344,12 +343,11 @@ def CompleteStrategy(original, sample, k, output):
         else:
             u = to_explore[key_max].pop()
             for v in original.nodes:
-                if (u, v) not in visited:
-                    i += 1
-                    visited.add(linkExploration(original, sample, u, v, i,\
+                i += 1
+                visited.add(linkExploration(original, sample, u, v, i,\
                         visited, f))
-                    if v not in sample.nodes:
-                        to_explore.setdefault(1, []).append(v)
+                if original.TestLien(u, v) and sample.degree[v] == 1:
+                    to_explore.setdefault(1, []).append(v)
     f.close()
     return sample
 
@@ -370,7 +368,6 @@ def TBFStrategy(original, sample, k, output):
 
     # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
     i = k
-    f.write("#NEW STRATEGY")
     while(somme):
         key_max = max(somme.keys())
         if not somme[key_max]:
@@ -378,8 +375,7 @@ def TBFStrategy(original, sample, k, output):
         else:
             u, v = somme[key_max].pop()
             i += 1
-            visited.add(linkExploration(original, sample, u, v, i, visited,\
-                f))
+            visited.add(linkExploration(original, sample, u, v, i, visited, f))
     f.close()
     return sample
 

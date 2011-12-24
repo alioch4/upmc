@@ -42,10 +42,10 @@ def prepareEvolution():
 def Evolution():
     prepareEvolution()
     first_plot = data_folder + "evolution/random-strategy.dataset"
-    plotfile(first_plot, cols=(1, 0), delimiter=" ", subplots=False)
+    plotfile(first_plot, cols=(1, 0), comments='#', delimiter=" ", subplots=False)
     os.chdir(data_folder + "evolution/")
     for dataset in os.listdir("."):
         print dataset
-        plotfile(dataset, cols=(1, 0), newfig=False, delimiter=" ")
+        plotfile(dataset, cols=(1, 0), comments='#', newfig=False, delimiter=" ")
     show()
 Evolution()
