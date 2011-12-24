@@ -211,6 +211,13 @@ def GenerateErdos(n, m):
     g.DistDegree("graphe.data")
 
 
+# Utilitaires pour l'exploration de graphe
+
+# Test si un lien entre les node1 et node2 existe et si c'est le
+# cas, l'ajoute à l'échantillon.
+# On renvoit une chaine de caractère à imprimer si la detection
+# à fonctionner et une chaine vide si ce n'est pas le cas.
+
 def test_lien(original, echantillon, node1, node2, n_test):
     if(node1 > node2):
         node2, node1 = node1, node2
@@ -220,6 +227,44 @@ def test_lien(original, echantillon, node1, node2, n_test):
         return "%s %s %s\n" % (n_test, node1, node2)
     else:
         return ''
+
+# Création d'un ensemble des liens d'ores et déjà exploré.
+# Remarque : Il serait possible de placer cette methode dans une
+# methode de classe mais on rendrait les graphes beaucoup plus lourds
+
+
+def AlreadyVisited(g):
+    visited = set()
+    for i in g.nodes:
+        for j in g.nodes[i]:
+            if i < j:
+                visited.add((i, j))
+            else:
+                visited.add((j, i))
+    return visited
+
+# Fonction booleenne pour savoir si un lien a deja été visité ou non.
+# Si c'est le cas, le couple est renvoyé.
+
+
+def isAlreadyVisited(u, v, visited):
+    if u > v:
+        u, v = v, u
+    if (u, v) in visited:
+        return (u, v)
+    else:
+        return ''
+
+# Routine d'exploration d'un lien. On utilise cette routine
+# dans toutes les stratégies.
+
+def linkExploration(original, sample, node1, node2, i, visited, output):
+    test_visited = isAlreadyVisited(node1, node2, visited)
+    test_link = test_lien(original, sample, node1, node2, i)
+    visited.add((node1, node2))
+    if test_link and not test_visited:
+        output.write(test_link)
+    return (node1, node2)
 
 
 def analyse(n, m, t):
@@ -235,11 +280,12 @@ def analyse(n, m, t):
     print "w = " + str(w)
     print "b = " + str(b)
 
+# Stratégies d'exploration
 
 def RandomStrategy(original, sample, k, output):
     visited = set()
-    a = 0
-    b = 0
+    a = int()
+    b = int()
     f = open(output, "w")
     for i in range(1, k):
         while((a, b) in visited):
@@ -247,31 +293,10 @@ def RandomStrategy(original, sample, k, output):
             b = random.randint(0, original.n)
             if(a > b):
                 a, b = b, a
-        visited.add((a, b))
-
-        f.write(test_lien(original, sample, a, b, i))
+        visited.add(linkExploration(original, sample, a, b, i, visited,\
+            f))
     f.close()
     return sample
-
-
-def AlreadyVisited(g):
-    visited = set()
-    for i in g.nodes:
-        for j in g.nodes[i]:
-            if i < j:
-                visited.add((i, j))
-            else:
-                visited.add((j, i))
-    return visited
-
-
-def isAlreadyVisited(u, v, visited):
-    if u > v:
-        u, v = v, u
-    if (u, v) in visited:
-        return (u, v)
-    else:
-        return ''
 
 
 def VRandomStrategy(original, sample, k, output):
@@ -292,19 +317,13 @@ def VRandomStrategy(original, sample, k, output):
         if test:
             f.write(test)
             for w in sample.nodes[u]:
-                test_visited = isAlreadyVisited(u, w, visited)
-                test_u = test_lien(original, sample, w, u, i)
+                visited.add(linkExploration(original, sample, u, v, i, visited,\
+                        f))
                 i += 1
-                if test_u and not test_visited:
-                    visited.add(test_visited)
-                    f.write(test_u)
             for w in sample.nodes[v]:
-                test_visited = isAlreadyVisited(v, w, visited)
-                test_v = test_lien(original, sample, w, v, i)
+                visited.add(linkExploration(original, sample, u, v, i, visited,\
+                        f))
                 i += 1
-                if test_v and not test_visited:
-                    visited.add(test_visited)
-                    f.write(test_v)
     f.close()
     return sample
 
@@ -317,6 +336,7 @@ def CompleteStrategy(original, sample, k, output):
     for item in sample.nodes:
         to_explore.setdefault(sample.degree[item], []).append(item)
     i = k
+    f.write("#NEW STRATEGY")
     while to_explore:
         key_max = max(to_explore.keys())
         if to_explore[key_max] == []:
@@ -324,22 +344,20 @@ def CompleteStrategy(original, sample, k, output):
         else:
             u = to_explore[key_max].pop()
             for v in original.nodes:
-                test_link = test_lien(original, sample, u, v, i)
-                test_visited = isAlreadyVisited(v, u, visited)
-                i += 1
-                if test_link and test_visited:
-                    f.write(test_link)
-                    if(not v in sample.nodes):
+                if (u, v) not in visited:
+                    i += 1
+                    visited.add(linkExploration(original, sample, u, v, i,\
+                        visited, f))
+                    if v not in sample.nodes:
                         to_explore.setdefault(1, []).append(v)
     f.close()
     return sample
 
 
 def TBFStrategy(original, sample, k, output):
-    f = open(output, "a")
     sample = RandomStrategy(original, sample, k, output)
     visited = AlreadyVisited(sample)
-
+    f = open(output, "a")
     # Préparation de la liste
 
     somme = dict()
@@ -352,6 +370,7 @@ def TBFStrategy(original, sample, k, output):
 
     # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
     i = k
+    f.write("#NEW STRATEGY")
     while(somme):
         key_max = max(somme.keys())
         if not somme[key_max]:
@@ -359,13 +378,11 @@ def TBFStrategy(original, sample, k, output):
         else:
             u, v = somme[key_max].pop()
             i += 1
-            test_visited = isAlreadyVisited(u, v, visited)
-            test_link = test_lien(original, sample, u, v, i)
-            if test_link and test_visited:
-                f.write(test_link)
+            visited.add(linkExploration(original, sample, u, v, i, visited,\
+                f))
     f.close()
     return sample
 
 # Attention dans cette methode on ne tient pour le moment pas compte des
-    # eventuels rafraichissement des degres des noeuds. Il pourrait être utile
-    # d'appliquer de nouveau l'algorithme de TBF
+# eventuels rafraichissement des degres des noeuds. Il pourrait être utile
+# d'appliquer de nouveau l'algorithme de TBF
