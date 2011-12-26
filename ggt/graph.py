@@ -373,14 +373,15 @@ def TBFStrategy(original, sample, k, output):
 
     # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
     i = k
-    while(somme):
+    while somme:
         key_max = max(somme.keys())
         if not somme[key_max]:
             del(somme[key_max])
         else:
             u, v = somme[key_max].pop()
-            i += 1
-            visited.add(linkExploration(original, sample, u, v, i, visited, f))
+            if (u, v) not in visited:
+                i += 1
+                visited.add(linkExploration(original, sample, u, v, i, visited, f))
     f.close()
     return sample
 
