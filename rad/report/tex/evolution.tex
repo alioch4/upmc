@@ -1,0 +1,47 @@
+\section{Travaux ultérieurs}
+
+Un modèle pair à pair n'est pas nécessairement le plus adapté pour
+gérer un botnet. Cependant un modèle hybride permet de combiner les
+avantages du modèle hierarchique et du modèle distribué. Cette partie
+est une ouverture vers les travaux plus récents qui porte l'influence
+des idées de l'article de Zou et Cunningham \cite{main}.
+
+\subsection{Présentation du modèle hybride}
+
+Le modèle pair à pair est très flexible. Il existe de nombreuses différences
+entre les modèles utilisées par Napster, BitTorrent, ou d'autres protocoles.
+L'un des intérêts d'utiliser du modèle pair à pair et d'augmenter la robustesse
+du botnet en cas d'attaque. Il est clair que tous les modèles de pair à pair ne
+peuvent pas convenir. Un modèle pair à pair centralisé, tel que celui utilisé
+par Napster, ne pourrait pas fonctionner car il suffirait comme dans le cas
+distribué de neutraliser le serveur principal pour arrêter le botnet.
+
+\subsection{Amélioration du mécanisme de construction du botnet}
+
+L'une des améliorations des travaux ultérieurs est le mécanisme de réinfection \cite{p2p}.
+Au moment de la construction d'un botnet, un noeud A peut choisir de re-contaminer un noeud B
+d'ores et déjà intégré au botnet. Pour ce faire A envoie un B une liste d'hôte qu'il doit intégré
+dans sa liste de pair de façon aléatoire. De cette manière, dans l'hypothèse où un
+noeud serait capturé; il serait très difficile pour un attaquant du botnet de retrouver
+l'historique d'infection d'un noeud particulier. Cette amélioration rends le botnet
+plus difficile à mesurer pour ses attaquants.
+
+
+\subsection{Nouvelles parades}
+
+La robustesse des botnet hybride se base sur le fait que les listes de pairs se mettent à jour
+régulièrement et se propage rapidement. En laissant un
+honeypot se faire infecter puis envoyer à un maximum d'honeypot ce bot, il est possible d'attaquer
+le botnet en faisant croire au controlleur du botnet que les honeypots peuvent être des servants
+et récupérer des adresses IP d'hôte infecté. Cette stratégie est d'autant plus efficace si les
+attaquants du botnet disposent de grandes plages d'adresses IP.
+
+
+\subsection{Ouvertures}
+
+Le modèle pair à pair prendra plus d'importance dans les années à venir en raison
+de ses nombreux avantages. La robustesse de ce modèle le rends particulièrement résistant aux attaques
+classiques. Une parade face à ce genre de botnet peut être trouvée via l'utilisation des honeypots afin
+de trouver des informations pertinentes vis à vis de ces systèmes. L'étude des honeypot doit devenir
+un domaine d'étude de premier plan pour lutter contre les botnets.
+
