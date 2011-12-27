@@ -49,3 +49,13 @@ si un noeud se fait prendre, il ne revele que la liste de ces voisins directs.
 Ainsi, le botnet est de manière générale plus difficile à cartographier.
 
 \subsection{Fonctionnement du botnet pair-à-pair}
+
+Les commandes dans un botnet pair à pair sont envoyés via un mécanisme de broadcast.
+Le controlleur du botnet envoie un message à l'ensemble des machines qui sont dans sa buddy list.
+Les messages une fois reçus sont envoyés aux machines présentes dans les
+buddy list de chacun de ces noeuds, qui feront de même etc\ldots
+
+Une manière d'intéragir avec la vitesse de transmissions des ordres pourrait
+être de changer la taille de la buddy list. De cette façon les machines
+transmettraient les ordres à beaucoup plus de personnes à la fois ce qui
+augementrait de fait la vitesse de transmission d'un ordre au sein du botnet.
