@@ -14,6 +14,9 @@
 \usepackage{numprint}
 \usepackage[xetex]{hyperref}
 
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+
 % == Metadata =============================================
 \title{Honeypot-Aware Advanced Botnet Construction and Maintenance}
 \author{Rémy Léone, Marc van der Wal}
@@ -42,18 +45,20 @@
 \setdefaultlanguage{french}
 \setotherlanguage{english}
 
-\setromanfont[Mapping=tex-text]{Times New Roman}
+\setromanfont[Mapping=tex-text]{Gentium Basic}
 
-\newcommand{\HRule}{\noident\rule{\linewidth}{0.6mm}}
-
-\newcommand{\ieme}{\textsuperscript{e}}
-\newcommand{\ier}{\textsuperscript{er}}
-\newcommand{\iere}{\textsuperscript{e}}
-
-\newcommand{\name}{\textsc}
+%\setromanfont[Mapping=tex-text]{Times New Roman}
+%
+%\newcommand{\HRule}{\noident\rule{\linewidth}{0.6mm}}
+%
+%\newcommand{\ieme}{\textsuperscript{e}}
+%\newcommand{\ier}{\textsuperscript{er}}
+%\newcommand{\iere}{\textsuperscript{e}}
+%
+%\newcommand{\name}{\textsc}
 \newcommand{\engl}[1]{\selectlanguage{english}\textit{#1}\selectlanguage{french}}
-\newcommand{\newterm}{\textit}
-\newcommand{\soft}{\textit}
+%\newcommand{\newterm}{\textit}
+%\newcommand{\soft}{\textit}
 
 \begin{document}
 
@@ -75,6 +80,13 @@
 % ==================================================================
 % CONCLUSION
 \input{tex/conclusion.tex}
+
+
+% ==================================================================
+% BIBLIOGRAPHIE
+
+\bibliographystyle{abbrv}
+\bibliography{rapport.bib}
 
 % ==================================================================
 % ANNEXES
