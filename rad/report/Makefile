@@ -8,6 +8,7 @@ pdf: $(PDF)
 
 $(PDF): $(BASENAME).tex tex/*
 	$(LATEX) -no-pdf $(BASENAME).tex
+	$(LATEX) -no-pdf $(BASENAME).tex
 	bibtex $(BASENAME).aux
 	$(LATEX) $(BASENAME).tex
 
