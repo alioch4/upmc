@@ -1,10 +1,10 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+import matplotlib
 import os
-#import matplotlib.pyplot as plt
+#from pyplot import plotfile
 from pylab import show
-from pylab import plotfile
 from matplotlib.backends.backend_pdf import PdfPages
 
 pp = PdfPages('test.pdf')
@@ -32,7 +32,7 @@ def maxline():
 
 def extract(string):
     if string == "":
-        return "Null"
+        return "None"
     else:
         return string.split()[0]
 
@@ -53,7 +53,7 @@ def prepareEvolution():
 
     header = "discovered"
     for dataset in opened:
-        header += " " + dataset["name"]
+        header += "," + dataset["name"].replace(".dataset","")
     header += "\n"
     output.write(header)
 
@@ -62,18 +62,17 @@ def prepareEvolution():
     for i in range(1, maxline()):
         line = str(i)
         for item in opened:
-            line += " " + extract(item["fichier"].readline())
+            line += "," + extract(item["fichier"].readline())
         line += "\n"
         output.write(line)
 
 
 def Evolution():
     prepareEvolution()
-    first_plot = data_folder + "evolution/random-strategy.dataset"
-    plotfile(first_plot, cols=(1, 0), delimiter=" ", subplots=False)
-    os.chdir(data_folder + "evolution/")
-    for dataset in os.listdir("."):
-        print dataset
-        plotfile(dataset, cols=(1, 0), subplots=False, newfig=False, delimiter=" ")
+    r = matplotlib.mlab.csv2rec("evolution.dataset", missing="None",\
+            delimiter=',', names=None)
+    print r.random
+    #plotfile("evolution.dataset", cols=(1, 0), subplots=False,\
+    #        missing="None", newfig=False)
     show()
-prepareEvolution()
+Evolution()
