@@ -72,7 +72,5 @@ def Evolution():
     r = matplotlib.mlab.csv2rec("evolution.dataset", missing="None",\
             delimiter=',', names=None)
     print r.random
-    #plotfile("evolution.dataset", cols=(1, 0), subplots=False,\
-    #        missing="None", newfig=False)
     show()
 Evolution()
