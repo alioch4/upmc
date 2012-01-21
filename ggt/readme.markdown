@@ -5,7 +5,8 @@ Génération des communautés
 --------------------------
 
 Le script `community.py` permet de lancer les informations concernant le
-jeu de données de flikr et de flikr-test
+jeu de données de flikr et de flikr-test, il suffit de passer le nom du
+graphe étudié en argument de la fonction.
 
 Nous remarquons que flikr-test n'est pas représentatif de flikr car le
 découpage en communauté est plus important. L'échantillon flikr-test est

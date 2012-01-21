@@ -1,6 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Il faut utiliser viser le jeu de données qui est dans le sous repertoire data
+# directement sans mettre son chemin exact. il faut juste donner le nom du jeu
+# de données.
+
+import sys
 import os
 import csv
 
@@ -28,40 +33,31 @@ def distribution(address):
     return res
 
 
-def conversion():
-    os.system("community/convert -i data/flikr-test -o data/flikr-test.bin")
-    os.system("community/convert -i data/flikr -o data/flikr.bin")
+def conversion(data):
+    os.system("community/convert -i data/" + data + ".graph" + " -o data/" + data + ".bin")
+
+def community(data):
+    os.system("community/community data/" + data + ".bin -l -1 -q 0.0001 >\
+    data/" + data + ".tree")
+    os.system("community/community data/" + data + ".bin -l -1 -q 0.0001 >\
+    data/" + data + ".tree")
 
 
-def community():
-    os.system("community/community data/flikr-test.bin -l -1 -q 0.0001 >\
-    data/flikr-test.tree")
-    os.system("community/community data/flikr.bin -l -1 -q 0.0001 >\
-    data/flikr.tree")
+def hierarchy(data):
+    os.system("community/hierarchy -l 3 data/" + data + ".tree > data/" + data\
+            + ".data")
+    os.system("community/hierarchy -l 2 data/" + data + ".tree > data/" + data\
+            + ".data")
 
+if len(sys.argv) > 1:
+    conversion(sys.argv[1])
+    community(sys.argv[1])
+    hierarchy(sys.argv[1])
 
-def hierarchy():
-    os.system("community/hierarchy -l 3 data/flikr-test.tree >\
-            data/flikr-test.data")
-    os.system("community/hierarchy -l 2 data/flikr.tree > data/flikr.data")
+    print "Distribution de " + sys.argv[1]
+    res = distribution("data/" + sys.argv[1] + ".data")
+    output = open("data/dist-" + sys.argv[1] + ".plot", "w")
+    for i in res:
+        output.write("%s %s\n" % (i, res[i]))
+    output.close()
 
-
-conversion()
-community()
-hierarchy()
-
-print "Distribution de flikr-test"
-res = distribution("data/flikr-test.data")
-output = open('data/dist-flikr-test.plot', "w")
-for i in res:
-    output.write("%s %s\n" % (i, res[i]))
-output.close()
-
-pass
-
-print "Distribution de flikr"
-res = distribution("data/flikr.data")
-output = open('data/dist-flikr.plot', "w")
-for i in res:
-    output.write("%s %s\n" % (i, res[i]))
-output.close()
