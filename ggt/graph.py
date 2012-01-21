@@ -114,6 +114,16 @@ class Graph():
             if current == destination:
                 break
 
+    def ExistingLink(self):
+        visited = set()
+        for i in self.nodes:
+            for j in self.nodes[i]:
+                if i < j:
+                    visited.add((i, j))
+                else:
+                    visited.add((j, i))
+        return visited
+
 # Plus grosse composante connexe
 # TODO : Reutilisation du code de Parcours
 
@@ -213,57 +223,27 @@ def GenerateErdos(n, m):
 
 # Utilitaires pour l'exploration de graphe
 
-# Test si un lien entre les node1 et node2 existe et si c'est le
-# cas, l'ajoute à l'échantillon.
-# On renvoit une chaine de caractère à imprimer si la detection
-# à fonctionner et une chaine vide si ce n'est pas le cas.
-
-def test_lien(original, echantillon, node1, node2, n_test):
-    if(node1 > node2):
-        node2, node1 = node1, node2
-    if(original.TestLien(node1, node2)):
-        echantillon.AddNode(node1, node2)
-        echantillon.AddNode(node2, node1)
-        return "%s %s %s\n" % (n_test, node1, node2)
-    else:
-        return ''
-
-# Création d'un ensemble des liens d'ores et déjà exploré.
-# Remarque : Il serait possible de placer cette methode dans une
-# methode de classe mais on rendrait les graphes beaucoup plus lourds
-
-
-def AlreadyVisited(g):
-    visited = set()
-    for i in g.nodes:
-        for j in g.nodes[i]:
-            if i < j:
-                visited.add((i, j))
-            else:
-                visited.add((j, i))
-    return visited
-
-# Fonction booleenne pour savoir si un lien a deja été visité ou non.
-# Si c'est le cas, le couple est renvoyé.
-
-
-def isAlreadyVisited(u, v, visited):
-    if u > v:
-        u, v = v, u
-    if (u, v) in visited:
-        return (u, v)
-    else:
-        return ''
-
 # Routine d'exploration d'un lien. On utilise cette routine
 # dans toutes les stratégies.
 
 def linkExploration(original, sample, node1, node2, i, visited, output):
-    test_visited = isAlreadyVisited(node1, node2, visited)
-    test_link = test_lien(original, sample, node1, node2, i)
-    visited.add((node1, node2))
-    if test_link and not test_visited:
-        output.write(test_link)
+    # On remet les noeuds en ordre
+    if(node1 > node2):
+        node2, node1 = node1, node2
+    # On teste si on a deja visité ce lien ou non
+    test_visited = (node1, node2) in visited
+    # On test si un lien entre les node1 et node2 existe et si c'est le
+    # cas, l'ajoute à l'échantillon.
+    # On renvoit une chaine de caractère à imprimer si la detection
+    # a fonctionné et une chaine vide si ce n'est pas le cas.
+    if original.TestLien(node1, node2):
+        sample.AddNode(node1, node2)
+        sample.AddNode(node2, node1)
+        res = "%s %s %s\n" % (i, node1, node2)
+    else:
+        res = ""
+    if res and not test_visited:
+        output.write(res)
         return (node1, node2)
     else:
         return ()
@@ -271,33 +251,33 @@ def linkExploration(original, sample, node1, node2, i, visited, output):
 
 def analyse(n, m, t):
     density = float(2 * m) / float(n * (n - 1))
-    b = 0.5 * t * t
-    w = 0
+    res['best'] = 0.5 * t * t
+    res['worse'] = 0
     if(t > m):
-        b += m * (t - m)
+        res['best'] += m * (t - m)
     if(t > n * (n - 1) / 2 - m):
-        w = (t - (n * (n - 1) / 2 - m)) * (t - (n * (n - 1) / 2 - m))
-    r = 0.5 * t * t * density
-    print "r = " + str(r)
-    print "w = " + str(w)
-    print "b = " + str(b)
+        res['worse'] = (t - (n * (n - 1) / 2 - m)) * (t - (n * (n - 1) / 2 - m))
+    res['random'] = 0.5 * t * t * density
+    return res
 
 # Stratégies d'exploration
 
 def RandomStrategy(original, sample, k, output):
     print "Random Strategy running..."
     visited = set()
-    a = int()
-    b = int()
+    borne = original.m
     f = open(output, "w")
     for i in range(1, k):
-        while((a, b) in visited):
+        if len(visited) >= borne:
+            return sample
+        else:
             a = random.randint(0, original.n)
             b = random.randint(0, original.n)
             if(a > b):
                 a, b = b, a
-        visited.add(linkExploration(original, sample, a, b, i, visited,\
-            f))
+            res = linkExploration(original, sample, a, b, i, visited, f)
+            if res:
+                visited.add(res)
     f.close()
     print "Random strategy finished !"
     return sample
@@ -311,6 +291,8 @@ def VRandomStrategy(original, sample, k, output):
     v = int()
     i = int()
     for _ in range(1, k):
+        if len(visited) >= original.m * original.m:
+            return sample
         while (u, v) in visited:
             u = random.randint(0, original.n)
             v = random.randint(0, original.n)
