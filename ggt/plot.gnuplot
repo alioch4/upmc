@@ -1,6 +1,6 @@
 #!/usr/bin/gnuplot -persist
 
-set title "flikr-test.evolution du nombre de liens découverts"
+set title "flikr-test / Evolution du nombre de liens découverts"
 set xlabel 'Liens testés'
 set ylabel 'Liens découverts'
 set datafile separator ","
