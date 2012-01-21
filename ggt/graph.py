@@ -6,6 +6,7 @@ import random
 
 from collections import defaultdict
 from Queue import Queue
+from itertools import product
 
 # On suppose que les noeuds du graphe sont stockés de 0 à n-1
 # Si on trouve le noeud 42 cela veut dire que l'on a des noeuds de 0
@@ -271,11 +272,9 @@ def RandomStrategy(original, sample, k, output):
         if len(visited) >= borne:
             return sample
         else:
-            a = random.randint(0, original.n)
-            b = random.randint(0, original.n)
-            if(a > b):
-                a, b = b, a
-            res = linkExploration(original, sample, a, b, i, visited, f)
+            u = random.randint(0, original.n)
+            v = random.randint(0, original.n)
+            res = linkExploration(original, sample, u, v, i, visited, f)
             if res:
                 visited.add(res)
     f.close()
@@ -287,29 +286,26 @@ def VRandomStrategy(original, sample, k, output):
     print "Vrandom strategy running..."
     f = open(output, "w")
     visited = set()
-    u = int()
-    v = int()
     i = int()
     for _ in range(1, k):
-        if len(visited) >= original.m * original.m:
+        if len(visited) >= original.m:
             return sample
-        while (u, v) in visited:
+        else:
+            i += 1
             u = random.randint(0, original.n)
             v = random.randint(0, original.n)
-            if(u > v):
-                v, u = u, v
-        visited.add((u, v))
-        test = test_lien(original, sample, u, v, i)
-        i += 1
-        if test:
-            f.write(test)
+            res = linkExploration(original, sample, u, v, i, visited, f)
+        if res:
+            visited.add(res)
             for w in sample.nodes[u]:
-                visited.add(linkExploration(original, sample, u, v, i, visited,\
-                        f))
+                couple = linkExploration(original, sample, w, v, i, visited, f)
+                if couple:
+                    visited.add(couple)
                 i += 1
             for w in sample.nodes[v]:
-                visited.add(linkExploration(original, sample, u, v, i, visited,\
-                        f))
+                couple = linkExploration(original, sample, u, w, i, visited, f)
+                if couple:
+                    visited.add(couple)
                 i += 1
     f.close()
     print "Vrandom strategy finished !"
@@ -319,7 +315,7 @@ def VRandomStrategy(original, sample, k, output):
 def CompleteStrategy(original, sample, k, output):
     print "Complete strategy running..."
     sample = RandomStrategy(original, sample, k, output)
-    visited = AlreadyVisited(sample)
+    visited = sample.ExistingLink()
     f = open(output, "a")
     # to_explore : Dictionnaire ayant pour clé un degré et
     # pour valeur une liste de noeuds qui ont ce degré
@@ -335,10 +331,11 @@ def CompleteStrategy(original, sample, k, output):
         else:
             u = to_explore[key_max].pop()
             for v in original.nodes:
-                if (u, v) not in visited:
-                    i += 1
-                    visited.add(linkExploration(original, sample, u, v, i, visited, f))
-                    if original.TestLien(u, v) and sample.degree[v] == 1:
+                i += 1
+                res = linkExploration(original, sample, u, v, i, visited, f)
+                if res:
+                    visited.add(res)
+                    if sample.degree[v] == 1:
                         to_explore.setdefault(1, []).append(v)
     f.close()
     print "Complete strategy finished !"
@@ -348,17 +345,15 @@ def CompleteStrategy(original, sample, k, output):
 def TBFStrategy(original, sample, k, output):
     print "TBF strategy running..."
     sample = RandomStrategy(original, sample, k, output)
-    visited = AlreadyVisited(sample)
+    visited = sample.ExistingLink()
     f = open(output, "a")
-    # Préparation de la liste
-
     somme = dict()
-    for i in sample.nodes:
-        for j in sample.nodes:
-            if i > j:
-                i, j = j, i
-            value = sample.degree[i] + sample.degree[j]
-            somme.setdefault(value, set()).add((i, j))
+
+    for u, v in product(sample.nodes, sample.nodes):
+        if u > v:
+            u, v = v, u
+            value = sample.degree[u] + sample.degree[v]
+            somme.setdefault(value, set()).add((u, v))
 
     # Exploitation de la liste composée des sommes des degrés d(u) + d(v)
     i = k
@@ -368,9 +363,10 @@ def TBFStrategy(original, sample, k, output):
             del(somme[key_max])
         else:
             u, v = somme[key_max].pop()
-            if (u, v) not in visited:
-                i += 1
-                visited.add(linkExploration(original, sample, u, v, i, visited, f))
+            i += 1
+            res = linkExploration(original, sample, u, v, i, visited, f)
+            if res:
+                visited.add(res)
     f.close()
     print "TBF strategy finished !"
     return sample
