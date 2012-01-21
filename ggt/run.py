@@ -14,16 +14,24 @@ from graph import VRandomStrategy
 from graph import CompleteStrategy
 from graph import TBFStrategy
 
-g = Graph("data/flikr-test")
+if sys.argv > 1:
+    g = Graph(sys.argv[1])
+else:
+    sys.exit("Pas d'arguments donné")
 
 # Utilisation des stratégies du cours
 
 sample = Graph()
-RandomStrategy(g, sample, 100000, "output/random.dataset")
+output_folder = "output/" + sys.argv[1]
+output_folder = output_folder.replace('/data','')
+
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+RandomStrategy(g, sample, 100000, output_folder + "/random.dataset")
 sample.EraseLink()
-VRandomStrategy(g, sample, 100000, "output/vrandom.dataset")
+VRandomStrategy(g, sample, 100000, output_folder + "/vrandom.dataset")
 sample.EraseLink()
-CompleteStrategy(g, sample, 100000, "output/complete.dataset")
+CompleteStrategy(g, sample, 100000, output_folder + "/complete.dataset")
 sample.EraseLink()
-TBFStrategy(g, sample, 100000, "output/tbf.dataset")
+TBFStrategy(g, sample, 100000, output_folder + "/tbf.dataset")
 sample.EraseLink()

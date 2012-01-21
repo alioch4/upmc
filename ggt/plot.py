@@ -1,14 +1,8 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
-import matplotlib
 import os
-#from pyplot import plotfile
-from pylab import show
-from matplotlib.backends.backend_pdf import PdfPages
-
-pp = PdfPages('test.pdf')
-data_folder = "output/"
+import sys
 
 # Idées de stratégies :
 # - Evolution du coefficient de clustering
@@ -18,7 +12,7 @@ data_folder = "output/"
 # chaque stratégie
 
 
-def maxline():
+def maxline(data_folder):
     res = dict()
     for fichier in os.listdir(data_folder):
         if os.path.isfile(data_folder + fichier):
@@ -36,9 +30,9 @@ def extract(string):
     else:
         return string.split()[0]
 
-def prepareEvolution():
-    output_name = "evolution.dataset"
-    output = open(output_name, "w")
+def prepareEvolution(data_folder):
+    output_name = "evolution.plot"
+    output = open(data_folder + output_name, "w")
     opened = list()
 
     # Création de la liste des fichiers à ouvrir
@@ -51,7 +45,7 @@ def prepareEvolution():
 
     # Création du header
 
-    header = "discovered"
+    header = "#discovered"
     for dataset in opened:
         header += "," + dataset["name"].replace(".dataset","")
     header += "\n"
@@ -59,7 +53,7 @@ def prepareEvolution():
 
     # Ajout du contenu
 
-    for i in range(1, maxline()):
+    for i in range(1, maxline(data_folder)):
         line = str(i)
         for item in opened:
             line += "," + extract(item["fichier"].readline())
@@ -67,10 +61,5 @@ def prepareEvolution():
         output.write(line)
 
 
-def Evolution():
-    prepareEvolution()
-    r = matplotlib.mlab.csv2rec("evolution.dataset", missing="None",\
-            delimiter=',', names=None)
-    print r.random
-    show()
-Evolution()
+if len(sys.argv) > 1:
+    prepareEvolution(sys.argv[1])

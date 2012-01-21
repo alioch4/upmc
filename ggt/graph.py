@@ -285,6 +285,7 @@ def analyse(n, m, t):
 # Stratégies d'exploration
 
 def RandomStrategy(original, sample, k, output):
+    print "Random Strategy running..."
     visited = set()
     a = int()
     b = int()
@@ -298,10 +299,12 @@ def RandomStrategy(original, sample, k, output):
         visited.add(linkExploration(original, sample, a, b, i, visited,\
             f))
     f.close()
+    print "Random strategy finished !"
     return sample
 
 
 def VRandomStrategy(original, sample, k, output):
+    print "Vrandom strategy running..."
     f = open(output, "w")
     visited = set()
     u = int()
@@ -327,10 +330,12 @@ def VRandomStrategy(original, sample, k, output):
                         f))
                 i += 1
     f.close()
+    print "Vrandom strategy finished !"
     return sample
 
 
 def CompleteStrategy(original, sample, k, output):
+    print "Complete strategy running..."
     sample = RandomStrategy(original, sample, k, output)
     visited = AlreadyVisited(sample)
     f = open(output, "a")
@@ -354,10 +359,12 @@ def CompleteStrategy(original, sample, k, output):
                     if original.TestLien(u, v) and sample.degree[v] == 1:
                         to_explore.setdefault(1, []).append(v)
     f.close()
+    print "Complete strategy finished !"
     return sample
 
 
 def TBFStrategy(original, sample, k, output):
+    print "TBF strategy running..."
     sample = RandomStrategy(original, sample, k, output)
     visited = AlreadyVisited(sample)
     f = open(output, "a")
@@ -383,6 +390,7 @@ def TBFStrategy(original, sample, k, output):
                 i += 1
                 visited.add(linkExploration(original, sample, u, v, i, visited, f))
     f.close()
+    print "TBF strategy finished !"
     return sample
 
 # Attention dans cette methode on ne tient pour le moment pas compte des
