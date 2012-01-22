@@ -1,1 +1,18 @@
 \section{Observations}
+
+La stratégie Random est la plus naive de toutes les stratégies,
+elle met un temps très long pour converger et ne donne pas des estimations
+très précises de communautés réelles au sein du graphe. Elle a cependant
+pour avantage d'avoir une fin prédéterminée, le nombre d'essais que l'on peut tenter.
+En outre, son occupation de la mémoire est très restreinte dans la mesure ou elle ne demande
+aucune structure suplémentaires (à l'exception de la liste des liens visités).
+
+La stratégie Complete est la plus gourmande des deux stratégies non-naive utilisée.
+Sauf cas très improbable on est sur que cette stratégie va finir tôt ou tard par trouver
+tous les liens dans le graphe. Elle nécessite une structure de données annexe pouvant prendre
+une place importante pour les grands graphes en particulier, si on tombe souvent sur de nouveaux noeuds
+la stratégie peut mettre plus de temps à converger.
+
+La stratégie TBF est un peu plus rapide que la stratégie Complete mais cette rapidité se paye par
+une structure annexe qui peut être beaucoup plus lourde (ensemble des couple (u,v)) qui rajoute une
+complexité spatiale quadratique en nombre de noeuds.

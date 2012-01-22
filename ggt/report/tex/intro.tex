@@ -1,1 +1,29 @@
 \section{Introduction}
+
+L'utilisation du programme de recherche de communautés permet de trouver
+les résultats suivants :
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+  fichier & Communauté & Modularité \\ \hline
+  flikr & 49 & 0.3989\\
+  flikr-test & 7 & 0.269 \\
+\end{tabular}
+\end{center}
+
+Nous pouvons en conclure que les deux graphes de sont pas significativement reliés
+en effet, leur découpage en communauté sont très différents. flikr-test n'est donc
+pas une bonne approximation de flikr.
+
+Le second test que nous faisons est un découpage hierarchique, nous obtenons les résultats
+suivants :
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+ & flikr-test & flikr \\ \hline
+0 & 476 & 27756 \\
+1 & 23 & 316 \\
+2 & 8 & 49 \\
+3 & 7 & - \\
+\end{tabular}
+\end{center}
