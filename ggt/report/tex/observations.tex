@@ -12,7 +12,19 @@ Sauf cas très improbable on est sur que cette stratégie va finir tôt ou tard 
 tous les liens dans le graphe. Elle nécessite une structure de données annexe pouvant prendre
 une place importante pour les grands graphes en particulier, si on tombe souvent sur de nouveaux noeuds
 la stratégie peut mettre plus de temps à converger.
+On remarque également que le nombre de d'essais aléatoires effectués avant de lancer la phase
+d'exploration systématique n'a relativement pas d'importance. Pour peu que le nombre soit
+de l'ordre de grandeur du nombre de noeuds on constate que la convergence se produit.
 
 La stratégie TBF est un peu plus rapide que la stratégie Complete mais cette rapidité se paye par
 une structure annexe qui peut être beaucoup plus lourde (ensemble des couple (u,v)) qui rajoute une
 complexité spatiale quadratique en nombre de noeuds.
+On remarque que le nombre d'essais aléatoires a une importance sur la vitesse de convergence de
+cette stratégie. En effet, il est possible de se dire qu'intuitivement
+plus le nombre de liens trouvés est important plus il est probable de trouver des sommes de liens
+de valeur importante qui auront plus de chances d'aboutir à des découvertes de liens.
+En outre, la stratégie TBF ne peut pas augmenter son reservoir de liens
+à tester (à l'inverse d'une stratégie complete).
+ A la fin de la phase random on peut connaitre le nombre exact de liens qui seront testés
+par la suite. Ainsi, si il y a peu de noeuds à fort degrés dans le reservoir on aura peu de chance de
+découvrir tout le graphe.
