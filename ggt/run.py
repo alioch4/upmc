@@ -65,7 +65,6 @@ def runSimulation(l):
     # Analyse des communautés
 
     for f in os.listdir(folder):
-        print f
         if os.path.isfile(os.path.join(folder, f)) and \
                 os.path.splitext(f)[1] == ".graph":
             analysis(os.path.join(folder, os.path.splitext(f)[0]))
