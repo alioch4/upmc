@@ -1,5 +1,7 @@
 \section{Améliorations}
 
+\subsection{Parallelisme}
+
 Afin d'améliorer les performances il serait pertinent
 de paralléliser les algorithmes d'exploration de façon à augmenter les performances
 de nos programmes. En effet, l'exploration peut se paralléliser.
@@ -13,3 +15,9 @@ en une file d'attente et en transformant les différentes stations en unités de
 un élément de la file en entrée puis lancerait une exploration sur l'objet récupéré depuis la file.
 
 Quant à la stratégie random, elle se parallelise trivialement.
+
+\subsection{Relancement de TBF}
+
+TBF est une stratégie qui converge rapidement cependant elle ne peut pas rafraichir le degré des liens
+découverts en fonction de la phase post-aléatoire. Une stratégie possible serait de faire des TBF à la chaîne,
+en faisant au choix ou un redemarrage complet ou bien juste la partie post aléatoire.

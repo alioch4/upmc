@@ -1,38 +1,30 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
-\documentclass[a4paper]{sig-alternate}
+\documentclass[9pt,a4paper]{sig-alternate}
+
+\usepackage{geometry}
+
+\geometry{margin=1in}
 
 \include{settings}
 
 \begin{document}
 
 \input{tex/header}
-Choses à expliquer :
-
-\begin{itemize}
-\item Implémentation de Random, Complete, TBF
-\item Execution du programme communauté
-\item Rapport -> fixer nbr tests/liens et faire
-les calculs à l'aide du pgme Communauté, en utilisant
-les résultats des stratégies implémentées (générer un max de graphes pour
-un max de paramètres de test, commenter au mieux)
-\end{itemize}
-
-
-
-Bonus :
-\begin{itemize}
-\item Implémenter stratégies Mixte (Random, TBF, complete  VRandom etc)
-\item Implémenter stratégies Perso (pour les plus malins)
-\item Effectuer les calculs précédents pour la plus grande composante connexe découverte
-\end{itemize}
 
 \input{tex/intro}
-\input{tex/interpretations}
+%\input{tex/interpretations}
 %\input{tex/implementation}
 \input{tex/difficultes}
 \input{tex/observations}
 \input{tex/ameliorations}
 \input{tex/conclusion}
+
+\section{Annexe}
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../img/evolution.png}
+\end{figure}
 
 \end{document}
