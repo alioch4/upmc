@@ -17,6 +17,8 @@ from graph import TBFStrategy
 
 from community import analysis
 
+from plot import makeEvolution
+
 if sys.argv > 1:
     g = Graph(sys.argv[1])
 else:
@@ -38,7 +40,7 @@ def makeGraph(folder):
 
 def runSimulation(l):
     global output_folder
-    folder = output_folder + "/" + str(l)
+    folder = output_folder + "/" + str(l) + "/"
 
     if not os.path.exists(folder):
         os.makedirs(folder)
@@ -63,6 +65,10 @@ def runSimulation(l):
     for f in os.listdir(folder):
         if os.path.isfile(f) and os.path.splitext(f)[1] == ".graph":
             analysis(os.path.join(folder, os.path.splitext(f)[0]))
+
+    # Préparation de l'evolution du nombre de liens découverts
+    print folder
+    makeEvolution(folder)
 
 runSimulation(100)
 runSimulation(1000)

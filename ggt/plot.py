@@ -15,12 +15,13 @@ import sys
 def maxline(data_folder):
     res = dict()
     for fichier in os.listdir(data_folder):
-        if os.path.isfile(data_folder + fichier):
-            f = open(data_folder + fichier, 'r')
+        if os.path.isfile(os.path.join(data_folder, fichier)):
+            f = open(os.path.join(data_folder, fichier), 'r')
             i = 0
             for line in f:
                 i += 1
-            res.setdefault(i, []).append(data_folder + fichier)
+            res.setdefault(i, []).append(\
+                os.path.join(data_folder, fichier))
     return max(res.keys())
 
 
@@ -30,7 +31,7 @@ def extract(string):
     else:
         return string.split()[0]
 
-def prepareEvolution(data_folder):
+def makeEvolution(data_folder):
     output_name = "evolution.plot"
     output = open(data_folder + output_name, "w")
     opened = list()
@@ -59,7 +60,3 @@ def prepareEvolution(data_folder):
             line += "," + extract(item["fichier"].readline())
         line += "\n"
         output.write(line)
-
-
-if len(sys.argv) > 1:
-    prepareEvolution(sys.argv[1])
