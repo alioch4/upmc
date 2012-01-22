@@ -38,13 +38,13 @@ def conversion(graph, output):
 
 def community(binaire, tree, log):
     os.system("community/community " + binaire + " -l -1 -q 0.0001 > " + tree\
-            + " &>> " + log)
+            + " 2>> " + log)
 
 
 def hierarchy(tree, hierarchy, log):
-    os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy + " &>> "\
+    os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy + " 2>> "\
             + log)
-    os.system("community/hierarchy -l 2 " + tree + " > " + hierarchy + " &>> "\
+    os.system("community/hierarchy -l 2 " + tree + " > " + hierarchy + " 2>> "\
             + log)
 
 
