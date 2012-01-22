@@ -42,20 +42,20 @@ def community(binaire, tree, log):
 
 
 def hierarchy(tree, hierarchy, log):
-    os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy + " 2>> "\
+    os.system("community/hierarchy " + tree + " > " + hierarchy + " 2>> "\
             + log)
-    os.system("community/hierarchy -l 2 " + tree + " > " + hierarchy + " 2>> "\
+    os.system("community/hierarchy " + tree + " > " + hierarchy + " 2>> "\
             + log)
 
 
 def analysis(target):
     conversion(target + ".graph", target + ".bin")
     community(target + ".bin", target + ".tree", target + ".log")
-    hierarchy(target + ".tree", target + ".data", target + ".log")
+    hierarchy(target + ".tree", target + ".hierarchy", target + ".log")
 
     print "Distribution de " + target
-    res = distribution(target + ".data")
-    output = open(target + ".plot", "w")
-    for i in res:
-        output.write("%s %s\n" % (i, res[i]))
-    output.close()
+    #res = distribution(target + ".data")
+    #output = open(target + ".plot", "w")
+    #for i in res:
+    #    output.write("%s %s\n" % (i, res[i]))
+    #output.close()
