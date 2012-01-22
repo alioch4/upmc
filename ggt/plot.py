@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 
 # Idées de stratégies :
 # - Evolution du coefficient de clustering
@@ -31,6 +30,7 @@ def extract(string):
     else:
         return string.split()[0]
 
+
 def makeEvolution(data_folder):
     output_name = "evolution.plot"
     output = open(data_folder + output_name, "w")
@@ -39,16 +39,16 @@ def makeEvolution(data_folder):
     # Création de la liste des fichiers à ouvrir
 
     for dataset in os.listdir(data_folder):
-        input_address = data_folder + dataset
-        if os.path.isfile(input_address) and dataset != output_name:
+        input_address = os.path.join(data_folder, dataset)
+        if os.path.isfile(input_address) and \
+                os.path.splitext(dataset)[1] == ".dataset":
             input_file = open(input_address)
-            opened.append({"name": dataset, "fichier" : input_file})
+            opened.append({"name": dataset, "fichier": input_file})
 
     # Création du header
-
     header = "#discovered"
     for dataset in opened:
-        header += "," + dataset["name"].replace(".dataset","")
+        header += "," + dataset["name"].replace(".dataset", "")
     header += "\n"
     output.write(header)
 

@@ -251,17 +251,20 @@ def linkExploration(original, sample, node1, node2, i, visited, output):
 
 
 def analyse(n, m, t):
+    res = dict()
     density = float(2 * m) / float(n * (n - 1))
     res['best'] = 0.5 * t * t
     res['worse'] = 0
     if(t > m):
         res['best'] += m * (t - m)
     if(t > n * (n - 1) / 2 - m):
-        res['worse'] = (t - (n * (n - 1) / 2 - m)) * (t - (n * (n - 1) / 2 - m))
+        res['worse'] = \
+                (t - (n * (n - 1) / 2 - m)) * (t - (n * (n - 1) / 2 - m))
     res['random'] = 0.5 * t * t * density
     return res
 
 # Stratégies d'exploration
+
 
 def RandomStrategy(original, sample, k, output):
     print "Random Strategy running..."

@@ -5,7 +5,6 @@
 # directement sans mettre son chemin exact. il faut juste donner le nom du jeu
 # de données.
 
-import sys
 import os
 import csv
 
@@ -36,8 +35,10 @@ def distribution(address):
 def conversion(graph, output):
     os.system("community/convert -i " + graph + " -o " + output)
 
+
 def community(binaire, tree):
     os.system("community/community " + binaire + " -l -1 -q 0.0001 > " + tree)
+
 
 def hierarchy(tree, hierarchy):
     os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy)
@@ -55,4 +56,3 @@ def analysis(target):
     for i in res:
         output.write("%s %s\n" % (i, res[i]))
     output.close()
-

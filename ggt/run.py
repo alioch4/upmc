@@ -3,7 +3,6 @@
 
 import os
 import sys
-import glob
 
 cmd_folder = os.path.dirname(os.path.abspath(__file__))
 if cmd_folder not in sys.path:
@@ -28,15 +27,18 @@ else:
 
 sample = Graph()
 output_folder = "output/" + sys.argv[1]
-output_folder = output_folder.replace('/data','')
+output_folder = output_folder.replace('/data', '')
 
 
 def makeGraph(folder):
     for f in os.listdir(folder):
-        if os.path.isfile(os.path.join(folder,f)) and os.path.splitext(f)[1] == ".dataset":
-            c = "cut --delimiter=' ' --fields=2,3 %s > %s" % (os.path.join(folder,f),\
-                    (os.path.join(folder, os.path.splitext(f)[0])+ ".graph"))
+        if os.path.isfile(os.path.join(folder, f)) and \
+                os.path.splitext(f)[1] == ".dataset":
+            c = "cut --delimiter=' ' --fields=2,3 %s > %s" % \
+                    (os.path.join(folder, f),\
+                    (os.path.join(folder, os.path.splitext(f)[0]) + ".graph"))
             os.system(c)
+
 
 def runSimulation(l):
     global output_folder
@@ -63,12 +65,18 @@ def runSimulation(l):
     # Analyse des communautés
 
     for f in os.listdir(folder):
-        if os.path.isfile(f) and os.path.splitext(f)[1] == ".graph":
+        print f
+        if os.path.isfile(os.path.join(folder, f)) and \
+                os.path.splitext(f)[1] == ".graph":
             analysis(os.path.join(folder, os.path.splitext(f)[0]))
 
     # Préparation de l'evolution du nombre de liens découverts
-    print folder
+
     makeEvolution(folder)
+
+    # On balance le template de plot dans chaque fichier
+
+    os.system("cp plot.gnuplot %s" % folder)
 
 runSimulation(100)
 runSimulation(1000)
