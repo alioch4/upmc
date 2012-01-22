@@ -1,0 +1,13 @@
+\section{Améliorations}
+
+Afin d'améliorer les performances il serait pertinent
+de paralléliser les algorithmes d'exploration de façon au augmenter les performances
+de nos programmes. En effet, l'exploration peut se paralléliser par exemple, on pourrait
+envisager de couper la liste des couples de noeuds à explorer dans la stratégie TBF en
+plusieurs jeu de données qui serait repartis sur différentes stations.
+
+De même l'algorithme Complete se parallelise en transformant la liste des noeuds à explorer
+en une file d'attente et en transformant les différentes stations en unités de traitement qui prendrait
+un élément de la file en entrée puis lancerait une exploration sur l'objet récupéré depuis la file.
+
+Quant à la stratégie random, elle se parallelise trivialement.
