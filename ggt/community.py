@@ -33,30 +33,25 @@ def distribution(address):
     return res
 
 
-def conversion(data):
-    os.system("community/convert -i data/" + data + ".graph" + " -o data/" + data + ".bin")
+def conversion(graph, output):
+    os.system("community/convert -i " + graph + " -o " + output)
 
-def community(data):
-    os.system("community/community data/" + data + ".bin -l -1 -q 0.0001 >\
-    data/" + data + ".tree")
-    os.system("community/community data/" + data + ".bin -l -1 -q 0.0001 >\
-    data/" + data + ".tree")
+def community(binaire, tree):
+    os.system("community/community " + binaire + " -l -1 -q 0.0001 > " + tree)
+
+def hierarchy(tree, hierarchy):
+    os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy)
+    os.system("community/hierarchy -l 2 " + tree + " > " + hierarchy)
 
 
-def hierarchy(data):
-    os.system("community/hierarchy -l 3 data/" + data + ".tree > data/" + data\
-            + ".data")
-    os.system("community/hierarchy -l 2 data/" + data + ".tree > data/" + data\
-            + ".data")
+def analysis(target):
+    conversion(target + ".graph", target + ".bin")
+    community(target + ".bin", target + ".tree")
+    hierarchy(target + ".tree", target + ".data")
 
-if len(sys.argv) > 1:
-    conversion(sys.argv[1])
-    community(sys.argv[1])
-    hierarchy(sys.argv[1])
-
-    print "Distribution de " + sys.argv[1]
-    res = distribution("data/" + sys.argv[1] + ".data")
-    output = open("data/dist-" + sys.argv[1] + ".plot", "w")
+    print "Distribution de " + target
+    res = distribution(target + ".data")
+    output = open(target + ".plot", "w")
     for i in res:
         output.write("%s %s\n" % (i, res[i]))
     output.close()

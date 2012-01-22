@@ -3,6 +3,7 @@
 
 import os
 import sys
+import glob
 
 cmd_folder = os.path.dirname(os.path.abspath(__file__))
 if cmd_folder not in sys.path:
@@ -13,6 +14,8 @@ from graph import RandomStrategy
 from graph import VRandomStrategy
 from graph import CompleteStrategy
 from graph import TBFStrategy
+
+from community import analysis
 
 if sys.argv > 1:
     g = Graph(sys.argv[1])
@@ -25,13 +28,42 @@ sample = Graph()
 output_folder = "output/" + sys.argv[1]
 output_folder = output_folder.replace('/data','')
 
-if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
-RandomStrategy(g, sample, 1000, output_folder + "/random.dataset")
-sample.EraseLink()
-VRandomStrategy(g, sample, 1000, output_folder + "/vrandom.dataset")
-sample.EraseLink()
-CompleteStrategy(g, sample, 1000, output_folder + "/complete.dataset")
-sample.EraseLink()
-TBFStrategy(g, sample, 1000, output_folder + "/tbf.dataset")
-sample.EraseLink()
+
+def makeGraph(folder):
+    for f in os.listdir(folder):
+        if os.path.isfile(os.path.join(folder,f)) and os.path.splitext(f)[1] == ".dataset":
+            c = "cut --delimiter=' ' --fields=2,3 %s > %s" % (os.path.join(folder,f),\
+                    (os.path.join(folder, os.path.splitext(f)[0])+ ".graph"))
+            os.system(c)
+
+def runSimulation(l):
+    global output_folder
+    folder = output_folder + "/" + str(l)
+
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
+    # Création des traces d'explorations
+
+    RandomStrategy(g, sample, l, folder + "/random.dataset")
+    sample.EraseLink()
+    VRandomStrategy(g, sample, l, folder + "/vrandom.dataset")
+    sample.EraseLink()
+    CompleteStrategy(g, sample, l, folder + "/complete.dataset")
+    sample.EraseLink()
+    TBFStrategy(g, sample, l, folder + "/tbf.dataset")
+    sample.EraseLink()
+
+    # Fabrication des graphes
+
+    makeGraph(folder)
+
+    # Analyse des communautés
+
+    for f in os.listdir(folder):
+        if os.path.isfile(f) and os.path.splitext(f)[1] == ".graph":
+            analysis(os.path.join(folder, os.path.splitext(f)[0]))
+
+runSimulation(100)
+runSimulation(1000)
+runSimulation(10000)
