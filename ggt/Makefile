@@ -1,7 +1,5 @@
 all:
-	python run.py data/flikr.graph
-	python plot.py output/flikr.graph/
-	gnuplot plot.gnuplot
+	python run.py data/flikr-test.graph
 
 clean:
 	rm -fr output/

@@ -36,19 +36,22 @@ def conversion(graph, output):
     os.system("community/convert -i " + graph + " -o " + output)
 
 
-def community(binaire, tree):
-    os.system("community/community " + binaire + " -l -1 -q 0.0001 > " + tree)
+def community(binaire, tree, log):
+    os.system("community/community " + binaire + " -l -1 -q 0.0001 > " + tree\
+            + " &>> " + log)
 
 
-def hierarchy(tree, hierarchy):
-    os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy)
-    os.system("community/hierarchy -l 2 " + tree + " > " + hierarchy)
+def hierarchy(tree, hierarchy, log):
+    os.system("community/hierarchy -l 3 " + tree + " > " + hierarchy + " &>> "\
+            + log)
+    os.system("community/hierarchy -l 2 " + tree + " > " + hierarchy + " &>> "\
+            + log)
 
 
 def analysis(target):
     conversion(target + ".graph", target + ".bin")
-    community(target + ".bin", target + ".tree")
-    hierarchy(target + ".tree", target + ".data")
+    community(target + ".bin", target + ".tree", target + ".log")
+    hierarchy(target + ".tree", target + ".data", target + ".log")
 
     print "Distribution de " + target
     res = distribution(target + ".data")
