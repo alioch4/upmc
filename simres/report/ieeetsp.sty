@@ -1,0 +1,29 @@
+% =========================================================================
+% ieeetsp.sty --- For formatting papers for the IEEE 
+%       transactions on signal processing journal.
+%
+%       This style file must be used with the ieee.cls document class.
+%       
+%===========================================================================
+%
+% Usage:
+%       \documentclass[main-options,sub-options,misc-options]{ieee}
+%       \usepackage{ieeetsp}
+%       ... etc ...
+%
+%       more documentation for typesetting papers for journals and 
+%       conferences may be found at the beginning of the ieee.cls file.
+%===========================================================================
+% created 5 Sept 1997
+%===========================================================================
+\typeout{`ieeetsp' <Modified: Sept 1997, Gregory L. Plett>.}
+\ProvidesPackage{ieeetsp}[1997/09/05]     % Name of package provided, date
+\ifx\i@@@cls\undefined
+\PackageError{ieeetsp}{This package requires the ieee.cls file ^^Jin order
+  to work correctly}{}\endinput\fi
+
+  \journal{IEEE TRANSACTIONS ON SIGNAL PROCESSING}
+  \def\journal#1{\relax}
+  \centerfigcaptions
+
+  %%%%%%%%%%%%%%%%%%%%%%% End of ieeetsp.sty  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

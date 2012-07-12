@@ -1,0 +1,98 @@
+\makeatletter
+\let\kernel@xfloat\@xfloat
+\makeatother
+\documentclass[%
+        %draft,
+        %submission,
+        compressed,
+        final,
+        %
+        %technote,
+        %internal,
+        %submitted,
+        %inpress,
+        %reprint,
+        %
+        %titlepage,
+        notitlepage,
+        %anonymous,
+        narroweqnarray,
+        inline,
+        twoside,
+        %invited,
+        ]{ieee}
+%\usepackage{ieeetsp}   % if you want the "trans. sig. pro." style
+%\usepackage{ieeetc}    % if you want the "trans. comp." style
+%\usepackage{ieeeimtc}  % if you want the IMTC conference style
+
+% Use the `endfloat' package to move figures and tables to the end
+% of the paper. Useful for `submission' mode.
+%\usepackage {endfloat}
+
+
+\makeatletter
+\let\@xfloat\kernel@xfloat
+\def\@floatboxreset{%   
+  \reset@font
+  \linespread{1}\normalsize
+  \@setminipage}
+\makeatother   
+
+% Use the `times' package to use Helvetica and Times-Roman fonts
+% instead of the standard Computer Modern fonts. Useful for the 
+% IEEE Computer Society transactions.
+%\usepackage{times}
+% (Note: If you have the commercial package `mathtime,' (from 
+% y&y (http://www.yandy.com), it is much better, but the `times' 
+% package works too). So, if you have it...
+%\usepackage {mathtime}
+
+% for any plug-in code... insert it here. For example, the CDC style...
+%\usepackage{ieeecdc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[french]{babel}
+
+
+% == Metadata =============================================
+\title{Différenciation de service et contrôle de trafic dans les réseaux
+haut débit et à qualité de service}
+\author{Rémy Léone, Marc van der Wal}
+\def\keywords{upmc, simres, ns2, diffserv}
+\def\subject{Rapport}
+
+\date{lundi 19 mars 2012}
+
+\hypersetup{
+  bookmarks=true, % show bookmarks bar?
+    pdftoolbar=true, % show Acrobat’s toolbar?
+    pdfmenubar=true, % show Acrobat’s menu?
+    pdffitwindow=false, % window fit to page when opened
+    pdftitle={Rémy Leone / Marc van der Wal - Rapport}, % title
+    pdfauthor={Rémy \textsc{Leone}, Marc \textsc{van der Wal}}, % author
+    pdfcreator={XelaTeX}, % creator of the document
+    pdfproducer={Rémy \textsc{Leone}, \textsc{van der Wal}}, % producer of the document
+    pdfnewwindow=false, % links in new window
+    colorlinks=true, % false: boxed links; true: colored links
+    linkcolor=red, % color of internal links
+    citecolor=green, % color of links to bibliography
+    filecolor=magenta, % color of file links
+    urlcolor=blue % color of external links
+}
+
+\begin{document}
+
+\maketitle
+
+\input{tex/abstract.tex}
+%\input{tex/intro.tex}
+\input{tex/simulation.tex}
+\input{tex/ordonnancement.tex}
+\input{tex/tampon.tex}
+\input{tex/lissage.tex}
+\input{tex/conclusion.tex}
+
+\end{document}

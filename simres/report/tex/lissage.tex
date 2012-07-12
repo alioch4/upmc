@@ -1,0 +1,17 @@
+\section{Mécanisme de contrôle de trafic : lissage du trafic}
+
+La sporadicité du flux vidéo peut engendrer des pertes de paquets pour tous les
+autres flux.  Afin d'éviter cela, nous mettons en place un mécanisme de
+\textit{token bucket} visant à lisser le trafic passant par le réseau.
+
+Nous avons choisi les paramètres $\rho$ et $\lambda$ de la manière suivante:
+\begin{itemize}
+	\item $\sigma = 75\text{ ko}$;
+	\item $\lambda \in \{ 20, 25, 30, \dotsc, 70 \}\text{ Mbps}$.
+\end{itemize}
+
+Nous souhaitions mesurer le taux de perte, ainsi que le taux de rejet du
+\textit{token bucket}.  Cependant, les simulations n'ont pas donné de résultats
+permettant de mesurer ces deux grandeurs.
+
+% vi:tw=80:

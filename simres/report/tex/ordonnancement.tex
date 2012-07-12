@@ -1,0 +1,60 @@
+\section{Comparaison de plusieurs mécanismes d'ordonnancement}
+
+On se propose de comparer les mécanismes d'ordonnancement suivants: tête de
+file, RR, WRR et PRI, afin de comparer les délais des différents flux.
+
+La figure \ref{fig:q21} montre les délais globaux et des flux individuels en
+fonction du mécanisme d'ordonnancement utilisé.  Nous pouvons constater qu'avec
+une sporadicité $b = 3$ pour le flux vidéo, que le choix du mécanisme
+d'ordonnancement n'a qu'une très faible influence sur les délais.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.45\textwidth]{gfx/q21}
+	\caption{Délais des différents flux en fonction de mécanisme
+	d'ordonnancement}
+	\label{fig:q21}
+\end{figure}
+
+Cependant, la figure \ref{fig:q21a} permet de mettre en évidence deux choses:
+non seulement les effets du choix du mécanisme d'ordonnancement sont amplifiés
+lorsque la sporadicité $b$ augmente, mais on peut voir également que la
+sporadicité du flux vidéo est extrêmement dommageable pour les délais des autres
+trafics.  Globalement, l'ordonnancement PRI est le pire, car il est susceptible
+de provoquer la famine des autres flux; la discipline tête de file et le WRR
+sont un peu plus efficaces, mais l'ordonnancement RR réduit le mieux l'impact
+sur les délais lorsque $b$ augmente.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.45\textwidth]{gfx/q21a}
+	\caption{Délais globaux moyens en fonction de la sporadicité du flux
+	vidéo}
+	\label{fig:q21a}
+\end{figure}
+
+Le délai du trafic voix, même lorsque $b = 3$, n'est pas satisfaisant.  C'est
+pourquoi on décide de réduire le délai de ce flux, en augmentant le poids du
+trafic voix pour le WRR.
+
+La figure \ref{fig:q21b} représente les délais du flux voix en fonction de la
+sporadicité de $b$, que nous avons fait varier sur le même intervalle.  Les
+poids affectés au WRR sont:
+\begin{itemize}
+	\item \textbf{Avant}: vidéo + données: 310, voix: 50
+	\item \textbf{Après}: vidéo + données: 60, voix: 400
+\end{itemize}
+
+On voit que le flux voix était à l'origine négativement impacté par
+l'augmentation de $b$.  Après avoir adapté les poids de chaque flux, on constate
+qu'on parvient à supprimer entièrement l'influence négative de $b$ et à réduire
+légèrement le délai global.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.45\textwidth]{gfx/q21b}
+	\caption{Influence du changement des poids du WRR}
+	\label{fig:q21b}
+\end{figure}
+
+% vi:tw=80:

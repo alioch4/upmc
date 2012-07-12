@@ -1,0 +1,14 @@
+my @sim_data = (
+	{ queue => { size => 30 } },
+	{ queue => { size => 60 } },
+	{ queue => { size => 100 } },
+	{ queue => { size => 150 } },
+	{ queue => { size => 200 } },
+	{ queue => { size => 250 } },
+	{ queue => { size => 280 } },
+	{ queue => { size => 300 } },
+	{ queue => { size => 330 } },
+	{ queue => { size => 360 } },
+	{ queue => { size => 390 } }
+);
+

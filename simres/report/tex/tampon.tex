@@ -1,0 +1,40 @@
+\section{Protection contre les pertes}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.44\textwidth]{gfx/q22a-n.pdf}
+	\caption{Taux de perte en fonction de la taille de la file}
+	\label{fig:q22a-n}
+\end{figure}
+
+L'objectif était de trouver la taille de la file d'attente telle que le taux de
+perte soit inférieur à $10^{-4}$.  Les expériences menées mettent en évidence le
+lien entre le taux de pertes et la taille du tampon, comme le montre la figure
+\ref{fig:q22a-n}. Il est à noter qu'une taille de file de 250 possède une
+incertitude bien plus faible que celle pour 200 avec un taux de pertes nettement
+inférieur et c'est pour cela que nous avons donc choisi une fille d'attente de
+taille 250 pour le reste de nos simulations.
+
+Enfin, pour éviter les pertes consécutives de paquets, ce qui aurait provoqué le
+phénomène de synchronisation globale si nous utilisions des applications TCP,
+nous allons mettre en place le mécanisme RIO-C, qui est une généralisation du
+RED.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.44\textwidth]{gfx/q22b-rio}
+	\caption{Taux de perte après mise en place du RIO-C, en fonction
+	du paramètre $\mathrm{min}$}
+	\label{fig:q22b-rio}
+\end{figure}
+
+La figure \ref{fig:q22b-rio} montre les taux de perte de chaque application en
+fonction du paramètre $\mathrm{min}$ du RIO-C.  Le paramètre $\mathrm{max}$,
+quant à lui, est fixé à la taille de la file (i.e. 250), et $p_{max}$ est fixé à
+1.  On constate une relation évidente entre le paramètre $\mathrm{min}$ et le
+taux de perte, bien que le taux de perte du flux de données semble plus
+chaotique pour des raisons que nous n'avons pas su expliquer.  Lorsque
+$\mathrm{min} \ge 190$, tous les flux ont un taux de perte inférieur à $10^{-4}$.
+
+
+% vi:tw=80:

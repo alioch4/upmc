@@ -1,0 +1,13 @@
+\section{Paramètres de simulation}
+
+Nous allons ici simuler trois trafics sur un réseau de 100 Mbps:
+
+\begin{itemize}
+ \item Données: décrit par une loi de Poisson, taille de paquet variable (40\% 50 octets, 30\% 500 octets, 30\% 1500 octets), débit de 30 Mbps;
+ \item Voix: débit déterministe, avec des paquets de 100 octets, débit de 20 Mbps;
+ \item Vidéo: ON-OFF distribué exponentiellement, avec des paquets de 1000
+	 octets, débit de 30 Mbps.
+\end{itemize}
+
+Chacun de ces trafics est issu de trois nœuds différents émettant à un nœud
+destination sur le même lien.

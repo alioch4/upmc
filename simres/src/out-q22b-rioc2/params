@@ -1,0 +1,12 @@
+my @sim_data = (
+        { queue => { size => 250 }, rioc => { min => 40 } },
+        { queue => { size => 250 }, rioc => { min => 60 } },
+        { queue => { size => 250 }, rioc => { min => 80 } },
+        { queue => { size => 250 }, rioc => { min => 100 } },
+        { queue => { size => 250 }, rioc => { min => 130 } },
+        { queue => { size => 250 }, rioc => { min => 160 } },
+        { queue => { size => 250 }, rioc => { min => 190 } },
+        { queue => { size => 250 }, rioc => { min => 220 } },
+        { queue => { size => 250 }, rioc => { min => 250 } }
+);
+
