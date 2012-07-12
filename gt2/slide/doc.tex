@@ -1,0 +1,207 @@
+% Body
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Introduction}{Intérêts \& échelle}
+
+\begin{block}{Intérêts}
+
+\begin{itemize}
+\item Économique
+\item Envioronnemental
+\item Recherche
+\end{itemize}
+
+\end{block}
+
+
+\begin{block}{Echelle}
+\begin{itemize}
+\item Datacenter (Consommation et refroidissement de taille industriel)
+\item Embarqué (L'énergie est un critère de pérénitté du système)
+\item Informatique individuelle
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Point de vue \& Objectifs}{}
+
+\begin{block}{Définition du ``green computing''}
+\begin{itemize}
+\item Point de vue de l'ingénieur
+\item Point de vue du régulateur (Gouvernements)
+\item Point de vue économique
+\item Point de vue environnemental
+\end{itemize}
+\end{block}
+
+
+\begin{block}{Application dans les réseaux \& Objectif}
+\begin{itemize}
+\item Etude des réseaux filaires
+\item Hub \& Switch représentaient (80 \% de la consommation énergétique de l'internet en 2002)
+\item Combiner qualité du réseau et économies d'énergies.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Stratégies pour les économies d'énergies}{}
+
+\begin{block}{Consolidation de ressources}
+Prévoir les ressources nécessaires
+\end{block}
+\begin{block}{Virtualisation}
+Plusieurs machines sur une seule
+\end{block}
+\begin{block}{Connectivité selective}
+Prévoir les connexions nécessaires
+\end{block}
+\begin{block}{Proportionnal computing}
+Consommer en fonction des ressources mobilisées
+\end{block}
+\end{frame}
+
+\begin{frame}{Critères}
+\begin{block}{Critères d'évaluation d'une stratégie}
+\begin{itemize}
+\item Echelles de temps (Mise à jour de la politique)
+\item Portée des actions (Local ou à l'échelle d'un réseau)
+\item Couches OSI (A quel(s) niveau(x) le système se met en place)
+\item Entrées (Plan d'action ou Réaction à l'environnement)
+\item Approches (Analyse de trafic, Modèles, Simulation, Hardware, Software, \ldots)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Débit adaptatif}{\textit{Adaptative Link Rate}}
+
+\begin{block}{Mode sommeil}
+\begin{itemize}
+\item Facile à mettre en oeuvre et mesure facile
+\item Temps entre chaque paquets
+\item Reprise difficile (Possibilité d'oscillations)
+\end{itemize}
+\end{block}
+
+
+\begin{block}{Débit adaptatif}
+\begin{itemize}
+\item Trouver l'optimal est NP-difficile
+\item Gain d'énergie intéressant (5 \% 10Mb/s vers 1 Gb/s)
+\item Plus robuste en cas de crêtes (Pas de départ à froid)
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Proxy}
+\begin{block}{A l'échelle locale}
+\begin{itemize}
+\item Répondre aux requêtes basiques (90 \% du temps efficace)
+\item Connectivité sélective
+\item Ne peut pas gérer les requêtes complexes
+\end{itemize}
+\end{block}
+
+\begin{block}{A l'échelle d'un réseau}
+\begin{itemize}
+\item Mis aux portes d'un réseau
+\item Requêtes un peu plus complexes que les proxy à échelle locale
+\item Evalué dans un contexte pair à pair avec de bons résultats
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Infrastructure à basse consommation}{\textit{Energy-aware infrastructure}}
+\begin{block}{Approches générales}
+\begin{itemize}
+\item Plannification centralisée de l'utilisation des ressources (Grid)
+\item Agrégation à la bordure (Utile dans les réseaux optiques)
+\end{itemize}
+\end{block}
+
+\begin{block}{Approche dans les routeurs}
+\begin{itemize}
+\item Contrainte de qualité de service à maintenir
+\item Attention au re-calcul des chemins et aux synchronisations (OSPF \& IBGP)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Logiciels et architecture à basse consommation}{\textit{Energy-aware software and applications}}
+
+\begin{block}{Espace utilisateur}
+\begin{itemize}
+\item Applications écologiques (Pair à pair, Modèles de programmation)
+\end{itemize}
+\end{block}
+
+\begin{block}{Espace noyau}
+\begin{itemize}
+\item Protocoles de communications à améliorer
+\item Interface réseaux à améliorer
+\end{itemize}
+\end{block}
+
+\begin{block}{Architecture inspirée du sans-fil}
+\begin{itemize}
+\item Compromis entre portée et équipements en fonctionnements
+\item Lien entre puissance electrique et débit
+\item Penser distribué
+\end{itemize}
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}{Mesure de consommation énergétique}
+\begin{itemize}
+\item Nécessaire pour juger de l'efficacité d'une stratégie.
+\end{itemize}
+
+\begin{block}{Mesures en différents points}
+\begin{itemize}
+\item Noeud d'un réseau
+\item Équipement de réseau (Switch, routeur, \ldots)
+\item Mesure d'un réseau tout entier
+\end{itemize}
+\end{block}
+
+\begin{block}{Benchmark}
+\begin{itemize}
+\item Applications
+\item Noeuds
+\item Réseaux
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Conclusion}
+\begin{block}{Catégories}
+\begin{itemize}
+\item Adaptative link rate
+\item Interface proxying
+\item Energy aware infrastructure
+\item Energy aware applications
+\end{itemize}
+\end{block}
+
+\begin{block}{Champs de recherche}
+\begin{itemize}
+\item La mesure énérgétique, la modélisation
+\item La cohabitation de la qualité de service et des contraites énergétiques
+\end{itemize}
+\end{block}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,104 @@
+\documentclass[twocolumns]{article}
+% L'option draft est vraiment utile pour avoir un document sans 
+% erreurs de OverFull UnderFull
+\usepackage{multicol}
+\usepackage{xltxtra}
+\usepackage{wrapfig}
+\usepackage[usenames]{color}
+\usepackage{xunicode}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{polyglossia}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{appendix}
+\usepackage{numprint}
+\usepackage[xetex]{hyperref}
+
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+
+% == Metadata =============================================
+\title{A Survey of Green Networking Research}
+\author{Rémy Léone}
+\def\keywords{upmc, green networking}
+\def\subject{Fiche de lecture}
+
+\date{\today}
+\setlength{\textwidth}{39pc}
+
+\setlength{\textheight}{54pc}
+
+\setlength{\parindent}{1em}
+
+\setlength{\parskip}{0pt plus 1pt}
+
+\setlength{\oddsidemargin}{0pc}
+
+\setlength{\marginparwidth}{0pc}
+
+\setlength{\topmargin}{-2.5pc}
+
+\setlength{\headsep}{20pt}
+
+\setlength{\columnsep}{1.5pc}
+
+\setlength\premulticols{6\baselineskip}
+
+\hypersetup{
+  bookmarks=true, % show bookmarks bar?
+    pdftoolbar=true, % show Acrobat’s toolbar?
+    pdfmenubar=true, % show Acrobat’s menu?
+    pdffitwindow=false, % window fit to page when opened
+    pdftitle={Rémy Leone - Fiche de lecture - A Survey of Green Networking Research}, % title
+    pdfauthor={Rémy \textsc{Leone}}, % author
+    pdfcreator={XelaTeX}, % creator of the document
+    pdfproducer={Rémy \textsc{Leone}}, % producer of the document
+    pdfnewwindow=false, % links in new window
+    colorlinks=true, % false: boxed links; true: colored links
+    linkcolor=red, % color of internal links
+    citecolor=green, % color of links to bibliography
+    filecolor=magenta, % color of file links
+    urlcolor= blue % color of external links
+}
+
+\setdefaultlanguage{french}
+\setotherlanguage{english}
+
+\setromanfont[Mapping=tex-text]{Gentium Basic}
+
+\begin{document}
+
+\input{tex/title.tex}
+
+%\onehalfspacing
+\begin{multicols}{2}
+\thispagestyle{empty}
+
+% ==================================================================
+% AVANT-PROPOS
+\input{tex/intro.tex}
+
+% ==================================================================
+% CONTENU
+
+\input{tex/strategies.tex}
+
+\section*{Techniques}
+
+L'article présente une méthodologie afin d'apporter des cas concrets
+de systèmes à implémenter. En outre, des stratégies de mesure sont
+ également introduite afin de juger de l'efficacité de ces stratégies.
+
+\input{tex/debits.tex}
+\input{tex/proxy.tex}
+\input{tex/infra.tex}
+\input{tex/logiciels.tex}
+%\input{tex/mesure.tex}
+
+% ==================================================================
+% CONCLUSION
+\input{tex/conclusion.tex}
+
+\end{multicols}
+\end{document}
