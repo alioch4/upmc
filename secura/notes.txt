@@ -1,0 +1,20 @@
+Anonymat des interactions: personne en dehors des parties qui ont interagi
+ensemble peuvent prendre connaissance du fait qu'ils aient interagi.
+
+Par exemple, on like la photo d'un ami: l'ami peut remonter à toi, mais
+l'autorité centrale ne peut pas.
+
+VIS-à-VIS: on fait en gros confiance à Amazon de ne pas abuser de leurs droits
+d'accès aux données, étant donnée que la VM de l'user est hébergée chez eux.
+
+les modifs de politiques ne sont pas forcément de mauvaise foi, mais impactent
+les users parce que les suppositions du réseau social ne correspondent pas
+forcément aux attentes des users?  certains changement peuvent etre de bonne
+foi mais peuvent avoir des répercussion négatives
+
+le gouvernement italien voulait un accès aux infos stockées par FB pour
+pouvoir griller les fraudeurs à la taxe d'habitation, sous peine de blocage de
+FB. on sait pas où on va, même si les gens s'en foutent si seul FB a accès aux
+infos.
+
+ajouter quelques clarifications concernant le DLP à la fin

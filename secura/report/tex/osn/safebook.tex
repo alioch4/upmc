@@ -1,0 +1,68 @@
+\subsection{Safebook}
+
+\begin{flushright}\textit{Auteur: Riad Mazloum}\end{flushright}
+
+Safebook est un réseau social pair à pair qui essaie de faire face aux
+problèmes d’intimité et de confiance. Le stockage et le routage des
+informations sont faits par des nœuds qui se font mutuellement confiance, ce
+qui veut dire que ces nœuds se basent sur de relations établies dans la vie
+réelle. Pour mieux comprendre l’architecture de Safebook, il faut d’abord
+définir les niveaux de services des réseaux sociaux:
+
+\begin{itemize}
+\item Social Network (SN), la représentation numérique des membres et les
+relations entre eux;
+
+\item Social Networking Service (SNS), le niveau de l’application qui est géré
+par le fournisseur du SNS;
+
+\item Communication and Transport (CT), les services de communication et
+transport fournis par les réseaux.
+\end{itemize}
+
+Safebook implémente ces trois niveaux :
+
+\begin{itemize}
+\item SN : le niveau implémenté par la couche de réseau centrée sur
+l’utilisateur ;
+
+\item SNS : l’implémentation pair-à-pair des services ;
+
+\item CT : ce niveau est implémenté par l’Internet. On peut distinguer aussi un
+autre service, « Trusted Identification Service (TIS) », qui attribue à chaque
+nœud un identifiant unique et un pseudonyme. 
+\end{itemize}
+
+Par exemple, pour que $u$ puisse rejoindre le réseau, il doit être invité par $v$, un
+membre du réseau. L'utilisateur $u$ doit contacter le TIS et fournir une paire de clefs. Le TIS
+vérifie l’identité de $u$ et lui attribue un certificat. L’intimité est fondée sur
+un mécanisme de réseau de confiance. Tous les nœuds dans un overlay n’ont
+conscience que de leurs voisins directs. L’utilisateur attribue un niveau de
+confiance spécifié. Ainsi les données peuvent être classifiées en trois
+niveaux: privé, protégé et public. Les données privées ne sont pas
+publiées, les données protégées sont publiées et chiffrées, et enfin, les publiques sont
+publiées sans être chiffrées. Chaque nœud possède des \textit{nœuds miroirs}, ou \textit{nœuds
+voisins}, où le nœud peut stocker ses données, qui sont chiffrées.  La source
+des requêtes est toujours cachée, car les requêtes sont propagées
+récursivement.  Grâce à ces propriétés, Safebook répond aux problèmes d'intimité
+des données des membres. On peut résumer le modèle de sécurité de Safebook de la
+manière suivante :
+
+\begin{itemize}
+\item Contrôle d’accès : chaque membre décide ce qu’il veut partager et avec
+qui, par les relations de confiance entre les membres;
+
+\item Anonymat d’interaction : toutes les interactions sont basées sur le
+concept de confiance, et tous les autres membres avec lesquels le membre ne
+partage rien n’ont pas d’accès aux informations non privilégiées, les données
+étant chiffrées;
+
+\item Applications tierces : la notion n'existe pas;
+
+\item Fuites de données : toutes les opérations sont contrôlées par le membre, et
+aucun membre non privilégié ne peut obtenir d’accès aux données privées;
+
+\item Synchronisation des données : un problème de synchronisation est encore présent;
+
+\item Disponibilité : dépend du nombre de nœuds "miroirs".
+\end{itemize}

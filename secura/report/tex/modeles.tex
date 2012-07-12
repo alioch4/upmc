@@ -1,0 +1,94 @@
+\section{Modèles}
+
+\begin{flushright}\textit{Auteur: Patrick Raad}\end{flushright}
+
+Afin d'étudier la sécurité et la protection de l'intimité au sein des réseaux
+sociaux, il est important de disposer de modèles précis des notions
+d'\textit{intégrité}, de \textit{disponibilité} et d'\textit{intimité}.
+
+\begin{description}
+
+\item[Intégrité :] On appelle \textit{intégrité des données} l'impossibilité
+pour un utilisateur de pouvoir modifier les données d'un autre
+utilisateur. \cite{safebook}  Ceci englobe la protection de l'identité et des
+informations concernant lui et ses contacts.  En outre, pour remplir cet
+objectif, il faut également que les communications entre les différents
+utilisateurs soient chiffrés de bout en bout.
+
+\item[Disponibilité :] La \textit{disponibilité} vise à assurer le
+fonctionnement des services du réseau social malgré les attaques et les fautes.
+L'indisponibilité peut nuire à la réputation, surtout dans le cas des réseaux
+sociaux à orientation professionnelle.
+
+La décentralisation peut améliorer la disponibilité dans de nombreux cas de
+figure. Les datacenters des réseaux sociaux centralisés utilisent plusieurs
+nœuds dans leur réseau interne, afin d'assurer une disponibilité constante, même
+en cas de pannes. Ils agissent comme des nœuds d'un réseau décentralisé qui
+synchronisent entre eux le contenu, afin de garantir la cohérence des données
+pour leurs utilisateurs.
+
+De tels réseaux décentralisés sont aussi utilisés dans le cas des réseaux
+sociaux décentralisés de taille plus modeste. Il est ainsi possible d'avoir
+une copie de données des utilisateurs quand leur nœud maître est absent.
+
+L'architecture décentralisée permet d'augmenter la résilience totale d'un
+service. Son utilité est démontrée quand un nœud indisponible peut être
+remplacé par un nœud voisin qui aura une sauvegarde relativement récente de ses
+données. Pour un réseau social décentralisé, une bonne disponibilité est
+cruciale, car les réseaux sociaux centralisés ont une force considérable dans
+ce domaine. \cite{facebook-uptime}
+
+Il est à noter que la disponibilité est une notion assez subtile qui est
+fortement liée aux performances du réseau social. Ainsi, dans les architectures
+Web modernes, \cite{youtube} il est assez courant de voir des mécanismes de file
+d'attente qui valideront l'envoi d'une vidéo quand des ressources seront
+disponibles pour l'encoder par exemple.  Ainsi, même si la vidéo est envoyée,
+elle ne sera disponible qu'après un certain laps de temps.
+
+
+\item[Intimité :] On appelle \textit{intimité} la capacité d’un utilisateur à pouvoir
+contrôler, protéger et divulguer les informations qui le concerne qu'aux
+personnes qu'il choisit explicitement  Plusieurs attaques la menacent :
+
+\begin{description}
+\item[Vol d'identité :] Un membre malveillant ou un service obtient l’accès au
+compte d’un membre et contrôle ses informations et sa liste d’amis;
+
+\item[Usurpation d'identité :] La création d’un compte en utilisant l’identité
+d’une personne pour obtenir la confiance de ses connaissances.
+
+\item[Profils illégitimes :] Un compte est créé par un utilisateur n'étant pas
+légitime pour avoir un profil ciblé. Cette attaque prend tout son sens dans un
+contexte de campagne politique, ou bien dans un milieu professionnel.
+
+\end{description}
+\end{description}
+
+Généralement quand on parle de l’intimité dans le contexte d’une
+communication entre deux individus, on souhaite garantir
+quatre propriétés: \cite{handbook}
+
+\begin{description}
+
+\item[Contrôle d'accès :] L'utilisateur a le contrôle total aussi bien en
+lecture (consultation) qu'en écriture (ajout de commentaires, modification d'un
+contenu, \ldots) sur un contenu qu'il publie. En particulier, il peut modifier
+ces permissions pour des ensembles précis d'autres utilisateurs du réseau
+social, ainsi que pour des utilisateurs non identifiés;
+
+\item[Anonymat :] Les utilisateurs doivent accéder aux ressources
+sans divulguer leur identité;
+
+\item[Non-observabilité :] Aucune partie tierce ne doit pouvoir recueillir
+d'informations à propos des communications et des échanges de contenu entre des
+utilisateurs;
+
+\item[Non-recoupement :] Dans le cas de l’obtention de deux messages par un
+tiers, il est impossible de déterminer si les deux messages sont envoyés par le
+même expéditeur ou reçu par le même destinataire;
+
+\item[Non-traçabilité :] Aucune partie tierce ne doit pouvoir garder de traces des
+actions des utilisateurs dans un système, ce qui exige l'anonymat et le
+non-recoupement d'informations.
+
+\end{description}

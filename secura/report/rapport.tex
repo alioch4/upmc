@@ -1,0 +1,121 @@
+\documentclass{article}
+% L'option draft est vraiment utile pour avoir un document sans 
+% erreurs de OverFull UnderFull
+\usepackage{multicol}
+\usepackage{xltxtra}
+\usepackage{wrapfig}
+\usepackage[usenames]{color}
+\usepackage{xunicode}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{rotating}
+\usepackage{rotfloat}
+\usepackage{polyglossia}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{appendix}
+\usepackage{numprint}
+\usepackage[xetex]{hyperref}
+
+\newcommand{\BibTeX}{{\sc Bib}\TeX}
+
+
+\date{\today}
+\setlength{\textwidth}{39pc}
+\setlength{\textheight}{54pc}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt plus 1pt}
+\setlength{\oddsidemargin}{0pc}
+\setlength{\marginparwidth}{0pc}
+\setlength{\topmargin}{-2.5pc}
+\setlength{\headsep}{20pt}
+\setlength{\columnsep}{1.5pc}
+\setlength\premulticols{6\baselineskip}
+
+
+\renewcommand{\textsc}{\uppercase}
+
+% == Metadata =============================================
+\title{Formal Privacy Models for Online Social Networks}
+\author{Rémy Léone (Intégrateur), Riad Mazloum, Patrick Raad, Marc van der Wal (Relecture)}
+\def\keywords{upmc, secura, social networks}
+\def\subject{Fiche de lecture}
+
+\date{\today}
+
+\hypersetup{
+  bookmarks=true, % show bookmarks bar?
+    pdftoolbar=true, % show Acrobat’s toolbar?
+    pdfmenubar=true, % show Acrobat’s menu?
+    pdffitwindow=false, % window fit to page when opened
+    pdftitle={Formal Privacy Models for Online Social Networks}, % title
+    pdfauthor={Rémy Léone (Intégrateur), Riad Mazloum, Patrick Raad, Marc van der Wal}, % author
+    pdfcreator={XelaTeX}, % creator of the document
+    pdfproducer={Rémy \textsc{Leone}}, % producer of the document
+    pdfnewwindow=false, % links in new window
+    colorlinks=true, % false: boxed links; true: colored links
+    linkcolor=red, % color of internal links
+    citecolor=red, % color of links to bibliography
+    filecolor=magenta, % color of file links
+    urlcolor= blue % color of external links
+}
+
+\setdefaultlanguage{french}
+\setotherlanguage{english}
+
+\setromanfont[Mapping=tex-text]{Gentium Basic}
+
+\begin{document}
+
+\maketitle
+
+% ==================================================================
+% Resumé
+\input{tex/abstract.tex}
+
+\begin{multicols}{2}
+
+% ==================================================================
+% AVANT-PROPOS
+\input{tex/intro.tex}
+
+\input{tex/modeles.tex}
+
+% ==================================================================
+% Réseaux sociaux
+
+\input{tex/osn/facebook.tex}
+\input{tex/osn/google-plus.tex}
+\input{tex/osn/linkedin.tex}
+\input{tex/osn/decentralized.tex}
+\input{tex/osn/vis-a-vis.tex}
+\input{tex/osn/safebook.tex}
+
+% ==================================================================
+% Sécurité dans les réseaux sociaux
+
+\input{tex/attaques.tex}
+\input{tex/scenarios.tex}
+
+% ==================================================================
+% CONCLUSION
+\input{tex/conclusion.tex}
+
+% ==================================================================
+% BIBLIOGRAPHIE
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{rapport}{}
+
+\end{multicols}
+
+% ==================================================================
+% ANNEXES
+\appendix
+
+\pagebreak
+\input{tex/tableau.tex}
+
+\end{document}

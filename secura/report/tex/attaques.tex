@@ -1,0 +1,192 @@
+\section{Attaques}
+
+\begin{flushright}\textit{Auteur: Marc van der Wal}\end{flushright}
+
+Les attaques sur les réseaux sociaux peuvent être divisées en trois catégories.
+Premièrement, nous avons les attaques classiques visant à obtenir l'accès au
+compte de la victime.  Deuxièmement, d'autres attaques visent à dévoiler des
+informations privées sur la victime vers l'extérieur, sans pour autant obtenir
+ses identifiants.  Troisièmement, on peut ajouter les attaques sur l'anonymat;
+en effet, même si la victime utilise un pseudonyme, la quantité d'informations
+recueillie sur elle permet parfois de la confondre.
+
+\subsection{Ingénierie sociale inverse}
+
+Bien que les attaques dites d'\emph{ingénierie sociale} sont des attaques
+classiques, connues et polyvalentes, l'\textit{ingénierie sociale inversée},
+mise en évidence par Irani \textit{et al.} \cite{dan11}, suit un principe
+légèrement différent.
+
+En effet, contrairement à une attaque par ingénierie sociale où l'attaquant
+contacte la victime, il est aussi possible de faire en sorte que la victime
+contacte l'attaquant.  Cette attaque est rendue possible par trois
+fonctionnalités que les réseaux sociaux tendent à mettre en place.
+
+Premièrement, certains réseaux comme Facebook mettent en œuvre une liste de
+recommandations d'utilisateurs avec qui l'utilisateur peut nouer une relation
+d'amitié: par exemple, deux utilisateurs $A$ et $B$ ont $n$ amis en commun, donc
+$B$ est présenté à $A$ comme un ami potentiel.  D'autres heuristiques peuvent
+être utilisées, mais celles-ci peuvent être exploitées par un attaquant pour que
+la victime l'ajoute dans sa liste d'amis.
+
+Deuxièmement, l'attaque peut également être réalisée par traçage de visites:
+certains réseaux sociaux envoient une notification lorsque le profil de
+l'utilisateur est visité par une autre personne, et gardent une trace des $n$
+derniers visiteurs.  Il suffit que l'attaquant visite le profil de la victime
+pour espérer que la victime l'ajoute à ses amis.  Cependant, cette attaque est
+généralement peu efficace lorsqu'utilisée seule.
+
+Troisièmement, la mise en place d'un faux profil suffisamment convaincant d'une
+personne habitant la même localité et ayant la même âge que la victime permet,
+lui, d'effectuer une attaque dite démographique.  Cette dernière attaque est
+d'autant plus efficace sur les réseaux sociaux orientés ``dating'', comme Badoo.
+
+
+\subsection{Désanonymisation}
+
+Wondracek et al. ont avancé la possibilité d'une attaque de désanonymisation en
+exploitant l'appartenance de la victime à des groupes. \cite{whkk10}
+
+Cette méthode utilise une attaque par vol d'historique afin de connaître les
+pages de groupes visitées par la victime -- ou, du moins, des pages spécifiques à
+un groupe particulier et qui ne sont accessibles qu'aux membres. En effet, il est
+possible de déterminer l'appartenance à un groupe à partir des URL se trouvant dans un
+historique Web.  L'attaquant exploite ensuite le fait que les navigateurs
+colorent différemment les liens déjà visités par l'utilisateur. Il construit
+donc une page contenant des liens vers chacune de ces URLs, et utilise une
+feuille de style CSS spécifique pour qu'une image de fond ``piégée'' ne se
+charge que si une URL est visitée.  Ainsi, l'attaquant connaît les pages déjà
+visitées parmi les liens de la page, et donc les groupes auxquels la victime
+appartient.
+
+Les informations d'appartenance au groupe obtenues de la victime est ensuite
+suffisante pour l'identifier de manière unique, ou dans le pire cas, réduire de
+manière significative le nombre de personnes pouvant lui correspondre.
+
+\subsection{Infiltration par botnet}
+
+\begin{flushright}\textit{Auteurs: Rémy Léone, Marc van der Wal}\end{flushright}
+
+De nombreux utilisateurs se soucient de leur vie privée et veulent protéger les
+informations qui les concernent. Cependant, ils veulent que leurs amis proches
+puissent accéder facilement aux informations qui les concernent. 
+
+Malgré les mesures déjà mises en place par certains réseaux sociaux afin de
+mitiger le problème de la création automatisée de faux comptes (captchas, etc.),
+Boshmaf et al.\ ont montré qu'il reste toujours possible d'infiltrer
+un réseau social à l'aide de robots, et d'obtenir des informations privées
+d'utilisateurs peu vigilants en les incitant à ajouter ces robots comme amis.
+\cite{Boshmaf:264} Ces robots utilisent des profils fictifs et souvent
+aguicheurs; le but étant toujours de faire fuiter des informations
+privées vers l'extérieur.
+
+\subsection{Compromission d'applications tierces}
+
+\begin{flushright}\textit{Auteur: Rémy Léone}\end{flushright}
+
+Les réseaux sociaux tirent leur source de revenus en utilisant majoritairement
+les informations fournies par les utilisateurs pour afficher de la publicité
+ciblée. Les réseaux sociaux peuvent aussi mettre à profit les informations de
+leurs utilisateurs pour des applications tierces. Des éditeurs peuvent ainsi
+concevoir des applications utilisant les API des réseaux sociaux afin d'extraire
+des informations précises sur les utilisateurs, tel que leur date de naissance
+ou bien leur liste de contacts.
+
+Dans le cas de Facebook, des applications et des jeux sont proposés aux
+utilisateurs. Bien que les applications soient forcées d'indiquer les
+informations qu'elles vont extraire des profils utilisateurs qui les installent,
+il est courant de voir des utilisateurs concentrés sur l'utilisation de
+l'application plutôt que sur la sécurité de leurs données personnelles.  Ainsi
+de nombreuses applications conçues sans véritables souci de la confidentialité
+des données sont utilisées et peuvent être victimes de détournement
+malveillants.
+
+Les applications tierces ne sont pas soumises à un audit par le réseau social.
+Ainsi, les vulnérabilités des applications tierces peuvent conduire à des fuites
+d'informations concernant les utilisateurs qui les ont installées. En outre,
+elles peuvent également héberger du code malveillant qui peut être téléchargé
+sur la station de l'utilisateur et ainsi compromettre d'autres données
+personnelles.
+
+\subsection{Fuite de données}
+
+\begin{flushright}\textit{Auteur: Patrick Raad}\end{flushright}
+
+Un sondage révèle les risques qui sont associés aux réseaux sociaux
+\cite{poll-dataleak}: 5,4 millions d’utilisateurs ont répondu à des e-mails de
+phishing avec leurs informations personnelles. Parmi les utilisateurs adultes
+des réseaux sociaux, 38\% ont publié leur date de naissance en entier, 45\% des
+personnes ont publié les photos de leurs enfants, et 8\% ont publié le numéro de
+la rue de leur adresse. Il est estimé que 5,1 millions ont été victimes
+d'attaques ou d'abus en 2010, y compris des infections de logiciels
+malveillants, les escroqueries et l’harcèlement.
+
+Une autre étude faite en 2008 montre que moins de 1\% des fuites de données sont
+dues à des attaques externes à l’entreprise.  \cite{dlp-whitepaper}  Ainsi ce
+sont les utilisateurs internes qui, par malveillance ou par inadvertance,
+dévoilent des informations confidentielles. Les exemples d'utilisation légitime
+de réseaux sociaux sont nombreux. Le département des ressources humaines utilise
+des réseaux sociaux professionnels pour chercher des candidats, et les équipes
+de R\&D peuvent publier des guides de développement sur des wikis.  Cependant,
+les réseaux sociaux introduisent plusieurs problèmes. Selon une étude faite par
+Phenomenon Institute sur la sécurité des réseaux sociaux
+\cite{social-media-risks}, l’utilisation des réseaux sociaux dans les
+entreprises ont ajouté de nouvelles menaces de sécurité :
+
+\begin{description}
+
+\item[Virus \& logiciels malveillants :] Les infections se produisent quand les
+employés téléchargent des fichiers et des données sur les ordinateurs de
+l’entreprise;
+
+\item[Fuite de données confidentielles :] La fuite des données a lieu quand les
+employés envoient accidentellement ou intentionnellement des informations
+sensibles à l’extérieur du réseau local. \cite{combating-data-leaks} Cette
+solution peut faire la différence entre les informations personnelles,
+confidentielles et celles de l’entreprise dans les réseaux sociaux, n’affecte
+pas les communications légitimes (conformes avec les chartes du réseau social),
+et utilise un système d’analyse de contenu en temps réel. Les vecteurs de fuites
+d'informations sont multiples, messagerie, applications tierces, partage de
+profil via des ``badges'' sur des sites externes\ldots
+
+\end{description}
+
+La DLP permet d'analyser l'ensemble des informations transitant au sein d'un
+réseau afin de permettre à des renseignements stratégiques de ne pas quitter
+l'organisation. Pour détecter le contenu, la DLP analyse l'ensemble des textes
+voyageant sur les liens surveillés. Dès qu'un contenu a une signature similaire
+à une signature stockée en mémoire, le système bloque la communication et envoie
+un message à l'administrateur système. La messagerie étant un vecteur faisant
+transiter énormement d'informations, elle est souvent la première surveillée.
+Le choix d’une solution de Data Leak Prevention est basé sur plusieurs critères :
+
+\begin{itemize}
+
+\item Il est nécessaire pour les DLP d'avoir une base de données de signatures à
+jour afin de permettre une détection efficace.
+
+\item Pour être efficace, les DLP doivent être au courant de l'ensemble des
+services de réseaux sociaux, ainsi que des serveurs mandataires qui peuvent
+permettre de contourner les règles de sécurité.
+
+\item Avec l’évolution des réseaux sans fil, et des terminaux tel que les
+ordinateurs portables et les smartphones, le périmètre de sécurité propre à
+l’entreprise est facilement contournable. Par exemple, un employé peut vouloir
+accéder à Internet depuis l’extérieur du périmètre de son entreprise, continuer
+son travail depuis son domicile, ou travailler depuis l’étranger via la station
+appartenant à l'entreprise et contenant des informations confidentielles.  Pour
+cela, un agent DLP doit être installé sur le terminal afin de pouvoir
+anticiper les éventuelles fuites vers l'extérieur. 
+
+\end{itemize}
+
+Il est également à noter que les réseaux sociaux sont filtrés, afin de lutter
+contre la baisse de productivité que les employés sont susceptibles de causer
+lorsqu'ils les consultent trop souvent. Ainsi, les réseaux sociaux sont
+souvent intégrés dans les politiques de sécurité des entreprises en étant
+purement et simplement bloqués. À l'inverse, certaines sociétés essayent
+d'utiliser un réseau social interne comme unique moyen de communication, et
+évitent ainsi les mails.
+
+
+% vi:et:ts=2:sw=2:tw=80:

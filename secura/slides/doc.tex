@@ -1,0 +1,283 @@
+\begin{document}
+
+\maketitle
+
+\section{Introduction \& Définition}
+
+\subsection{Introduction}
+\begin{frame}{Introduction}{Protection des données}
+
+\begin{block}{Mécanisme de protection des données}
+\begin{itemize}
+\item Consentement des utilisateurs
+\item Charte de vie privée
+\item Contrôle d'accès
+\end{itemize}
+\end{block}
+
+\begin{block}{Problèmes}
+\begin{itemize}
+\item Peu d'utilisateurs lisent les chartes
+\item Modifications des chartes
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\subsection{Modèles}
+
+\begin{frame}{Modèles \& Menaces}
+
+\begin{block}{Modèles}
+\begin{itemize}
+\item Intégrité
+\item Disponibilité
+\item Confidentialité \& Intimité
+\end{itemize}
+\end{block}
+
+\begin{block}{Attaques}
+\begin{itemize}
+\item Vol d'identité
+\item Usurpation
+\item Profils illégitimes
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Modèles \& Menaces}
+\begin{block}{Garantir}
+\begin{itemize}
+\item Anonymat des interactions
+\item Inobservabilité
+\item Non recoupement d'informations
+\item Intraçabilité
+\end{itemize}
+\end{block}
+	
+\end{frame}
+\section{Réseaux centralisés}
+
+\subsection{Facebook}
+\begin{frame}{Facebook}
+
+\begin{block}{Caractéristiques principales}
+\begin{itemize}
+\item Relation symétrique
+\item Contrôle d'accès ``potentiel'' sur chaque objet
+\item Applications tierces
+\end{itemize}
+\end{block}
+
+\begin{block}{Atouts}
+\begin{itemize}
+\item Grande communauté
+\item Très réactifs face aux améliorations des concurrents
+\item Suggestions de listes
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\subsection{Google+}
+\begin{frame}{Google+}
+
+\begin{block}{Caractéristiques principales}
+\begin{itemize}
+\item Relation asymétrique
+\item Contrôle d'accès sur chaque objet
+\item Liste de diffusion ``vissées'' à l'interface graphique
+\end{itemize}
+\end{block}
+
+
+\begin{block}{Atouts}
+\begin{itemize}
+\item Unification des différents services Google
+\item Sécurisé par ``défaut''
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\subsection{Linkedin}
+\begin{frame}{Linkedin}
+\begin{block}{Caractéristiques principales}
+\begin{itemize}
+\item Relation symétriques
+\item Contrôle d'accès sur tous les objets
+\item Milieu soucieux des conditions d'utilisation
+\end{itemize}
+\end{block}
+
+\begin{block}{Atouts}
+\begin{itemize}
+\item Contrôle très étroit sur les applications tierces
+\item Certification TRUSTe
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\section{Réseaux décentralisés}
+
+\subsection{Vis a vis}
+
+\begin{frame}{Réseaux décentralisés}{Vis-à-vis}
+\begin{block}{Vis-à-vis}
+\begin{itemize}
+\item Affecter un VIS (Virtual Individual Server) à chaque utilisateur
+\item Auto organisation en overlay
+\item Hébergeur : Cloud (ex.: Amazon EC2\ldots)
+\end{itemize}
+\end{block}
+
+\begin{block}{Problèmes}
+\begin{itemize}
+\item Souvent payant
+\item La confiance est simplement déplacée vers l'hébergeur
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{Safebook}
+
+\begin{frame}{Réseaux décentralisés}{Safebook}
+\begin{block}{Safebook}
+\begin{itemize}
+\item Relations basées sur celle de la vie réelle
+\item Présentation d'une pièce d'identité pour joindre le réseau
+\item Les noeuds sont mirrorés
+\end{itemize}
+\end{block}
+
+\begin{block}{Problèmes}
+\begin{itemize}
+\item Disponibilité
+\item Synchronisation des données
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Attaques}
+
+\begin{frame}{Attaques}
+    Trois catégories:
+    \begin{itemize}
+        \item Obtention de l'accès au compte de la victime
+            \begin{itemize}
+                \item Exemple: Ingénierie sociale classique
+            \end{itemize}
+        \item Fuite d'informations privées vers l'extérieur
+            \begin{itemize}
+                \item Exemples: Ingénierie sociale inversée, infiltration par
+                    botnet
+            \end{itemize}
+        \item Attaques sur l'anonymat
+            \begin{itemize}
+                \item Exemple: Désanonymisation par vol d'historique
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Fuites de données}
+\begin{frame}{Fuites de données}
+\begin{itemize}
+\item 1\% des fuites de données sont dues à des attaques externes
+\item Utilisation des réseaux sociaux dans les entreprises
+\end{itemize}
+\begin{block}{Problèmes}
+\begin{itemize}
+\item Dissémination des données personnelles
+\item Fuites de données
+\item Virus \& Logiciels malveillants
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{Ingénierie sociale inverse}
+\begin{frame}{Ingénierie sociale inverse}
+    \begin{itemize}
+        \item Au lieu que l'attaquant contacte la victime, il s'arrange pour
+            que la victime le contacte en premier
+        \item Trois méthodes:
+            \begin{itemize}
+                \item Apparaître dans les recommendations d'utilisateurs à
+                    ajouter comme ami (ex.: Facebook)
+                \item Apparaître dans la liste des derniers visiteurs (peu
+                    efficace seul)
+                \item Mettre en place un profil racoleur (même âge, même
+                    localité), surtout sur des réseaux orientés ``rencontres''.
+            \end{itemize}
+        \item L'attaquant s'arrange pour que la victime l'ajoute dans ses amis
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Désanonymisation}
+\begin{frame}{Désanonymisation}
+    \begin{itemize}
+        \item Attaque par vol d'historique
+            \begin{itemize}
+                \item Mise en place d'une page Web truquée avec liste de liens
+                \item Liens déjà visités: affichés avec une image de fond
+                    ``piégée''
+                \item L'attaquant connaît ainsi les sites déjà visités par la
+                    victime  \pause
+                \item Exemple: \url{http://didyouwatchporn.com}
+            \end{itemize} \pause
+        \item Idée générale: appliquer cette attaque aux pages spécifiques à un
+            groupe
+            \begin{itemize}
+                \item Identification des groupes auxquels appartient un
+                    utilisateur
+                \item Identification unique parmi tous ses homonymes
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Autres méthodes}
+\begin{frame}{Autres méthodes}
+    \begin{block}{Infiltration par botnet}
+        \begin{itemize}
+            \item Utiliser des botnets pour créer des comptes malveillants avec de faux
+profils aguicheurs
+            \item Les victimes les ajoutent comme amis
+            \item Les informations uniquement visibles aux amis peuvent ainsi fuiter
+        \end{itemize}
+    \end{block}
+    \begin{block}{Compromission d'applications tierces}
+        \begin{itemize}
+            \item Si les applications tierces stockent les données des
+utilisateurs, une
+                vulnérabilité dans l'application et là, c'est le drame.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\section{Ouvertures \& Conclusion}
+
+\subsection{Ouvertures}
+\begin{frame}{Scénarios possibles}
+    \begin{itemize}
+        \item Mise en place d'autorités comme TRUSTe
+        \item Comment assurer un contrôle des identités?
+        \item Comment assurer l'interopérabilité entre les réseaux sociaux ?
+    \end{itemize}
+\end{frame}
+\subsection{Conclusion}
+\begin{frame}{Conclusion}
+    \begin{itemize}
+        \item Réseaux sociaux: prédominants, et pourtant négligés en termes de
+            sécurité
+        \item Contrôle d'accès le plus intéressant: DAC
+        \item Qui a la propriété et les droits d'auteur sur les contenus
+            des utilisateurs?
+        \item Disponibilité: critère important, paradoxalement optimal dans des
+            réseaux sociaux \textbf{centralisés}
+    \end{itemize}
+\end{frame}
+\end{document}
+
+% vi:ts=4:et:sw=4:tw=80:
