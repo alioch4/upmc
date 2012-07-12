@@ -1,0 +1,50 @@
+\section{Simulateurs \& Bancs de tests}
+
+L'ensemble des algorithmes, logiciels et protocoles qui sont développés pour
+les réseaux de capteurs doivent être testés avant d'être déployer sur des cas
+réels d'utilisation. Plusieurs framework de tests ainsi que des simulateurs ont
+été proposés \cite{tsiftes10framework, Bergamini:2010:VWS:1868589.1868611,
+eriksson08accurate} afin de mesurer l'efficacité des différentes technologies
+mises en œuvre.
+
+\subsection{Senslab}
+
+\subsubsection{État de l'art}
+
+Il existe de nombreux concurrents dans le domaine des tests à grandes échelles
+de réseaux de capteurs.  Citons par exemple :moteLab
+\cite{Werner-Allen:2005:MWS:1147685.1147769}, Kansei \cite{Arora06kansei:a} ou
+TWIST \cite{Handziski:2006:TSR:1132983.1132995}. Ces plateformes imposent
+cependant de nombreuses contraintes. Celui d'utiliser pour beaucoup d'entre
+elles TinyOS, ce qui en soit bloque l'innovation sur tests qui utilisent
+d'autres systèmes d'exploitation. Il est à noter que des tests via ces systèmes
+sur les ondes radios ne sont pas également possibles de même que l'injection de
+bruits. En outre, pour nombre d'entre elles, la couche MAC est réservée à
+l'IEEE 802.15.4.  Ceci a pour effet de couper toute recherche et les
+éventuelles optimisations qui pourraient exister au niveau de cette couche.
+
+Développée conjointement par Thales et des universités, la plateforme Senslab
+\cite{BURINDESROSIERS-2011-587862, BURINDESROSIERS-2011-599102} a pour but de
+tester les logiciels et algorithmes conçus pour les réseaux de capteurs sur des
+cas concrets \cite{coapdesign}. Les laboratoires de tests sont répartis dans 4
+centres en France à Grenoble, Rennes, Lille et Strasbourg. En outre, les deux
+derniers disposent de nœuds mobiles pouvant apporter une plus grande variété
+de tests. Aucun système d'exploitation n'est imposé aux utilisateurs qui ont
+ainsi une très grande liberté sur les tests qu'ils peuvent lancer. Une fois que
+le test est lancé sur la plateforme il est possible de surveiller l'ensemble
+des résultats obtenus en temps réel ainsi que de pouvoir d'avoir un contrôle en
+temps réel sur la simulation.
+
+\subsubsection{Ouvertures \& Wisebed}
+
+Wisebed \cite{chatzigiannakis09sensappeal} est une plateforme de tests pour
+réseau de capteurs. D'origine européenne \cite{fischer08wisebed}, cette
+plateforme est accessible pour les utilisateurs disposant d'un compte sur
+\url{http://wisebed.eu}. Wisebed se propose d'agir comme une surcouche sur
+plusieurs réseaux de tests différents. Ainsi il existe sur cette plateforme une
+seule interface pour parler à des simulateurs sans-fils, câblés ou hybrides. Le
+but premier de Wisebed est de fédérer au niveau européen de nombreux
+simulateurs afin de disposer d'une palette large de bancs de tests. Les
+communications qui se feraient via une API unique utiliserait la bibliothèque
+Wiselib qui a été publiée \cite{DBLP:journals/corr/abs-1101-3067}.
+

@@ -1,0 +1,102 @@
+\section{Protocoles}
+
+De nombreux protocoles qui régissent Internet aujourd'hui ont été conçu sans
+soucis des économies d'énergies.  Dans cette partie nous verrons quelques
+protocoles (6LoWPAN, IPv6, \cite{ipv6}, UDP, CoAP \cite{coap},\ldots) qui sont
+mis en œuvre au sein des réseaux de capteurs afin d'optimiser les performances
+des transmissions au sein d'un environnement sous contraintes.
+
+
+\subsection{Adressage \& routage}
+
+\subsubsection{IPv6 \& 6LoWPAN}
+
+L'IPv6 bien que connaissant une adoption grandissante n'est pas applicable
+directement sur les réseaux de capteurs. En effet, la quantité d'informations
+qu'une unité à besoin de transmettre est généralement très réduite et le coût
+énergétique engendré par la création d'entête des protocoles IPv6 est trop
+important pour un réseau de capteur. Ainsi l'IETF a défini l'IPv6 sur les
+réseaux de capteurs sous le nom de 6LoWPAN. Ce protocole se caractérise par sa
+courte portée, son taux faible, sa consommation énergétique basse pour une
+occupation mémoire faible \cite{Srinivasan06someimplications}.
+
+Ainsi il est nécessaire d'adapter le protocole IPv6 en le simplifiant. En
+outre, de la même façon que les protocoles TCP/IP ont connu plusieurs
+implémentations au cours de l'histoire, il est pertinent de voir les
+performances des communications au sein de réseaux de capteurs adoptant
+plusieurs implémentations du même protocole sur plusieurs systèmes
+d'exploitation pour capteurs différents.  \cite{dunkels11adhoc, dunkels09ercim,
+ipv6}
+
+Il a été montré dans le cas de Contiki et de TinyOs qu'il est possible de les
+faire fonctionner ensemble mais qu'une perte de performance se produisait.
+
+\subsubsection{RPL}
+
+RPL est un protocole de routage à vecteur de distance qui est crée et couplé
+aux réseaux de capteurs. RPL est construit pour être très flexible. Ce
+protocole est proactif et construit ses routes en continue. Le RPL définit un
+noeud racine qui va définir les paramètres pour tout le réseau
+
+Adressage et routage le trafic remonte souvent vers un nœud central ou vers
+des routes très employées routing protocol for low power and lossy networks
+DODAG Destination oriented DAG.
+
+Contiki RPL \& TinyRPL sont deux exemples d'implémentations de RPL qui bien
+qu'étant fonctionnelle ont des performances moindres quand elles sont utilisées
+l'une avec l'autre \cite{ko11contikirpl} démontrant que les performances du
+protocole doivent être prises en compte dès les premières heures. Des détails
+d'implémentation peuvent avoir des conséquences lourdes dans les développements
+ultérieurs.
+
+\subsection{Accès au ressource - CoAP}
+
+Le \textit{Constrained Application Protocol} (CoAP) s'est rapidement imposé
+dans le domaine des réseaux de capteurs comme étant le protocole de référence
+au niveau applicatif \cite{coap, coapdesign, kovatsch11low-power}. En effet de
+part leur nature, les informations échangées au niveau applicatif sont très
+simples. Il s'agit le plus souvent de couples requêtes/réponses sur des
+informations envoyées ou reçue par des capteurs/aggrégateur/passerelles. Ainsi,
+il est facile de repérer de nombreuses similitudes entre ce type d'échanges et
+les échanges se passant sur Internet via le protocole HTTP. En effet, HTTP est
+fondamentalement non connecté et dans le cas des réseaux de capteurs il est
+clair que maintenir une connexion non utilisée va utiliser des ressources et de
+l'énergie pour rien car un capteur doit dormir pendant de très longue période
+afin d'économiser son énergie.  Le protocole HTTP peut transporter des
+informations de type différentes comme l'audio ou vidéo. Dans le cas des
+réseaux de capteurs, les types de données échangés sont moins nombreux on
+retrouve surtout le XML et le JSON cependant le modèle requêtes/réponses dans
+un paradigme client/serveur persiste et reste un point commun central avec
+l'HTTP.
+
+Le protocole de transport utilisé par CoAP est différent de celui utilisé par
+HTTP et cela constitue un point de divergence majeur. HTTP utilise TCP pour son
+transport cependant, TCP n'est pas adapté pour les réseaux de capteurs, les
+entêtes sont jugées trop lourdes et beaucoup trop de transfert de paquet sont
+provoqués en raison du mécanisme d'acquittement de paquets. C'est pour cela que
+l'on lui préfère UDP \cite{coap-web}. UDP étant basé sur des diagrammes, la tolérances
+au pertes est plus importantes et les entêtes sont beaucoup plus courtes.
+
+L'une des fonctionnalité essentielle de CoAP est d'éviter la fragmentation de
+paquets et de garder les entêtes aussi petites que possible tout cela bien sur
+pour économiser autant d'énergie que possible.
+
+L'orientation des protocoles au niveau applicatif vers le web est voulu. En
+effet, l'un des objectifs des réseaux de capteurs est de créer un Internet of
+Things ou bien un Web of Things. En permettant à des objets de communiquer les
+uns avec les autres et de publier des résultats sur le web, CoAP s'inscrit dans
+cet objectif de changer durablement l'interface entre les objets de la vie
+courante et le web \cite{Glombitza:2009:IWS:1658192.1658197}.
+
+Le protocole CoAP a été implémenté avec succès dans TinyOS \cite{coap-design}
+et dans Contiki \cite{coap} ainsi que via des bibliothèques Python et C.
+
+\subsection{Ouvertures}
+
+La couche applicative permet d'ouvrir sur une très grande gamme d'applications.
+L'une d'entre elle pourrait consister à stocker au sein de chaque nœud du
+réseau une base de données \cite{tsiftes11database}. L'intérêt de ce genre de
+technique pourrait permettre d'avoir des traitements très fins sur les données
+qui sont transmises vers l'extérieur du réseau de capteur. Le stockage et
+l'organisation de données permettent en effet d'économiser des transmissions
+qui sont les plus couteuses du point de vue énergétique.

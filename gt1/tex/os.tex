@@ -1,0 +1,96 @@
+\section{Système d'exploitation}
+
+Tous les capteurs ont besoin d'un système d'exploitation pour fonctionner
+\cite{dunkels09operating, dutta12operating}.  En plus des solutions
+propriétaires il existe plusieurs solutions libres.  Seuls les systèmes
+d'exploitation les plus utilisés et maintenus seront présentés par la suite.
+
+\subsection{Tiny OS}
+
+TinyOS est le plus vieux système d'exploitation libre pour capteur encore
+maintenu. Il fut inventé à Berkeley en 2000 \cite{Levis04tinyos:an,
+Hill00systemarchitecture}. TinyOS repose sur un mécanisme de gestion
+d'évènements. Les évènements tel qu'un battement d'horloge, un paquet radio
+détecté, la lecture des paramètres d'un capteur sont traités les uns après les
+autres au sein d'une file FIFO. Une fois lancées, les taches s'exécutent sans
+interruptions.  La latence entre les processus au sein de TinyOS est faible en
+effet au moment de lancer un nouveau processus il n'est pas nécessaire
+d'allouer de la mémoire. Le système, les applications et les modules utilisés
+occupent un volume très compact.  En effet les applications et le système sont
+compilés ensemble ce qui donne un système monolithique et une utilisation du CPU
+efficace.
+
+ Bien qu'utilisé dans de très nombreux systèmes en raison de son ancienneté, il
+n'est pas dispensé de critiques. Pendant longtemps, TinyOS n'avait pas de
+supports natif de l'IPv6 et de 6LowPAN. Bien que cet handicap soit aujourd'hui
+comblé, de nombreux utilisateurs qui avaient besoin d'IPv6 et de 6LowPAN ont du
+trouver une alternative, telle que Contiki afin de disposer de cette
+technologie.
+
+La mise à jour de capteurs en production est possible cependant, il est
+nécessaire de remplacer toute l'image du système d'exploitation pour y arriver.
+Il n'est pas possible de réinstaller simplement une autre application ou d'en
+modifier une déjà en production. Plus précisément, l'édition de liens est telle
+qu'une mise à jour d'un composant ne peut se faire sans refaire toute l'édition
+de liens.
+
+Le noyau de TinyOS n'utilise pas de threads en outre, l'exécution d'une tache
+lourde tel que la cryptographie peut comporter des risques important de
+dépassement de tampons et mettre en cause l'intégrité de la mémoire du système.
+
+\subsection{LiteOS}
+
+LiteOS \cite{Cao_theliteos} a été crée en 2008 à l'université de l'Illinois. Il
+est écrit en C, sous licence GPL et implémente un système d'exploitation de
+type UNIX sur un capteur. LiteOS dispose de nombreuses fonctionnalité
+intéressantes venue de l'univers UNIX. On peut citer par exemple : Un système
+de fichiers hiérarchique, un système de fichier distant pour nœuds du réseau,
+ainsi qu'un ensemble de mécanismes hérités du shell. Le noyau de ce système
+d'exploitation supporte les threads et peut également faire de la programmation
+évènementielle à l'aide d'appel de fonctions.  La mémoire est gérée
+dynamiquement et les applications exécutées peuvent être reprogrammées à
+distance car le noyau le système de fichier et le shell sont des entités
+séparées.
+
+Des critiques peuvent être émises vis à vis de la lourdeur de la norme POSIX
+qui est vraiment surdimensionnée pour ce genre de systèmes.
+
+
+\subsection{Contiki}
+
+
+Contiki \cite{dunkels04contiki} a été développé en 2004 en Suède.  Le noyau de
+ce système d'exploitation est indépendant des applications qui l'utilise. Le
+système n'est donc pas monolithique à l'inverse de TinyOS.  Ainsi, il est
+possible de mettre à jour une application sans devoir refaire toute une édition
+de liens, ce qui simplifie considérablement l'installation de nouvelles
+applications. Le système est essentiellement divisé en deux parties : Le
+\textit{core} qui contient l'ensemble des bibliothèques, pilotes, runtime,
+ordonnanceur ainsi que le noyau du système. La seconde partie tournant dans
+l'espace utilisateur contient les programmes des différentes applications en
+cours d'exécution sur le système. L'ordonnanceur de Contiki fonctionne par
+évènements et n'est pas préemptif ainsi, la création de piles et les mécanismes
+de gestion de verrous sur la mémoire est évité. En outre, il est possible pour
+une application d'utiliser une bibliothèque tierce afin de disposer de
+traitement préemptif si elle en fait explicitement la demande.
+
+Bien qu'étant plus lourd que TinyOS, Contiki dispose d'un noyau disposant de
+plus de fonctionnalités tel que la gestion de processus en mode FIFO ou bien le
+chargement et le déchargement automatiques des routines nécessaires à
+l'exécution d'une application.
+
+\subsection{Remarque}
+
+Il est à noter que des travaux ont été mené pour vérifier l'interopérabilité de
+ces systèmes à travers leurs protocoles de communication
+\cite{Eriksson09detailedsimulation, Eriksson:2009:CIT:1537614.1537650}. Ainsi
+le choix d'un système d'exploitation peut entrainer des pertes de performances
+avec un réseau d'ores et déjà existant. Il y a cependant espoir qu'un mouvement
+d'interopérabilité se produira entre les différents systèmes d'exploitation
+afin d'offrir des implémentations de références de protocoles de communications
+n'utilisant aucune pré optimisation liée à une plateforme particulière.
+
+Un parallèle peut être observé entre ce phénomène et les standardisations liées
+à l'évolution des différentes implémentations de TCP dans le début de
+l'histoire des communications d'Internet et des réseaux informatiques
+classiques.
